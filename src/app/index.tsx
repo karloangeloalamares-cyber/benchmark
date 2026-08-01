@@ -1,8 +1,9 @@
 import { useRouter } from 'expo-router';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
+import { PrimaryButton } from '@/components/PrimaryButton';
 import { ScreenContainer } from '@/components/ScreenContainer';
-import { colors, radii, spacing, typography } from '@/constants/theme';
+import { colors, fontWeights, layout, radii, shadows, spacing, typography } from '@/constants/theme';
 
 export default function HomeScreen() {
   const router = useRouter();
@@ -10,17 +11,24 @@ export default function HomeScreen() {
   return (
     <ScreenContainer centered>
       <View style={styles.content}>
-        <View style={styles.mark} />
-        <Text style={styles.title}>Southern University Benchmark</Text>
-        <Text style={styles.subtitle}>Mobile Content Publishing</Text>
-        <Text style={styles.label}>Visual MVP</Text>
-        <Pressable
-          accessibilityLabel="Enter demo role selection"
-          accessibilityRole="button"
-          onPress={() => router.push('/demo/role-select')}
-          style={({ pressed }) => [styles.button, pressed && styles.buttonPressed]}>
-          <Text style={styles.buttonText}>Enter Demo</Text>
-        </Pressable>
+        <View style={styles.heroCard}>
+          <View style={styles.brandMark}>
+            <Text style={styles.brandMarkText}>B</Text>
+          </View>
+          <Text style={styles.kicker}>Visual MVP</Text>
+          <Text style={styles.title}>Southern University Benchmark</Text>
+          <Text style={styles.subtitle}>Mobile Content Publishing</Text>
+          <Text style={styles.description}>
+            A presentation demo for creating, reviewing, and publishing university stories in the
+            Benchmark content studio.
+          </Text>
+          <Text style={styles.demoLabel}>Demo mode — mock data only</Text>
+          <PrimaryButton
+            accessibilityLabel="Enter demo role selection"
+            onPress={() => router.push('/demo/role-select')}>
+            Enter Demo
+          </PrimaryButton>
+        </View>
       </View>
     </ScreenContainer>
   );
@@ -30,58 +38,67 @@ const styles = StyleSheet.create({
   content: {
     alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: spacing.lg,
-    paddingVertical: spacing.xxl,
   },
-  mark: {
-    width: 56,
-    height: 6,
+  heroCard: {
+    width: '100%',
+    maxWidth: layout.maxReadableWidth,
+    paddingHorizontal: spacing.xl,
+    paddingVertical: spacing.xxl,
+    backgroundColor: colors.surface,
+    borderColor: colors.border,
+    borderWidth: 1,
+    borderRadius: radii.xl,
+    ...shadows.card,
+  },
+  brandMark: {
+    width: 58,
+    height: 58,
+    alignItems: 'center',
+    justifyContent: 'center',
     marginBottom: spacing.xl,
-    backgroundColor: colors.universityGold,
-    borderRadius: 3,
+    backgroundColor: colors.primaryNavy,
+    borderColor: colors.universityGold,
+    borderWidth: 2,
+    borderRadius: radii.pill,
+  },
+  brandMarkText: {
+    color: colors.universityGold,
+    fontSize: 28,
+    fontWeight: fontWeights.heavy,
+    lineHeight: 34,
+  },
+  kicker: {
+    color: colors.warning,
+    fontSize: typography.label,
+    fontWeight: fontWeights.semibold,
+    letterSpacing: 1,
+    lineHeight: 16,
+    textTransform: 'uppercase',
   },
   title: {
     color: colors.primaryNavy,
     fontSize: typography.screenTitle,
-    fontWeight: '700',
+    fontWeight: fontWeights.bold,
     lineHeight: 36,
-    textAlign: 'center',
+    marginTop: spacing.sm,
   },
   subtitle: {
-    marginTop: spacing.lg,
+    marginTop: spacing.sm,
     color: colors.secondaryNavy,
     fontSize: typography.subtitle,
     lineHeight: 28,
-    textAlign: 'center',
   },
-  label: {
-    marginTop: spacing.sm,
-    color: colors.warning,
+  description: {
+    marginTop: spacing.lg,
+    marginBottom: spacing.lg,
+    color: colors.textSecondary,
     fontSize: typography.body,
-    fontWeight: '700',
-    letterSpacing: 0,
-    textTransform: 'uppercase',
+    lineHeight: 24,
   },
-  button: {
-    minWidth: 156,
-    minHeight: 52,
-    marginTop: spacing.xxl,
-    paddingHorizontal: spacing.xl,
-    paddingVertical: spacing.md,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: colors.primaryNavy,
-    borderBottomColor: colors.universityGold,
-    borderBottomWidth: 4,
-    borderRadius: radii.md,
-  },
-  buttonPressed: {
-    opacity: 0.86,
-  },
-  buttonText: {
-    color: colors.surface,
-    fontSize: typography.body,
-    fontWeight: '700',
+  demoLabel: {
+    marginBottom: spacing.lg,
+    color: colors.textSecondary,
+    fontSize: typography.small,
     lineHeight: 22,
   },
 });

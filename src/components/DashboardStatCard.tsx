@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-import { colors, radii, spacing, toneColors, typography } from '@/constants/theme';
+import { colors, fontWeights, radii, shadows, spacing, toneColors, typography } from '@/constants/theme';
 import type { DashboardStat } from '@/types';
 
 type DashboardStatCardProps = {
@@ -12,6 +12,7 @@ export function DashboardStatCard({ stat }: DashboardStatCardProps) {
 
   return (
     <View style={styles.card}>
+      <View style={[styles.accent, { backgroundColor: tone }]} />
       <Text style={[styles.value, { color: tone }]}>{stat.value}</Text>
       <Text style={styles.label}>{stat.label}</Text>
     </View>
@@ -21,24 +22,32 @@ export function DashboardStatCard({ stat }: DashboardStatCardProps) {
 const styles = StyleSheet.create({
   card: {
     flexGrow: 1,
-    flexBasis: 148,
+    flexBasis: 240,
+    minWidth: 0,
     minHeight: 104,
     padding: spacing.lg,
     backgroundColor: colors.surface,
     borderColor: colors.border,
     borderWidth: 1,
-    borderRadius: radii.md,
+    borderRadius: radii.lg,
+    ...shadows.soft,
+  },
+  accent: {
+    width: 30,
+    height: 3,
+    marginBottom: spacing.md,
+    borderRadius: radii.pill,
   },
   value: {
-    fontSize: 30,
-    fontWeight: '800',
-    lineHeight: 36,
+    fontSize: 28,
+    fontWeight: fontWeights.bold,
+    lineHeight: 34,
   },
   label: {
     marginTop: spacing.sm,
     color: colors.textSecondary,
     fontSize: typography.small,
-    fontWeight: '700',
+    fontWeight: fontWeights.semibold,
     lineHeight: 20,
   },
 });

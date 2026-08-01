@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { AppHeader } from '@/components/AppHeader';
 import { RoleCard } from '@/components/RoleCard';
 import { ScreenContainer } from '@/components/ScreenContainer';
-import { colors, spacing, typography } from '@/constants/theme';
+import { colors, fontWeights, layout, spacing, typography } from '@/constants/theme';
 import { roleDefinitions } from '@/data/mockDashboard';
 
 export default function RoleSelectScreen() {
@@ -12,9 +12,10 @@ export default function RoleSelectScreen() {
 
   return (
     <ScreenContainer>
-      <AppHeader title="Choose Demo Role" label="Demo mode — mock data only" />
+      <AppHeader title="Choose Demo Role" label="Demo mode — mock data only" context="Role Preview" />
       <Text style={styles.intro}>
-        Select a role to preview the visual MVP dashboard shell.
+        Preview how contributors, approvers, and administrators enter the Benchmark content
+        workspace.
       </Text>
       <View style={styles.list}>
         {roleDefinitions.map((role) => (
@@ -32,6 +33,7 @@ const styles = StyleSheet.create({
     color: colors.textSecondary,
     fontSize: typography.body,
     lineHeight: 24,
+    maxWidth: layout.maxReadableWidth,
   },
   list: {
     gap: spacing.lg,

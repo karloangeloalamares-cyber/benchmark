@@ -1,6 +1,6 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
-import { colors, radii, spacing, typography } from '@/constants/theme';
+import { colors, fontWeights, radii, shadows, spacing, typography } from '@/constants/theme';
 import type { RoleDefinition } from '@/types';
 
 type RoleCardProps = {
@@ -9,16 +9,24 @@ type RoleCardProps = {
 };
 
 export function RoleCard({ role, onPress }: RoleCardProps) {
+  const marker = role.title.slice(0, 1);
+
   return (
     <Pressable
       accessibilityLabel={`Choose ${role.title} demo role. ${role.description}`}
       accessibilityRole="button"
       onPress={onPress}
       style={({ pressed }) => [styles.card, pressed && styles.pressed]}>
-      <View style={styles.accent} />
       <View style={styles.body}>
-        <Text style={styles.title}>{role.title}</Text>
-        <Text style={styles.description}>{role.description}</Text>
+        <View style={styles.headingRow}>
+          <View style={styles.marker}>
+            <Text style={styles.markerText}>{marker}</Text>
+          </View>
+          <View style={styles.copy}>
+            <Text style={styles.title}>{role.title}</Text>
+            <Text style={styles.description}>{role.description}</Text>
+          </View>
+        </View>
         <Text style={styles.action}>Open dashboard</Text>
       </View>
     </Pressable>
@@ -27,26 +35,44 @@ export function RoleCard({ role, onPress }: RoleCardProps) {
 
 const styles = StyleSheet.create({
   card: {
-    minHeight: 132,
-    flexDirection: 'row',
-    overflow: 'hidden',
+    minHeight: 142,
     backgroundColor: colors.surface,
     borderColor: colors.border,
     borderWidth: 1,
-    borderRadius: radii.md,
-  },
-  accent: {
-    width: 6,
-    backgroundColor: colors.universityGold,
+    borderRadius: radii.xl,
+    ...shadows.card,
   },
   body: {
     flex: 1,
     padding: spacing.lg,
   },
+  headingRow: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    gap: spacing.md,
+  },
+  marker: {
+    width: 42,
+    height: 42,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.tintGold,
+    borderRadius: radii.pill,
+  },
+  markerText: {
+    color: colors.primaryNavy,
+    fontSize: typography.subtitle,
+    fontWeight: fontWeights.bold,
+    lineHeight: 24,
+  },
+  copy: {
+    flex: 1,
+    minWidth: 0,
+  },
   title: {
     color: colors.primaryNavy,
     fontSize: typography.subtitle,
-    fontWeight: '800',
+    fontWeight: fontWeights.semibold,
     lineHeight: 24,
   },
   description: {
@@ -57,9 +83,9 @@ const styles = StyleSheet.create({
   },
   action: {
     marginTop: spacing.lg,
-    color: colors.info,
+    color: colors.primaryNavy,
     fontSize: typography.small,
-    fontWeight: '800',
+    fontWeight: fontWeights.semibold,
     lineHeight: 20,
   },
   pressed: {

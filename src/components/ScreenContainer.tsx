@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
 
-import { colors, spacing } from '@/constants/theme';
+import { colors, layout, spacing } from '@/constants/theme';
 
 type ScreenContainerProps = {
   children: ReactNode;
@@ -23,11 +23,12 @@ export function ScreenContainer({ children, centered = false }: ScreenContainerP
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: colors.background,
+    backgroundColor: colors.backgroundSoft,
   },
   content: {
     flexGrow: 1,
-    paddingHorizontal: spacing.xl,
+    alignItems: 'center',
+    paddingHorizontal: spacing.lg,
     paddingVertical: spacing.xxl,
   },
   centered: {
@@ -35,7 +36,6 @@ const styles = StyleSheet.create({
   },
   inner: {
     width: '100%',
-    maxWidth: 760,
-    alignSelf: 'center',
+    maxWidth: layout.maxContentWidth,
   },
 });

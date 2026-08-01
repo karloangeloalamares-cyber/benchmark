@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-import { colors, radii, spacing, statusColors, statusLabels, typography } from '@/constants/theme';
+import { colors, fontWeights, radii, spacing, statusColors, statusLabels, typography } from '@/constants/theme';
 import type { SubmissionStatus } from '@/types';
 
 type StatusBadgeProps = {
@@ -12,6 +12,7 @@ export function StatusBadge({ status }: StatusBadgeProps) {
 
   return (
     <View style={[styles.badge, { borderColor: color }]}>
+      <View style={[styles.dot, { backgroundColor: color }]} />
       <Text style={[styles.text, { color }]}>{statusLabels[status]}</Text>
     </View>
   );
@@ -20,16 +21,23 @@ export function StatusBadge({ status }: StatusBadgeProps) {
 const styles = StyleSheet.create({
   badge: {
     alignSelf: 'flex-start',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.xs,
     paddingHorizontal: spacing.sm,
     paddingVertical: spacing.xs,
     backgroundColor: colors.surface,
     borderWidth: 1,
-    borderRadius: radii.sm,
+    borderRadius: radii.pill,
+  },
+  dot: {
+    width: 6,
+    height: 6,
+    borderRadius: radii.pill,
   },
   text: {
     fontSize: typography.label,
-    fontWeight: '800',
+    fontWeight: fontWeights.semibold,
     lineHeight: 16,
-    textTransform: 'uppercase',
   },
 });
