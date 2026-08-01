@@ -1,104 +1,131 @@
-import { useRouter } from 'expo-router';
+import { useMemo, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import { PrimaryButton } from '@/components/PrimaryButton';
-import { ScreenContainer } from '@/components/ScreenContainer';
-import { colors, fontWeights, layout, radii, shadows, spacing, typography } from '@/constants/theme';
+import { CategoryChipRow } from '@/features/student/components/CategoryChipRow';
+import { DemoContentNotice } from '@/features/student/components/DemoContentNotice';
+import { EmptyState } from '@/features/student/components/EmptyState';
+import { InternshipPromoCard } from '@/features/student/components/InternshipPromoCard';
+import { SearchField } from '@/features/student/components/SearchField';
+import { StoryCard } from '@/features/student/components/StoryCard';
+import { StudentHeader } from '@/features/student/components/StudentHeader';
+import { StudentScreenContainer } from '@/features/student/components/StudentScreenContainer';
+import {
+  internshipPromo,
+  studentCategories,
+  studentStories,
+} from '@/features/student/data/sampleContent';
+import { colors, fontWeights, spacing, typography } from '@/constants/theme';
 
-export default function HomeScreen() {
-  const router = useRouter();
+const ALL_CATEGORY_SLUG = 'all';
+
+export default function StudentHomeScreen() {
+  const [searchText, setSearchText] = useState('');
+  const [selectedCategorySlug, setSelectedCategorySlug] = useState(ALL_CATEGORY_SLUG);
+
+  const filteredStories = useMemo(() => {
+    const query = searchText.trim().toLowerCase();
+
+    return studentStories.filter((story) => {
+      const matchesCategory =
+        selectedCategorySlug === ALL_CATEGORY_SLUG || story.categorySlug === selectedCategorySlug;
+
+      if (!matchesCategory) {
+        return false;
+      }
+
+      if (!query) {
+        return true;
+      }
+
+      return [story.title, story.summary, story.categoryLabel, story.author].some((value) =>
+        value.toLowerCase().includes(query),
+      );
+    });
+  }, [searchText, selectedCategorySlug]);
+
+  const featuredStory = filteredStories.find((story) => story.isFeatured);
+  const feedStories = featuredStory
+    ? filteredStories.filter((story) => story.id !== featuredStory.id)
+    : filteredStories;
+  const hasMatches = filteredStories.length > 0;
+
+  function resetFilters() {
+    setSearchText('');
+    setSelectedCategorySlug(ALL_CATEGORY_SLUG);
+  }
 
   return (
-    <ScreenContainer centered>
+    <StudentScreenContainer>
+      <StudentHeader />
       <View style={styles.content}>
-        <View style={styles.heroCard}>
-          <View style={styles.brandMark}>
-            <Text style={styles.brandMarkText}>B</Text>
+        <SearchField value={searchText} onChangeText={setSearchText} />
+        <CategoryChipRow
+          categories={studentCategories}
+          selectedSlug={selectedCategorySlug}
+          onSelect={setSelectedCategorySlug}
+        />
+        <DemoContentNotice />
+        {featuredStory ? <StoryCard story={featuredStory} featured /> : null}
+        <InternshipPromoCard promo={internshipPromo} />
+        <View style={styles.feedHeader}>
+          <View style={styles.feedTitleGroup}>
+            <Text style={styles.feedLabel}>Student Feed</Text>
+            <Text style={styles.feedTitle}>Latest sample stories</Text>
           </View>
-          <Text style={styles.kicker}>Visual MVP</Text>
-          <Text style={styles.title}>Southern University Benchmark</Text>
-          <Text style={styles.subtitle}>Mobile Content Publishing</Text>
-          <Text style={styles.description}>
-            A presentation demo for creating, reviewing, and publishing university stories in the
-            Benchmark content studio.
-          </Text>
-          <Text style={styles.demoLabel}>Demo mode — mock data only</Text>
-          <PrimaryButton
-            accessibilityLabel="Enter demo role selection"
-            onPress={() => router.push('/demo/role-select')}>
-            Enter Demo
-          </PrimaryButton>
+          <Text style={styles.feedCount}>{filteredStories.length} shown</Text>
         </View>
+        {hasMatches ? (
+          <View style={styles.storyList}>
+            {feedStories.map((story) => (
+              <StoryCard key={story.id} story={story} />
+            ))}
+          </View>
+        ) : (
+          <EmptyState onReset={resetFilters} />
+        )}
       </View>
-    </ScreenContainer>
+    </StudentScreenContainer>
   );
 }
 
 const styles = StyleSheet.create({
   content: {
-    alignItems: 'center',
-    justifyContent: 'center',
+    gap: spacing.lg,
+    paddingHorizontal: spacing.lg,
+    paddingTop: spacing.lg,
   },
-  heroCard: {
-    width: '100%',
-    maxWidth: layout.maxReadableWidth,
-    paddingHorizontal: spacing.xl,
-    paddingVertical: spacing.xxl,
-    backgroundColor: colors.surface,
-    borderColor: colors.border,
-    borderWidth: 1,
-    borderRadius: radii.xl,
-    ...shadows.card,
+  feedHeader: {
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    justifyContent: 'space-between',
+    gap: spacing.md,
+    marginTop: spacing.sm,
   },
-  brandMark: {
-    width: 58,
-    height: 58,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: spacing.xl,
-    backgroundColor: colors.primaryNavy,
-    borderColor: colors.universityGold,
-    borderWidth: 2,
-    borderRadius: radii.pill,
+  feedTitleGroup: {
+    flex: 1,
+    minWidth: 0,
   },
-  brandMarkText: {
-    color: colors.universityGold,
-    fontSize: 28,
-    fontWeight: fontWeights.heavy,
-    lineHeight: 34,
-  },
-  kicker: {
+  feedLabel: {
     color: colors.warning,
     fontSize: typography.label,
-    fontWeight: fontWeights.semibold,
-    letterSpacing: 1,
+    fontWeight: fontWeights.bold,
+    letterSpacing: 0.8,
     lineHeight: 16,
     textTransform: 'uppercase',
   },
-  title: {
+  feedTitle: {
+    marginTop: spacing.xs,
     color: colors.primaryNavy,
-    fontSize: typography.screenTitle,
+    fontSize: typography.title,
     fontWeight: fontWeights.bold,
-    lineHeight: 36,
-    marginTop: spacing.sm,
+    lineHeight: 30,
   },
-  subtitle: {
-    marginTop: spacing.sm,
-    color: colors.secondaryNavy,
-    fontSize: typography.subtitle,
-    lineHeight: 28,
-  },
-  description: {
-    marginTop: spacing.lg,
-    marginBottom: spacing.lg,
-    color: colors.textSecondary,
-    fontSize: typography.body,
-    lineHeight: 24,
-  },
-  demoLabel: {
-    marginBottom: spacing.lg,
+  feedCount: {
     color: colors.textSecondary,
     fontSize: typography.small,
-    lineHeight: 22,
+    lineHeight: 20,
+  },
+  storyList: {
+    gap: spacing.lg,
   },
 });

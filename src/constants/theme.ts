@@ -64,6 +64,7 @@ export const fontWeights = {
 export const layout = {
   maxContentWidth: 680,
   maxReadableWidth: 560,
+  studentMaxContentWidth: 760,
   touchTarget: 48,
 };
 
