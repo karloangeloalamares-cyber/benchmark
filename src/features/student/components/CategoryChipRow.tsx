@@ -4,12 +4,18 @@ import { colors, fontWeights, layout, radii, spacing, typography } from '@/const
 import type { StudentCategory } from '../types';
 
 type CategoryChipRowProps = {
+  accessibilityLabelPrefix?: string;
   categories: StudentCategory[];
   selectedSlug: string;
   onSelect: (slug: string) => void;
 };
 
-export function CategoryChipRow({ categories, selectedSlug, onSelect }: CategoryChipRowProps) {
+export function CategoryChipRow({
+  accessibilityLabelPrefix = 'Filter stories by',
+  categories,
+  selectedSlug,
+  onSelect,
+}: CategoryChipRowProps) {
   return (
     <ScrollView
       horizontal
@@ -20,7 +26,7 @@ export function CategoryChipRow({ categories, selectedSlug, onSelect }: Category
 
         return (
           <Pressable
-            accessibilityLabel={`Filter stories by ${category.label}`}
+            accessibilityLabel={`${accessibilityLabelPrefix} ${category.label}`}
             accessibilityRole="button"
             accessibilityState={{ selected: isSelected }}
             key={category.id}

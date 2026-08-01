@@ -1,0 +1,215 @@
+import { useState } from 'react';
+import { Image, StyleSheet, Text, View } from 'react-native';
+
+import { colors, fontWeights, layout, radii, spacing, typography } from '@/constants/theme';
+import type { StudentInternship } from '../types';
+import { getSafeExternalLink } from '../utils/externalLinks';
+import { DemoContentNotice } from './DemoContentNotice';
+import { ExternalActionButton } from './ExternalActionButton';
+import { SampleBadge, SAMPLE_CONTENT_DISCLOSURE } from './SampleBadge';
+
+type InternshipDetailContentProps = {
+  internship: StudentInternship;
+};
+
+function formatCompensation(value?: boolean) {
+  if (value === undefined) {
+    return undefined;
+  }
+
+  return value ? 'Paid' : 'Unpaid';
+}
+
+export function InternshipDetailContent({ internship }: InternshipDetailContentProps) {
+  const [imageFailed, setImageFailed] = useState(false);
+  const hasImage = Boolean(internship.imageUrl) && !imageFailed;
+  const compensation = formatCompensation(internship.isPaid);
+  const paragraphs = internship.description
+    .split(/\n+/)
+    .map((paragraph) => paragraph.trim())
+    .filter(Boolean);
+  const hasApplicationLink = getSafeExternalLink(internship.applicationUrl).isAvailable;
+  const hasSourceLink = getSafeExternalLink(internship.sourceUrl).isAvailable;
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.heroCard}>
+        {hasImage ? (
+          <Image
+            accessibilityLabel={internship.imageAlt ?? `Image for ${internship.title}`}
+            onError={() => setImageFailed(true)}
+            resizeMode="cover"
+            source={{ uri: internship.imageUrl }}
+            style={styles.image}
+          />
+        ) : (
+          <View style={styles.imageFallback}>
+            <Text style={styles.imageFallbackText}>Internship preview</Text>
+          </View>
+        )}
+
+        <View style={styles.heroBody}>
+          <View style={styles.badgeRow}>
+            <Text style={styles.category}>{internship.category}</Text>
+            {internship.isSample ? <SampleBadge label="Sample opportunity" /> : null}
+          </View>
+          <Text style={styles.title}>{internship.title}</Text>
+          <Text style={styles.organization}>{internship.organization}</Text>
+
+          <View style={styles.metaGrid}>
+            <Text style={styles.meta}>{internship.location}</Text>
+            {internship.arrangement ? <Text style={styles.meta}>{internship.arrangement}</Text> : null}
+            {compensation ? <Text style={styles.meta}>{compensation}</Text> : null}
+            {internship.deadline ? <Text style={styles.meta}>{internship.deadline}</Text> : null}
+          </View>
+
+          <Text style={styles.summary}>{internship.summary}</Text>
+        </View>
+      </View>
+
+      {internship.isSample ? <DemoContentNotice /> : null}
+
+      <View style={styles.detailCard}>
+        <Text style={styles.sectionTitle}>Opportunity details</Text>
+        {paragraphs.map((paragraph) => (
+          <Text key={paragraph} style={styles.paragraph}>
+            {paragraph}
+          </Text>
+        ))}
+
+        <View style={styles.warningBox}>
+          <Text style={styles.warningText}>{SAMPLE_CONTENT_DISCLOSURE}</Text>
+        </View>
+
+        {hasApplicationLink ? (
+          <ExternalActionButton label="Open application link" url={internship.applicationUrl} />
+        ) : (
+          <Text style={styles.unavailable}>
+            No external application link is available for this sample opportunity.
+          </Text>
+        )}
+        {hasSourceLink ? (
+          <ExternalActionButton label="View source" url={internship.sourceUrl} variant="secondary" />
+        ) : null}
+      </View>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    gap: spacing.lg,
+    padding: spacing.lg,
+  },
+  heroCard: {
+    overflow: 'hidden',
+    backgroundColor: colors.surface,
+    borderColor: colors.border,
+    borderWidth: 1,
+    borderRadius: radii.xl,
+  },
+  image: {
+    width: '100%',
+    aspectRatio: 1.8,
+  },
+  imageFallback: {
+    width: '100%',
+    aspectRatio: 1.8,
+    justifyContent: 'flex-end',
+    padding: spacing.lg,
+    backgroundColor: colors.tintBlue,
+  },
+  imageFallbackText: {
+    color: colors.primaryNavy,
+    fontSize: typography.label,
+    fontWeight: fontWeights.bold,
+    letterSpacing: 0.8,
+    lineHeight: 16,
+    textTransform: 'uppercase',
+  },
+  heroBody: {
+    gap: spacing.md,
+    padding: spacing.lg,
+  },
+  badgeRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: spacing.sm,
+  },
+  category: {
+    color: colors.warning,
+    fontSize: typography.label,
+    fontWeight: fontWeights.bold,
+    letterSpacing: 0.7,
+    lineHeight: 16,
+    textTransform: 'uppercase',
+  },
+  title: {
+    color: colors.primaryNavy,
+    fontSize: typography.screenTitle,
+    fontWeight: fontWeights.bold,
+    lineHeight: 34,
+  },
+  organization: {
+    color: colors.secondaryNavy,
+    fontSize: typography.body,
+    fontWeight: fontWeights.semibold,
+    lineHeight: 24,
+  },
+  metaGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: spacing.sm,
+  },
+  meta: {
+    color: colors.textSecondary,
+    fontSize: typography.small,
+    lineHeight: 20,
+  },
+  summary: {
+    color: colors.secondaryNavy,
+    fontSize: typography.body,
+    lineHeight: 24,
+  },
+  detailCard: {
+    width: '100%',
+    maxWidth: layout.maxReadableWidth,
+    gap: spacing.md,
+    alignSelf: 'center',
+    padding: spacing.lg,
+    backgroundColor: colors.surface,
+    borderColor: colors.border,
+    borderWidth: 1,
+    borderRadius: radii.xl,
+  },
+  sectionTitle: {
+    color: colors.primaryNavy,
+    fontSize: typography.subtitle,
+    fontWeight: fontWeights.bold,
+    lineHeight: 25,
+  },
+  paragraph: {
+    color: colors.textPrimary,
+    fontSize: typography.body,
+    lineHeight: 25,
+  },
+  warningBox: {
+    padding: spacing.md,
+    backgroundColor: colors.tintGoldStrong,
+    borderColor: colors.tintGoldBorder,
+    borderWidth: 1,
+    borderRadius: radii.lg,
+  },
+  warningText: {
+    color: colors.secondaryNavy,
+    fontSize: typography.small,
+    lineHeight: 20,
+  },
+  unavailable: {
+    color: colors.textSecondary,
+    fontSize: typography.small,
+    lineHeight: 20,
+  },
+});

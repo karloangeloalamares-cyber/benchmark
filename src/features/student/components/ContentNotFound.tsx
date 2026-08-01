@@ -2,29 +2,29 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { colors, fontWeights, layout, radii, spacing, typography } from '@/constants/theme';
 
-type EmptyStateProps = {
+type ContentNotFoundProps = {
   title?: string;
-  detail?: string;
-  actionLabel?: string;
-  onReset: () => void;
+  message?: string;
+  actionLabel: string;
+  onAction: () => void;
 };
 
-export function EmptyState({
-  title = 'No stories match your search.',
-  detail = 'Try a different term or return to the full student feed.',
-  actionLabel = 'Clear search and filters',
-  onReset,
-}: EmptyStateProps) {
+export function ContentNotFound({
+  title = 'Content unavailable',
+  message = 'This content is unavailable or may have been removed.',
+  actionLabel,
+  onAction,
+}: ContentNotFoundProps) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
-      <Text style={styles.detail}>{detail}</Text>
+      <Text style={styles.message}>{message}</Text>
       <Pressable
         accessibilityLabel={actionLabel}
         accessibilityRole="button"
-        onPress={onReset}
-        style={({ pressed }) => [styles.resetButton, pressed && styles.pressed]}>
-        <Text style={styles.resetText}>{actionLabel}</Text>
+        onPress={onAction}
+        style={({ pressed }) => [styles.button, pressed && styles.pressed]}>
+        <Text style={styles.buttonText}>{actionLabel}</Text>
       </Pressable>
     </View>
   );
@@ -33,6 +33,7 @@ export function EmptyState({
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
+    gap: spacing.md,
     padding: spacing.xl,
     backgroundColor: colors.surface,
     borderColor: colors.border,
@@ -46,29 +47,27 @@ const styles = StyleSheet.create({
     lineHeight: 25,
     textAlign: 'center',
   },
-  detail: {
-    marginTop: spacing.sm,
+  message: {
     color: colors.textSecondary,
-    fontSize: typography.small,
-    lineHeight: 20,
+    fontSize: typography.body,
+    lineHeight: 24,
     textAlign: 'center',
   },
-  resetButton: {
+  button: {
     minHeight: layout.touchTarget,
-    marginTop: spacing.lg,
-    paddingHorizontal: spacing.lg,
     alignItems: 'center',
     justifyContent: 'center',
+    paddingHorizontal: spacing.lg,
     backgroundColor: colors.primaryNavy,
     borderRadius: radii.lg,
   },
-  resetText: {
+  buttonText: {
     color: colors.surface,
     fontSize: typography.small,
     fontWeight: fontWeights.semibold,
     lineHeight: 20,
   },
   pressed: {
-    opacity: 0.86,
+    opacity: 0.84,
   },
 });

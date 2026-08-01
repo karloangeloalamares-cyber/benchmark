@@ -2,18 +2,22 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { colors, fontWeights, radii, shadows, spacing, typography } from '@/constants/theme';
 import type { StudentStory } from '../types';
+import { SampleBadge } from './SampleBadge';
 import { StoryImage } from './StoryImage';
 import { StoryMetadata } from './StoryMetadata';
 
 type StoryCardProps = {
   story: StudentStory;
   featured?: boolean;
+  onPress?: () => void;
 };
 
-export function StoryCard({ story, featured = false }: StoryCardProps) {
+export function StoryCard({ story, featured = false, onPress }: StoryCardProps) {
   return (
     <Pressable
-      accessibilityLabel={`${story.title}. Details will be added in the next student app phase.`}
+      accessibilityLabel={`${story.title}. View story details.`}
+      accessibilityRole="button"
+      onPress={onPress}
       style={({ pressed }) => [styles.card, pressed && styles.pressed]}>
       {featured ? (
         <View style={styles.featuredLabel}>
@@ -24,16 +28,12 @@ export function StoryCard({ story, featured = false }: StoryCardProps) {
       <View style={[styles.body, featured && styles.featuredBody]}>
         <View style={styles.badgeRow}>
           <StoryMetadata story={story} />
-          {story.isSample ? (
-            <View style={styles.sampleBadge}>
-              <Text style={styles.sampleText}>Sample</Text>
-            </View>
-          ) : null}
+          {story.isSample ? <SampleBadge /> : null}
         </View>
         <Text style={[styles.title, featured && styles.featuredTitle]}>{story.title}</Text>
         <Text style={[styles.summary, featured && styles.featuredSummary]}>{story.summary}</Text>
         <Text style={styles.author}>By {story.author}</Text>
-        <Text style={styles.nextLabel}>Details coming next</Text>
+        <Text style={styles.nextLabel}>Read story</Text>
       </View>
     </Pressable>
   );
@@ -74,20 +74,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     gap: spacing.sm,
-  },
-  sampleBadge: {
-    paddingHorizontal: spacing.sm,
-    paddingVertical: spacing.xs,
-    backgroundColor: colors.tintNavy,
-    borderColor: colors.border,
-    borderWidth: 1,
-    borderRadius: radii.pill,
-  },
-  sampleText: {
-    color: colors.primaryNavy,
-    fontSize: typography.label,
-    fontWeight: fontWeights.semibold,
-    lineHeight: 16,
   },
   title: {
     marginTop: spacing.md,

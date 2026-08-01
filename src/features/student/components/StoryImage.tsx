@@ -4,12 +4,13 @@ import { Image, StyleSheet, Text, View } from 'react-native';
 import { colors, fontWeights, radii, spacing, typography } from '@/constants/theme';
 
 type StoryImageProps = {
+  accessibilityLabel?: string;
   imageUrl?: string;
   title: string;
   featured?: boolean;
 };
 
-export function StoryImage({ imageUrl, title, featured = false }: StoryImageProps) {
+export function StoryImage({ accessibilityLabel, imageUrl, title, featured = false }: StoryImageProps) {
   const [hasError, setHasError] = useState(false);
 
   if (!imageUrl || hasError) {
@@ -23,7 +24,7 @@ export function StoryImage({ imageUrl, title, featured = false }: StoryImageProp
   return (
     <View style={[styles.imageFrame, featured && styles.featuredFrame]}>
       <Image
-        accessibilityLabel={`Image for ${title}`}
+        accessibilityLabel={accessibilityLabel ?? `Image for ${title}`}
         onError={() => setHasError(true)}
         resizeMode="cover"
         source={{ uri: imageUrl }}

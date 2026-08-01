@@ -1,4 +1,6 @@
 import { useMemo, useState } from 'react';
+import type { Href } from 'expo-router';
+import { useRouter } from 'expo-router';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { CategoryChipRow } from '@/features/student/components/CategoryChipRow';
@@ -18,7 +20,12 @@ import { colors, fontWeights, spacing, typography } from '@/constants/theme';
 
 const ALL_CATEGORY_SLUG = 'all';
 
+function storyHref(storyId: string): Href {
+  return `/student/posts/${storyId}` as Href;
+}
+
 export default function StudentHomeScreen() {
+  const router = useRouter();
   const [searchText, setSearchText] = useState('');
   const [selectedCategorySlug, setSelectedCategorySlug] = useState(ALL_CATEGORY_SLUG);
 
@@ -65,8 +72,17 @@ export default function StudentHomeScreen() {
           onSelect={setSelectedCategorySlug}
         />
         <DemoContentNotice />
-        {featuredStory ? <StoryCard story={featuredStory} featured /> : null}
-        <InternshipPromoCard promo={internshipPromo} />
+        {featuredStory ? (
+          <StoryCard
+            featured
+            onPress={() => router.push(storyHref(featuredStory.id))}
+            story={featuredStory}
+          />
+        ) : null}
+        <InternshipPromoCard
+          onPress={() => router.push('/student/internships' as Href)}
+          promo={internshipPromo}
+        />
         <View style={styles.feedHeader}>
           <View style={styles.feedTitleGroup}>
             <Text style={styles.feedLabel}>Student Feed</Text>
@@ -77,7 +93,11 @@ export default function StudentHomeScreen() {
         {hasMatches ? (
           <View style={styles.storyList}>
             {feedStories.map((story) => (
-              <StoryCard key={story.id} story={story} />
+              <StoryCard
+                key={story.id}
+                onPress={() => router.push(storyHref(story.id))}
+                story={story}
+              />
             ))}
           </View>
         ) : (

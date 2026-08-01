@@ -1,15 +1,20 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { colors, fontWeights, radii, shadows, spacing, typography } from '@/constants/theme';
 import type { InternshipPromo } from '../types';
 
 type InternshipPromoCardProps = {
   promo: InternshipPromo;
+  onPress: () => void;
 };
 
-export function InternshipPromoCard({ promo }: InternshipPromoCardProps) {
+export function InternshipPromoCard({ promo, onPress }: InternshipPromoCardProps) {
   return (
-    <View style={styles.card}>
+    <Pressable
+      accessibilityLabel="Explore internships"
+      accessibilityRole="button"
+      onPress={onPress}
+      style={({ pressed }) => [styles.card, pressed && styles.pressed]}>
       <View style={styles.iconBox}>
         <Text style={styles.iconText}>IB</Text>
       </View>
@@ -20,8 +25,9 @@ export function InternshipPromoCard({ promo }: InternshipPromoCardProps) {
         </View>
         <Text style={styles.title}>{promo.title}</Text>
         <Text style={styles.description}>{promo.description}</Text>
+        <Text style={styles.action}>Explore internships</Text>
       </View>
-    </View>
+    </Pressable>
   );
 }
 
@@ -85,5 +91,15 @@ const styles = StyleSheet.create({
     color: colors.tintBlue,
     fontSize: typography.small,
     lineHeight: 21,
+  },
+  action: {
+    marginTop: spacing.md,
+    color: colors.universityGold,
+    fontSize: typography.small,
+    fontWeight: fontWeights.bold,
+    lineHeight: 20,
+  },
+  pressed: {
+    opacity: 0.9,
   },
 });

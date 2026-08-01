@@ -3,20 +3,27 @@ import { StyleSheet, TextInput, View } from 'react-native';
 import { colors, layout, radii, spacing, typography } from '@/constants/theme';
 
 type SearchFieldProps = {
+  accessibilityLabel?: string;
+  placeholder?: string;
   value: string;
   onChangeText: (value: string) => void;
 };
 
-export function SearchField({ value, onChangeText }: SearchFieldProps) {
+export function SearchField({
+  accessibilityLabel = 'Search student stories',
+  placeholder = 'Search stories...',
+  value,
+  onChangeText,
+}: SearchFieldProps) {
   return (
     <View style={styles.container}>
       <TextInput
-        accessibilityLabel="Search student stories"
+        accessibilityLabel={accessibilityLabel}
         autoCapitalize="none"
         autoCorrect={false}
         clearButtonMode="while-editing"
         onChangeText={onChangeText}
-        placeholder="Search stories..."
+        placeholder={placeholder}
         placeholderTextColor={colors.textSecondary}
         returnKeyType="search"
         style={styles.input}
