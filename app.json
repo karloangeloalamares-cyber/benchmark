@@ -1,0 +1,13 @@
+{
+  "expo": {
+    "name": "Southern University Benchmark",
+    "slug": "southern-university-benchmark",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "scheme": "subenchmark",
+    "plugins": ["expo-router"],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
