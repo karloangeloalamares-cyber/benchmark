@@ -9,9 +9,10 @@ export const studentCategories: StudentCategory[] = [
   { id: 'all', label: 'All', slug: 'all' },
   { id: 'cbe-news', label: 'CSE News', slug: 'cbe-news' },
   { id: 'seas', label: 'SEAS', slug: 'seas' },
-  { id: 'campus-life', label: 'Student Spotlight', slug: 'campus-life' },
   { id: 'research', label: 'Research', slug: 'research' },
-  { id: 'alumni', label: 'Alumni', slug: 'alumni' },
+  { id: 'alumni', label: 'Alumni Spotlight', slug: 'alumni' },
+  { id: 'industry-partnerships', label: 'Industry Partnerships', slug: 'industry-partnerships' },
+  { id: 'campus-life', label: 'Student Spotlight', slug: 'campus-life' },
   { id: 'upcoming-events', label: 'Upcoming Events', slug: 'upcoming-events' },
 ];
 
@@ -113,12 +114,30 @@ export const studentStories: StudentStory[] = [
     body:
       'Alumni stories can make career paths feel more concrete for students. This sample shows how a future article could introduce mentorship themes while sending students to verified sources for real programs.\n\nThe fixture avoids personal profiles, private contact details, and active application claims. A real editorial workflow should confirm names, titles, permissions, and links before publishing.\n\nThe detail page is designed to support that future content without adding accounts or saved-story behavior.',
     categorySlug: 'alumni',
-    categoryLabel: 'Alumni',
+    categoryLabel: 'Alumni Spotlight',
     author: 'Alumni Relations Preview',
     publishedAt: '2026-07-16',
     imageUrl:
       'https://images.unsplash.com/photo-1739298061740-5ed03045b280?w=1200&q=80',
     imageAlt: 'A speaker addressing students in a lecture room',
+    readingMinutes: 3,
+    isSample: true,
+  },
+  {
+    id: 'story-industry-partnerships',
+    slug: 'sample-industry-partnerships',
+    title: 'Industry Preview: Partners Supporting Career Pathways',
+    summary:
+      'A sample industry-partnership story showing how employer collaborations can be summarized for students.',
+    body:
+      'Industry partnership coverage helps students see how classroom work connects to internships, labs, and hiring pathways. This sample keeps details general while validating the category filter used by the public home.\n\nA verified story could include official partner names, program contacts, and confirmed application steps. Until those sources are connected, this content remains fixture-only.',
+    categorySlug: 'industry-partnerships',
+    categoryLabel: 'Industry Partnerships',
+    author: 'Partnerships Preview Desk',
+    publishedAt: '2026-07-14',
+    imageUrl:
+      'https://plus.unsplash.com/premium_photo-1707155465527-c5a2935b21cc?w=1200&q=80',
+    imageAlt: 'Students meeting with an industry mentor',
     readingMinutes: 3,
     isSample: true,
   },
@@ -235,8 +254,7 @@ export const studentInternships: StudentInternship[] = [
 export const internshipPromo: InternshipPromo = {
   id: 'internship-board-preview',
   title: 'Internship Board',
-  description:
-    'Browse sample internship listings and see how verified opportunities can be presented in a future release.',
+  description: '5 open opportunities for students',
   statusLabel: 'Sample board',
   isSample: true,
 };

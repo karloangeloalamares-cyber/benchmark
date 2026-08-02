@@ -12,8 +12,8 @@ type InternshipPromoCardProps = {
 export function InternshipPromoCard({ promo, onPress }: InternshipPromoCardProps) {
   return (
     <Pressable
-      accessibilityLabel="Explore internships"
-        accessibilityRole="button"
+      accessibilityLabel="Open Internship Board"
+      accessibilityRole="button"
       onPress={onPress}
       style={({ pressed }) => [styles.card, pressed && styles.pressed]}>
       <View style={styles.iconBox}>
@@ -21,7 +21,7 @@ export function InternshipPromoCard({ promo, onPress }: InternshipPromoCardProps
       </View>
       <View style={styles.copy}>
         <Text style={styles.title}>{promo.title}</Text>
-        <Text style={styles.description}>Browse opportunities for Southern University students</Text>
+        <Text style={styles.description}>{promo.description}</Text>
       </View>
       <PrimitiveIcon color={colors.universityGold} name="arrowRight" size={19} />
     </Pressable>

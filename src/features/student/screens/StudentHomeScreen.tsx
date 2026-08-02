@@ -68,6 +68,13 @@ export function StudentHomeScreen() {
           selectedSlug={selectedCategorySlug}
           onSelect={setSelectedCategorySlug}
         />
+        <View
+          accessibilityLabel="Sample content notice. Stories and opportunities are sample content for this prototype."
+          style={styles.sampleNotice}>
+          <Text style={styles.sampleNoticeText}>
+            Sample content preview. Verify details through official university sources.
+          </Text>
+        </View>
         <InternshipPromoCard
           onPress={() => router.push('/student/internships' as Href)}
           promo={internshipPromo}
@@ -98,6 +105,7 @@ export function StudentHomeScreen() {
         )}
         <View style={styles.footer}>
           <View style={styles.footerRule} />
+          <Text style={styles.footerCopy}>© Southern University and A&amp;M College</Text>
           <Text style={styles.footerText}>subenchmark.blooksy.com</Text>
         </View>
       </View>
@@ -114,9 +122,22 @@ const styles = StyleSheet.create({
   storyList: {
     gap: 14,
   },
+  sampleNotice: {
+    paddingHorizontal: spacing.md,
+    paddingVertical: spacing.sm,
+    backgroundColor: colors.tintGold,
+    borderColor: colors.tintGoldBorder,
+    borderWidth: 1,
+    borderRadius: 12,
+  },
+  sampleNoticeText: {
+    color: colors.textSecondary,
+    fontSize: typography.meta,
+    lineHeight: 15,
+  },
   footer: {
     alignItems: 'center',
-    gap: spacing.sm,
+    gap: 6,
     paddingTop: 20,
     paddingBottom: spacing.xl,
   },
@@ -129,6 +150,11 @@ const styles = StyleSheet.create({
     color: colors.benchmarkBlue,
     fontSize: typography.meta,
     fontWeight: fontWeights.semibold,
+    lineHeight: 15,
+  },
+  footerCopy: {
+    color: colors.textSecondary,
+    fontSize: typography.meta,
     lineHeight: 15,
   },
 });

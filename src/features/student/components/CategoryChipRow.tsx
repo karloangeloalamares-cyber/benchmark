@@ -1,6 +1,6 @@
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
-import { colors, fontWeights, layout, radii, spacing, typography } from '@/constants/theme';
+import { colors, fontWeights, radii, spacing, typography } from '@/constants/theme';
 import type { StudentCategory } from '../types';
 
 type CategoryChipRowProps = {
@@ -29,6 +29,7 @@ export function CategoryChipRow({
             accessibilityLabel={`${accessibilityLabelPrefix} ${category.label}`}
             accessibilityRole="button"
             accessibilityState={{ selected: isSelected }}
+            hitSlop={{ bottom: 6, top: 6 }}
             key={category.id}
             onPress={() => onSelect(category.slug)}
             style={({ pressed }) => [
@@ -53,11 +54,12 @@ const styles = StyleSheet.create({
     paddingRight: spacing.lg,
   },
   chip: {
-    minHeight: 34,
+    minHeight: 36,
     flexDirection: 'row',
     alignItems: 'center',
     gap: spacing.xs,
     paddingHorizontal: 14,
+    paddingVertical: spacing.xs,
     backgroundColor: colors.tintNavy,
     borderColor: 'transparent',
     borderWidth: 1,
@@ -68,10 +70,10 @@ const styles = StyleSheet.create({
     borderColor: colors.primaryNavy,
   },
   indicator: {
-    width: 0,
-    height: 0,
+    width: 5,
+    height: 5,
     borderRadius: radii.pill,
-    backgroundColor: colors.borderStrong,
+    backgroundColor: 'transparent',
   },
   selectedIndicator: {
     backgroundColor: colors.universityGold,
@@ -79,11 +81,12 @@ const styles = StyleSheet.create({
   label: {
     color: colors.primaryNavy,
     fontSize: typography.small,
-    fontWeight: fontWeights.semibold,
+    fontWeight: fontWeights.medium,
     lineHeight: 20,
   },
   selectedLabel: {
     color: colors.surface,
+    fontWeight: fontWeights.bold,
   },
   pressed: {
     opacity: 0.82,

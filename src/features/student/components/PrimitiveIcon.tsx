@@ -16,7 +16,8 @@ export type PrimitiveIconName =
   | 'plus'
   | 'review'
   | 'search'
-  | 'site';
+  | 'site'
+  | 'user';
 
 type PrimitiveIconProps = {
   name: PrimitiveIconName;
@@ -48,6 +49,14 @@ export function PrimitiveIcon({
           <View style={[styles.circle, strokeStyle, styles.fill]} />
           <View style={[styles.siteVertical, { backgroundColor: color, width: stroke }]} />
           <View style={[styles.siteHorizontal, { backgroundColor: color, height: stroke }]} />
+        </>
+      ) : null}
+
+      {name === 'user' ? (
+        <>
+          <View style={[styles.circle, strokeStyle]} />
+          <View style={[styles.userHead, { backgroundColor: color }]} />
+          <View style={[styles.userShoulders, strokeStyle]} />
         </>
       ) : null}
 
@@ -178,6 +187,23 @@ const styles = StyleSheet.create({
   siteHorizontal: {
     position: 'absolute',
     width: '78%',
+  },
+  userHead: {
+    borderRadius: 999,
+    height: '24%',
+    position: 'absolute',
+    top: '24%',
+    width: '24%',
+  },
+  userShoulders: {
+    borderBottomWidth: 0,
+    borderLeftWidth: 0,
+    borderRightWidth: 0,
+    borderRadius: 999,
+    bottom: '20%',
+    height: '26%',
+    position: 'absolute',
+    width: '46%',
   },
   briefcase: {
     borderRadius: 3,

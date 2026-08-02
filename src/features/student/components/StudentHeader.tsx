@@ -3,6 +3,7 @@ import { useRouter } from 'expo-router';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { colors, fontWeights, radii, spacing, typography } from '@/constants/theme';
+import { PrimitiveIcon } from './PrimitiveIcon';
 import { SearchField } from './SearchField';
 
 type StudentHeaderProps = {
@@ -15,15 +16,8 @@ export function StudentHeader({ searchText, onSearchTextChange }: StudentHeaderP
 
   return (
     <View style={styles.header}>
-      <View style={styles.utilityRow}>
-        <Pressable
-          accessibilityLabel="Sign In"
-          accessibilityRole="button"
-          onPress={() => router.push('/demo/role-select' as Href)}
-          style={({ pressed }) => [styles.signInButton, pressed && styles.pressed]}>
-          <Text style={styles.signInText}>Sign In</Text>
-        </Pressable>
-      </View>
+      <View pointerEvents="none" style={styles.headerWash} />
+      <View pointerEvents="none" style={styles.decorativeCircle} />
 
       <View style={styles.brandText}>
         <Text style={styles.brand}>Benchmark</Text>
@@ -33,6 +27,17 @@ export function StudentHeader({ searchText, onSearchTextChange }: StudentHeaderP
       <Text style={styles.subtitle}>
         Showcasing Southern University's excellence to the world.
       </Text>
+
+      <Pressable
+        accessibilityHint="Opens the demo role selection screen. No real authentication is configured."
+        accessibilityLabel="Sign In to demo roles"
+        accessibilityRole="button"
+        hitSlop={8}
+        onPress={() => router.push('/demo/role-select' as Href)}
+        style={({ pressed }) => [styles.signInButton, pressed && styles.pressed]}>
+        <PrimitiveIcon color={colors.navyDeep} name="user" size={15} />
+        <Text style={styles.signInText}>Sign In</Text>
+      </Pressable>
 
       <SearchField
         accessibilityLabel="Search stories"
@@ -47,6 +52,8 @@ export function StudentHeader({ searchText, onSearchTextChange }: StudentHeaderP
 
 const styles = StyleSheet.create({
   header: {
+    position: 'relative',
+    overflow: 'hidden',
     gap: spacing.md,
     paddingHorizontal: 20,
     paddingTop: spacing.lg,
@@ -55,10 +62,24 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 24,
     borderBottomRightRadius: 24,
   },
-  utilityRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
+  headerWash: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    backgroundColor: colors.navyDeep,
+    opacity: 0.28,
+  },
+  decorativeCircle: {
+    position: 'absolute',
+    top: -110,
+    right: -100,
+    width: 260,
+    height: 260,
+    backgroundColor: colors.benchmarkLightBlue,
+    borderRadius: 130,
+    opacity: 0.16,
   },
   brandText: {
     minWidth: 0,
@@ -87,10 +108,14 @@ const styles = StyleSheet.create({
     lineHeight: 20,
   },
   signInButton: {
+    alignSelf: 'flex-start',
     minHeight: 30,
+    flexDirection: 'row',
     alignItems: 'center',
+    gap: spacing.xs,
     justifyContent: 'center',
     paddingHorizontal: spacing.md,
+    paddingVertical: 6,
     backgroundColor: colors.universityGold,
     borderRadius: radii.pill,
   },

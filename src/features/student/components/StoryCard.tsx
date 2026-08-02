@@ -4,7 +4,6 @@ import { colors, fontWeights, radii, shadows, spacing, typography } from '@/cons
 import type { StudentStory } from '../types';
 import { BookmarkButton } from './BookmarkButton';
 import { PrimitiveIcon } from './PrimitiveIcon';
-import { SampleBadge } from './SampleBadge';
 import { StoryImage } from './StoryImage';
 
 type StoryCardProps = {
@@ -27,13 +26,8 @@ export function StoryCard({ story, featured = false, onPress }: StoryCardProps) 
         accessibilityRole="button"
         onPress={onPress}
         style={({ pressed }) => [styles.cardPressTarget, pressed && styles.pressed]}>
-        {featured ? (
-          <View style={styles.featuredLabel}>
-            <Text style={styles.featuredLabelText}>Featured story</Text>
-          </View>
-        ) : null}
         <StoryImage imageUrl={story.imageUrl} title={story.title} featured={featured} />
-        <View style={[styles.body, featured && styles.featuredBody]}>
+        <View style={styles.body}>
           <View style={styles.metaRow}>
             <Text style={styles.category}>{story.categoryLabel}</Text>
             <Text style={styles.date}>{publishDate}</Text>
@@ -46,7 +40,6 @@ export function StoryCard({ story, featured = false, onPress }: StoryCardProps) 
             <Text style={styles.readingText}>
               {story.readingMinutes ? `${story.readingMinutes} min read` : 'Story'}
             </Text>
-            {story.isSample ? <SampleBadge label="Sample" /> : null}
           </View>
           <Text style={[styles.summary, featured && styles.featuredSummary]}>{story.summary}</Text>
           <View style={styles.authorRow}>
@@ -68,8 +61,6 @@ const styles = StyleSheet.create({
     minWidth: 0,
     overflow: 'hidden',
     backgroundColor: colors.surface,
-    borderColor: colors.border,
-    borderWidth: 1,
     borderRadius: radii.xl,
     ...shadows.card,
   },
@@ -78,25 +69,9 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     borderRadius: radii.xl,
   },
-  featuredLabel: {
-    paddingHorizontal: spacing.lg,
-    paddingTop: spacing.md,
-    backgroundColor: colors.surface,
-  },
-  featuredLabelText: {
-    alignSelf: 'flex-start',
-    color: colors.primaryNavy,
-    fontSize: typography.label,
-    fontWeight: fontWeights.bold,
-    letterSpacing: 0.8,
-    lineHeight: 16,
-    textTransform: 'uppercase',
-  },
   body: {
+    gap: spacing.sm,
     padding: 16,
-  },
-  featuredBody: {
-    paddingTop: 16,
   },
   metaRow: {
     minWidth: 0,
@@ -121,7 +96,6 @@ const styles = StyleSheet.create({
   },
   title: {
     flexShrink: 1,
-    marginTop: spacing.md,
     color: colors.primaryNavy,
     fontFamily: 'serif',
     fontSize: typography.subtitle,
@@ -143,7 +117,6 @@ const styles = StyleSheet.create({
   },
   summary: {
     flexShrink: 1,
-    marginTop: spacing.sm,
     color: colors.textSecondary,
     fontSize: typography.small,
     lineHeight: 21,
@@ -163,7 +136,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: spacing.sm,
-    marginTop: spacing.md,
+    marginTop: 2,
   },
   readingRow: {
     minWidth: 0,
@@ -171,7 +144,6 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     alignItems: 'center',
     gap: spacing.xs,
-    marginTop: spacing.sm,
   },
   readingText: {
     flexShrink: 1,

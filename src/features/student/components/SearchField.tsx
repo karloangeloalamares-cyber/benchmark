@@ -50,6 +50,7 @@ export function SearchField({
         <Pressable
           accessibilityLabel="Clear search"
           accessibilityRole="button"
+          hitSlop={6}
           onPress={() => onChangeText('')}
           style={({ pressed }) => [styles.clearButton, pressed && styles.pressed]}>
           <PrimitiveIcon color={iconColor} name="close" size={16} />
@@ -66,7 +67,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: spacing.sm,
     justifyContent: 'center',
-    paddingLeft: spacing.lg,
+    paddingLeft: 14,
     paddingRight: spacing.sm,
     backgroundColor: colors.surface,
     borderColor: colors.borderStrong,
@@ -77,6 +78,7 @@ const styles = StyleSheet.create({
     minHeight: 42,
     backgroundColor: 'rgba(255,255,255,0.12)',
     borderColor: 'rgba(255,255,255,0.12)',
+    borderWidth: 0,
   },
   focusedContainer: {
     borderColor: colors.benchmarkBlue,
