@@ -3,7 +3,7 @@ import { Pressable, StyleSheet, Text } from 'react-native';
 
 import { colors, fontWeights, spacing, typography } from '@/constants/theme';
 import { useSavedStories } from '../saved/useSavedStories';
-import { PrimitiveIcon } from './PrimitiveIcon';
+import { StudentSymbol } from './StudentSymbol';
 
 type BookmarkButtonProps = {
   storyId: string;
@@ -32,7 +32,7 @@ export function BookmarkButton({ storyId, variant = 'compact' }: BookmarkButtonP
         saved && styles.savedButton,
         pressed && styles.pressed,
       ]}>
-      <PrimitiveIcon color={colors.primaryNavy} name="bookmark" size={variant === 'full' ? 18 : 16} />
+      <StudentSymbol color={colors.primaryNavy} name="saved" size={variant === 'full' ? 18 : 16} />
       {variant === 'full' ? (
         <Text style={[styles.fullText, saved && styles.savedText]}>
           {saved ? 'Remove from Saved' : 'Save story'}

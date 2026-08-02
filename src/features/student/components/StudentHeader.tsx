@@ -3,8 +3,8 @@ import { useRouter } from 'expo-router';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { colors, fontWeights, radii, spacing, typography } from '@/constants/theme';
-import { PrimitiveIcon } from './PrimitiveIcon';
 import { SearchField } from './SearchField';
+import { StudentSymbol } from './StudentSymbol';
 
 type StudentHeaderProps = {
   searchText: string;
@@ -35,7 +35,7 @@ export function StudentHeader({ searchText, onSearchTextChange }: StudentHeaderP
         hitSlop={8}
         onPress={() => router.push('/demo/role-select' as Href)}
         style={({ pressed }) => [styles.signInButton, pressed && styles.pressed]}>
-        <PrimitiveIcon color={colors.navyDeep} name="user" size={15} />
+        <StudentSymbol color={colors.navyDeep} name="account" size={15} />
         <Text style={styles.signInText}>Sign In</Text>
       </Pressable>
 

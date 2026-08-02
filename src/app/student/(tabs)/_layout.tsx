@@ -2,26 +2,20 @@ import { Tabs } from 'expo-router';
 import type { Href } from 'expo-router';
 import { usePathname, useRouter } from 'expo-router';
 import { Pressable, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { colors, fontWeights, layout, spacing } from '@/constants/theme';
-import { PrimitiveIcon, type PrimitiveIconName } from '@/features/student/components/PrimitiveIcon';
-
-type TabIconProps = {
-  focused: boolean;
-  icon: PrimitiveIconName;
-};
+import { StudentSymbol, type StudentSymbolName } from '@/features/student/components/StudentSymbol';
+import {
+  activeStudentParityRole,
+  getStudentNavigationModel,
+  type StudentDestination,
+  type StudentDestinationKey,
+} from '@/features/student/navigation/studentDestinations';
 
 type TabBarRoute = {
   key: string;
   name: string;
-};
-
-type TabDescriptor = {
-  options: {
-    tabBarAccessibilityLabel?: string;
-    tabBarLabel?: unknown;
-    title?: string;
-  };
 };
 
 type TabBarProps = {
@@ -29,7 +23,6 @@ type TabBarProps = {
     index: number;
     routes: TabBarRoute[];
   };
-  descriptors: Record<string, TabDescriptor>;
   navigation: {
     emit: (event: { type: 'tabPress'; target: string; canPreventDefault: true }) => {
       defaultPrevented?: boolean;
@@ -38,37 +31,76 @@ type TabBarProps = {
   };
 };
 
-const tabIcons: Record<string, PrimitiveIconName> = {
+const routeNameByDestination: Record<StudentDestinationKey, string> = {
   site: 'site',
-  internships: 'briefcase',
-  'my-posts': 'document',
+  internships: 'internships',
+  myPosts: 'my-posts',
   review: 'review',
-  more: 'more',
+  publish: 'publish',
+  manage: 'manage',
+  account: 'account',
 };
 
-function TabIcon({ focused, icon }: TabIconProps) {
-  const color = focused ? colors.primaryNavy : colors.textSecondary;
-
+function TabIcon({ focused, name }: { focused: boolean; name: StudentSymbolName }) {
   return (
-    <View style={[styles.iconCircle, focused && styles.iconCircleActive]}>
-      <PrimitiveIcon color={color} name={icon} size={18} />
-    </View>
+    <StudentSymbol
+      color={focused ? colors.primaryNavy : colors.textSecondary}
+      name={name}
+      size={21}
+      weight={focused ? 'semibold' : 'regular'}
+    />
   );
 }
 
-function StudentTabBar({ state, descriptors, navigation }: TabBarProps) {
+function isDestinationFocused(pathname: string, destination: StudentDestination) {
+  if (destination.key === 'site') {
+    return pathname === destination.route;
+  }
+
+  return pathname.startsWith(destination.route as string);
+}
+
+function StudentTabBar({ state, navigation }: TabBarProps) {
+  const pathname = usePathname();
+  const insets = useSafeAreaInsets();
+  const { directDestinations, overflowDestinations, hasOverflow } =
+    getStudentNavigationModel(activeStudentParityRole);
+  const visibleTabs = hasOverflow
+    ? [
+        ...directDestinations,
+        {
+          key: 'more' as const,
+          label: 'More',
+          route: '/student/more' as Href,
+          symbol: 'more' as StudentSymbolName,
+        },
+      ]
+    : directDestinations;
+
+  const bottomInset = Math.max(insets.bottom, 4);
+
   return (
-    <View style={styles.tabBarFrame}>
+    <View style={[styles.tabBarFrame, { paddingBottom: bottomInset }]}>
       <View accessibilityRole="tablist" style={styles.tabBar}>
-        {state.routes.map((route, index) => {
-          const focused = state.index === index;
-          const options = descriptors[route.key]?.options ?? {};
-          const label = typeof options.tabBarLabel === 'string'
-            ? options.tabBarLabel
-            : options.title ?? route.name;
-          const accessibilityLabel = options.tabBarAccessibilityLabel ?? `${label} tab`;
+        {visibleTabs.map((tab) => {
+          const routeName = tab.key === 'more'
+            ? 'more'
+            : routeNameByDestination[tab.key as StudentDestinationKey];
+          const route = state.routes.find((item) => item.name === routeName);
+          const overflowFocused = tab.key === 'more'
+            && (
+              pathname === '/student/saved'
+              || overflowDestinations.some((destination) => isDestinationFocused(pathname, destination))
+            );
+          const focused = tab.key === 'more'
+            ? pathname === '/student/more' || overflowFocused
+            : isDestinationFocused(pathname, tab as StudentDestination);
 
           function handlePress() {
+            if (!route) {
+              return;
+            }
+
             const event = navigation.emit({
               type: 'tabPress',
               target: route.key,
@@ -76,26 +108,29 @@ function StudentTabBar({ state, descriptors, navigation }: TabBarProps) {
             });
 
             if (!focused && !event.defaultPrevented) {
-              navigation.navigate(route.name);
+              navigation.navigate(routeName);
             }
           }
 
           return (
             <Pressable
-              accessibilityLabel={accessibilityLabel}
+              accessibilityHint={tab.key === 'more' ? 'Opens overflow navigation destinations' : undefined}
+              accessibilityLabel={`${tab.label} tab`}
               accessibilityRole="tab"
               accessibilityState={{ selected: focused }}
-              key={route.key}
+              aria-selected={focused}
+              key={tab.key}
               onPress={handlePress}
               style={({ pressed }) => [
                 styles.tabItem,
+                focused && styles.tabItemActive,
                 pressed && styles.pressed,
               ]}>
-              <TabIcon focused={focused} icon={tabIcons[route.name] ?? 'document'} />
+              <TabIcon focused={focused} name={tab.symbol} />
               <Text
                 numberOfLines={1}
                 style={[styles.tabLabel, focused && styles.tabLabelActive]}>
-                {label}
+                {tab.label}
               </Text>
             </Pressable>
           );
@@ -107,12 +142,11 @@ function StudentTabBar({ state, descriptors, navigation }: TabBarProps) {
 
 export default function StudentTabsLayout() {
   const router = useRouter();
-  const pathname = usePathname();
   const { width } = useWindowDimensions();
+  const insets = useSafeAreaInsets();
   const tabBarLeft = width > layout.studentMaxContentWidth
     ? (width - layout.studentMaxContentWidth) / 2
     : 0;
-  const showFloatingHome = pathname !== '/student/site';
 
   return (
     <View style={styles.shell}>
@@ -122,89 +156,34 @@ export default function StudentTabsLayout() {
           headerShown: false,
           tabBarActiveTintColor: colors.primaryNavy,
           tabBarInactiveTintColor: colors.textSecondary,
-          tabBarLabelPosition: 'below-icon',
-          tabBarLabelStyle: {
-            fontSize: 10,
-            fontWeight: fontWeights.semibold,
-            lineHeight: 12,
-          },
-          tabBarIconStyle: {
-            height: 22,
-            marginBottom: 0,
-          },
-          tabBarStyle: {
-            alignSelf: 'center',
-            height: layout.studentTabBarHeight,
-            width: '100%',
-            maxWidth: layout.studentRorkTabBarWidth,
-            paddingBottom: spacing.xs,
-            paddingTop: 6,
-            paddingHorizontal: 0,
-            backgroundColor: colors.surface,
-            borderTopColor: colors.border,
-          },
-          tabBarItemStyle: {
-            flex: 1,
-            minHeight: layout.touchTarget,
-            minWidth: 0,
-            paddingHorizontal: 0,
-          },
         }}>
-        <Tabs.Screen
-          name="site"
-          options={{
-            tabBarAccessibilityLabel: 'Site tab',
-            tabBarLabel: 'Site',
-            tabBarIcon: ({ focused }) => <TabIcon focused={focused} icon="site" />,
-          }}
-        />
-        <Tabs.Screen
-          name="internships"
-          options={{
-            tabBarAccessibilityLabel: 'Internships tab',
-            tabBarLabel: 'Internships',
-            tabBarIcon: ({ focused }) => <TabIcon focused={focused} icon="briefcase" />,
-          }}
-        />
-        <Tabs.Screen
-          name="my-posts"
-          options={{
-            tabBarAccessibilityLabel: 'My Posts tab',
-            tabBarLabel: 'My Posts',
-            tabBarIcon: ({ focused }) => <TabIcon focused={focused} icon="document" />,
-          }}
-        />
-        <Tabs.Screen
-          name="review"
-          options={{
-            tabBarAccessibilityLabel: 'Review tab',
-            tabBarLabel: 'Review',
-            tabBarIcon: ({ focused }) => <TabIcon focused={focused} icon="review" />,
-          }}
-        />
-        <Tabs.Screen
-          name="more"
-          options={{
-            tabBarAccessibilityLabel: 'More tab',
-            tabBarLabel: 'More',
-            tabBarIcon: ({ focused }) => <TabIcon focused={focused} icon="more" />,
-          }}
-        />
+        <Tabs.Screen name="site" />
+        <Tabs.Screen name="internships" />
+        <Tabs.Screen name="my-posts" />
+        <Tabs.Screen name="review" />
+        <Tabs.Screen name="publish" />
+        <Tabs.Screen name="manage" />
+        <Tabs.Screen name="account" />
+        <Tabs.Screen name="saved" />
+        <Tabs.Screen name="more" />
       </Tabs>
-      {showFloatingHome ? (
-        <Pressable
-          accessibilityHint="Return to the Benchmark site tab"
-          accessibilityLabel="Return to Site"
-          accessibilityRole="button"
-          onPress={() => router.replace('/student/site' as Href)}
-          style={({ pressed }) => [
-            styles.floatingHome,
-            { right: Math.max(18, tabBarLeft + 18) },
-            pressed && styles.pressed,
-          ]}>
-          <PrimitiveIcon color={colors.universityGold} name="home" size={22} />
-        </Pressable>
-      ) : null}
+      <Pressable
+        accessibilityHint="Return to the Benchmark home page"
+        accessibilityLabel="Home"
+        accessibilityRole="button"
+        onPress={() => router.replace('/student/site' as Href)}
+        style={({ pressed }) => [
+          styles.floatingHome,
+          {
+            bottom: Math.max(88, insets.bottom + 88),
+            right: Math.max(18, tabBarLeft + 18),
+          },
+          pressed && styles.floatingHomePressed,
+        ]}>
+        <View pointerEvents="none" style={styles.homeGradientBase} />
+        <View pointerEvents="none" style={styles.homeGradientShade} />
+        <StudentSymbol color={colors.universityGold} name="home" size={21} weight="semibold" />
+      </Pressable>
     </View>
   );
 }
@@ -215,61 +194,54 @@ const styles = StyleSheet.create({
   },
   tabBarFrame: {
     width: '100%',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     backgroundColor: colors.surface,
-    borderTopColor: colors.border,
-    borderTopWidth: 1,
+    borderTopColor: 'rgba(5,24,56,0.12)',
+    borderTopWidth: StyleSheet.hairlineWidth,
   },
   tabBar: {
     width: '100%',
-    maxWidth: layout.studentRorkTabBarWidth,
-    height: layout.studentTabBarHeight,
+    maxWidth: layout.studentMaxContentWidth,
+    minHeight: 56,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingTop: 6,
-    paddingBottom: spacing.xs,
+    paddingHorizontal: 0,
+    paddingTop: 5,
   },
   tabItem: {
     flex: 1,
     minWidth: 0,
-    minHeight: layout.touchTarget,
+    minHeight: 50,
     alignItems: 'center',
     justifyContent: 'center',
     gap: 2,
-    borderRadius: 8,
+    paddingHorizontal: 1,
+  },
+  tabItemActive: {
+    backgroundColor: 'transparent',
   },
   tabLabel: {
     maxWidth: '100%',
     color: colors.textSecondary,
-    fontSize: 9,
+    fontSize: 10,
     fontWeight: fontWeights.medium,
-    lineHeight: 11,
+    lineHeight: 12,
     textAlign: 'center',
   },
   tabLabelActive: {
     color: colors.primaryNavy,
-    fontWeight: fontWeights.bold,
-  },
-  iconCircle: {
-    width: 26,
-    height: 22,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 13,
-  },
-  iconCircleActive: {
-    backgroundColor: colors.tintGoldStrong,
+    fontWeight: fontWeights.semibold,
   },
   floatingHome: {
     position: 'absolute',
-    bottom: layout.studentTabBarHeight + spacing.xl,
     width: 52,
     height: 52,
     alignItems: 'center',
     justifyContent: 'center',
+    overflow: 'hidden',
     backgroundColor: colors.primaryNavy,
-    borderColor: colors.tintGoldBorder,
+    borderColor: 'rgba(254,206,52,0.35)',
     borderWidth: 1.5,
     borderRadius: 26,
     shadowColor: colors.primaryNavy,
@@ -278,7 +250,24 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 5 },
     elevation: 5,
   },
+  floatingHomePressed: {
+    transform: [{ scale: 0.88 }],
+  },
+  homeGradientBase: {
+    ...StyleSheet.absoluteFill,
+    backgroundColor: colors.primaryNavy,
+  },
+  homeGradientShade: {
+    position: 'absolute',
+    top: -16,
+    left: -18,
+    width: 70,
+    height: 70,
+    backgroundColor: colors.navyDeep,
+    borderRadius: 35,
+    opacity: 0.72,
+  },
   pressed: {
-    opacity: 0.85,
+    opacity: 0.72,
   },
 });

@@ -3,7 +3,7 @@ import { useRouter } from 'expo-router';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { colors, fontWeights, radii, spacing, typography } from '@/constants/theme';
-import { PrimitiveIcon } from './PrimitiveIcon';
+import { StudentSymbol } from './StudentSymbol';
 
 type StudentPageHeaderProps = {
   title?: string;
@@ -38,7 +38,7 @@ export function StudentPageHeader({
           hitSlop={8}
           onPress={handleBack}
           style={({ pressed }) => [styles.backButton, pressed && styles.pressed]}>
-          <PrimitiveIcon color={colors.primaryNavy} name="chevronLeft" size={16} />
+          <StudentSymbol color={colors.primaryNavy} name="back" size={16} />
           <Text style={styles.backText}>Back</Text>
         </Pressable>
       ) : null}

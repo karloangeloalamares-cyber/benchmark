@@ -3,7 +3,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { colors, fontWeights, radii, shadows, spacing, typography } from '@/constants/theme';
 import type { StudentStory } from '../types';
 import { BookmarkButton } from './BookmarkButton';
-import { PrimitiveIcon } from './PrimitiveIcon';
+import { StudentSymbol } from './StudentSymbol';
 import { StoryImage } from './StoryImage';
 
 type StoryCardProps = {
@@ -36,7 +36,7 @@ export function StoryCard({ story, featured = false, onPress }: StoryCardProps) 
             <Text style={[styles.title, featured && styles.featuredTitle]}>{story.title}</Text>
           </View>
           <View style={styles.readingRow}>
-            <PrimitiveIcon color={colors.textSecondary} name="clock" size={14} />
+            <StudentSymbol color={colors.textSecondary} name="clock" size={14} />
             <Text style={styles.readingText}>
               {story.readingMinutes ? `${story.readingMinutes} min read` : 'Story'}
             </Text>
@@ -44,7 +44,7 @@ export function StoryCard({ story, featured = false, onPress }: StoryCardProps) 
           <Text style={[styles.summary, featured && styles.featuredSummary]}>{story.summary}</Text>
           <View style={styles.authorRow}>
             <Text style={styles.author}>By {story.author}</Text>
-            <PrimitiveIcon color={colors.benchmarkBlue} name="arrowRight" size={18} />
+            <StudentSymbol color={colors.benchmarkBlue} name="chevronRight" size={18} />
           </View>
         </View>
       </Pressable>

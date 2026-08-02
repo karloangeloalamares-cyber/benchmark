@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Pressable, StyleSheet, TextInput, View } from 'react-native';
 
 import { colors, radii, spacing, typography } from '@/constants/theme';
-import { PrimitiveIcon } from './PrimitiveIcon';
+import { StudentSymbol } from './StudentSymbol';
 
 type SearchFieldProps = {
   accessibilityLabel?: string;
@@ -31,7 +31,7 @@ export function SearchField({
         isFocused && styles.focusedContainer,
         isFocused && isMasthead && styles.focusedMastheadContainer,
       ]}>
-      <PrimitiveIcon color={iconColor} name="search" size={18} />
+      <StudentSymbol color={iconColor} name="search" size={18} />
       <TextInput
         accessibilityLabel={accessibilityLabel}
         autoCapitalize="none"
@@ -53,7 +53,7 @@ export function SearchField({
           hitSlop={6}
           onPress={() => onChangeText('')}
           style={({ pressed }) => [styles.clearButton, pressed && styles.pressed]}>
-          <PrimitiveIcon color={iconColor} name="close" size={16} />
+          <StudentSymbol color={iconColor} name="close" size={16} />
         </Pressable>
       ) : null}
     </View>

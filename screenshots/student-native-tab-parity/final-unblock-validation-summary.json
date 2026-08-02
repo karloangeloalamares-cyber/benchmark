@@ -1,0 +1,112 @@
+{
+  "ok": true,
+  "failures": [],
+  "checked": 15,
+  "siteResponsive": [
+    {
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "tabs": [
+        75,
+        75,
+        75,
+        75,
+        75
+      ],
+      "overflowX": 0,
+      "home": {
+        "width": 52,
+        "height": 52,
+        "right": 18,
+        "bottom": 88
+      },
+      "glyphs": 31
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "tabs": [
+        78,
+        78,
+        78,
+        78,
+        78
+      ],
+      "overflowX": 0,
+      "home": {
+        "width": 52,
+        "height": 52,
+        "right": 18,
+        "bottom": 88
+      },
+      "glyphs": 31
+    },
+    {
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "tabs": [
+        86,
+        86,
+        86,
+        86,
+        86
+      ],
+      "overflowX": 0,
+      "home": {
+        "width": 52,
+        "height": 52,
+        "right": 18,
+        "bottom": 88
+      },
+      "glyphs": 31
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "tabs": [
+        78,
+        78,
+        78,
+        78,
+        78
+      ],
+      "overflowX": 0,
+      "home": {
+        "width": 52,
+        "height": 52,
+        "right": 18,
+        "bottom": 88
+      },
+      "glyphs": 50
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "tabs": [
+        78,
+        78,
+        78,
+        78,
+        78
+      ],
+      "overflowX": 0,
+      "home": {
+        "width": 52,
+        "height": 52,
+        "right": 18,
+        "bottom": 88
+      },
+      "glyphs": 42
+    }
+  ]
+}

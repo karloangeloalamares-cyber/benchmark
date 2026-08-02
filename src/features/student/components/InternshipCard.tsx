@@ -2,6 +2,7 @@ import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { colors, fontWeights, shadows, spacing, typography } from '@/constants/theme';
 import type { StudentInternship } from '../types';
+import { StudentSymbol } from './StudentSymbol';
 import { WorkflowStatusPill } from './WorkflowStatusPill';
 
 type InternshipCardProps = {
@@ -44,16 +45,34 @@ export function InternshipCard({ internship, onPress }: InternshipCardProps) {
         <Text style={styles.title}>{internship.title}</Text>
 
         <View style={styles.metaRow}>
-          <Text style={styles.organization}>{internship.organization}</Text>
-          {internship.location ? <Text style={styles.meta}>· {internship.location}</Text> : null}
-          {internship.arrangement ? <Text style={styles.meta}>· {internship.arrangement}</Text> : null}
+          <View style={styles.metaItem}>
+            <StudentSymbol color={colors.textSecondary} name="building" size={14} />
+            <Text style={styles.organization}>{internship.organization}</Text>
+          </View>
+          {internship.location ? (
+            <View style={styles.metaItem}>
+              <StudentSymbol color={colors.textSecondary} name="location" size={14} />
+              <Text style={styles.meta}>{internship.location}</Text>
+            </View>
+          ) : null}
+          {internship.arrangement ? (
+            <View style={styles.metaItem}>
+              <StudentSymbol color={colors.textSecondary} name="status" size={14} />
+              <Text style={styles.meta}>{internship.arrangement}</Text>
+            </View>
+          ) : null}
         </View>
 
         <Text style={styles.summary}>{internship.summary}</Text>
 
         <View style={styles.footerRow}>
           {compensation ? <Text style={styles.compensation}>{compensation}</Text> : null}
-          {internship.deadline ? <Text style={styles.deadline}>{internship.deadline}</Text> : null}
+          {internship.deadline ? (
+            <View style={styles.deadlineItem}>
+              <StudentSymbol color={colors.textSecondary} name="calendar" size={14} />
+              <Text style={styles.deadline}>{internship.deadline}</Text>
+            </View>
+          ) : null}
         </View>
       </View>
     </Pressable>
@@ -115,6 +134,13 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     gap: spacing.sm,
   },
+  metaItem: {
+    minWidth: 0,
+    maxWidth: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+  },
   meta: {
     flexShrink: 1,
     color: colors.textSecondary,
@@ -142,6 +168,13 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     gap: spacing.sm,
     paddingTop: spacing.xs,
+  },
+  deadlineItem: {
+    minWidth: 0,
+    maxWidth: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
   },
   compensation: {
     color: colors.success,

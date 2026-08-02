@@ -1,0 +1,39 @@
+{
+  "ok": true,
+  "failures": [],
+  "captured": 17,
+  "webSymbolRendering": {
+    "materialGlyphCount": 31,
+    "sampleGlyphs": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  },
+  "screenshots": [
+    "account-mobile.png",
+    "demo-role-selection-smoke.png",
+    "floating-home-secondary.png",
+    "floating-home-site.png",
+    "internship-direct-route-smoke.png",
+    "manage-read-only-mobile.png",
+    "more-overflow-mobile.png",
+    "publish-read-only-mobile.png",
+    "saved-from-account-mobile.png",
+    "story-direct-route-smoke.png",
+    "symbol-web-fallbacks.png",
+    "tabs-1366x900.png",
+    "tabs-375x812.png",
+    "tabs-390x844.png",
+    "tabs-430x932.png",
+    "tabs-rork-width.png"
+  ]
+}

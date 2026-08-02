@@ -7,6 +7,7 @@ import { getSafeExternalLink } from '../utils/externalLinks';
 import { DemoContentNotice } from './DemoContentNotice';
 import { ExternalActionButton } from './ExternalActionButton';
 import { SampleBadge, SAMPLE_CONTENT_DISCLOSURE } from './SampleBadge';
+import { StudentSymbol, type StudentSymbolName } from './StudentSymbol';
 import { WorkflowStatusPill } from './WorkflowStatusPill';
 
 type InternshipDetailContentProps = {
@@ -19,6 +20,25 @@ function formatCompensation(value?: boolean) {
   }
 
   return value ? 'Paid' : 'Unpaid';
+}
+
+function InternshipMetaItem({
+  icon,
+  label,
+}: {
+  icon: StudentSymbolName;
+  label?: string;
+}) {
+  if (!label) {
+    return null;
+  }
+
+  return (
+    <View style={styles.metaItem}>
+      <StudentSymbol color={colors.textSecondary} name={icon} size={15} />
+      <Text style={styles.meta}>{label}</Text>
+    </View>
+  );
 }
 
 export function InternshipDetailContent({ internship }: InternshipDetailContentProps) {
@@ -59,10 +79,10 @@ export function InternshipDetailContent({ internship }: InternshipDetailContentP
           <Text style={styles.organization}>{internship.organization}</Text>
 
           <View style={styles.metaGrid}>
-            <Text style={styles.meta}>{internship.location}</Text>
-            {internship.arrangement ? <Text style={styles.meta}>{internship.arrangement}</Text> : null}
-            {compensation ? <Text style={styles.meta}>{compensation}</Text> : null}
-            {internship.deadline ? <Text style={styles.meta}>{internship.deadline}</Text> : null}
+            <InternshipMetaItem icon="location" label={internship.location} />
+            <InternshipMetaItem icon="status" label={internship.arrangement} />
+            <InternshipMetaItem icon="check" label={compensation} />
+            <InternshipMetaItem icon="calendar" label={internship.deadline} />
           </View>
 
           <Text style={styles.summary}>{internship.summary}</Text>
@@ -170,6 +190,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: spacing.sm,
+  },
+  metaItem: {
+    minWidth: 0,
+    maxWidth: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
   },
   meta: {
     maxWidth: '100%',

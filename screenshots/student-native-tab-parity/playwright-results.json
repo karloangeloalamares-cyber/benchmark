@@ -1,0 +1,866 @@
+[
+  {
+    "name": "tabs-rork-width.png",
+    "viewport": {
+      "width": 393,
+      "height": 852
+    },
+    "url": "/student/site",
+    "path": "/student/site",
+    "text": "Benchmark\npowered by the College of Sciences and Engineering\nShowcasing Southern University's excellence to the world.\n\nSign In\n\nAll\nCSE News\nSEAS\nResearch\nAlumni Spotlight\nIndustry Partnerships\nStudent Spotlight\nUpcoming Events\nSample content preview. Verify details through official university sources.\n\nInternship Board\n5 open opportunities for students\n\nSEAS\nJul 29, 2026\nSample SEAS Spotlight: Engineering Pathways for Jaguars\n\n4 min read\nA preview story showing how the student app can highlight alumni mentoring, scholarships, and industry pathways.\nBy Benchmark Editorial Preview\n\n\nRESEARCH\nJul 24, 2026\nResearch Preview: Student Work in AI, Energy, and Security\n\n3 min read\nSample coverage for a future research feed, including faculty labs, student posters, and project milestones.\nBy College Research Desk\n\n\nSTUDENT SPOTLIGHT\nJul 21, 2026\nCampus Life Preview: Welcome Week Story Package\n\n2 min read\nA sample editorial card for student activities, campus resources, and first-week orientation coverage.\nBy Student Affairs Preview\n\n\nCSE NEWS\nJul 18, 2026\nCBE News Preview: Program Update for Student Readers\n\n3 min read\nA concise sample announcement format for academic updates that students can scan quickly on mobile.\nBy CBE Communications Preview\n\n\nALUMNI SPOTLIGHT\nJul 16, 2026\nAlumni Preview: Mentors Supporting the Next Class\n\n3 min read\nSample story content showing how alumni features can connect students with career guidance and inspiration.\nBy Alumni Relations Preview\n\n\nINDUSTRY PARTNERSHIPS\nJul 14, 2026\nIndustry Preview: Partners Supporting Career Pathways\n\n3 min read\nA sample industry-partnership story showing how employer collaborations can be summarized for students.\nBy Partnerships Preview Desk\n\n\nUPCOMING EVENTS\nJul 12, 2026\nEvents Preview: How Upcoming Student Programs Will Appear\n\n2 min read\nA sample event-style story card. Dates and announcements here are placeholders until verified sources are connected.\nBy Events Preview Desk\n\n\n© Southern University and A&M College\nsubenchmark.blooksy.com\n\nSite\n\nInternships\n\nMy Posts\n\nReview\n\nMore\n",
+    "tabs": [
+      {
+        "label": "Site tab",
+        "selected": "true",
+        "x": 0,
+        "y": 798,
+        "width": 79,
+        "height": 50
+      },
+      {
+        "label": "Internships tab",
+        "selected": "false",
+        "x": 79,
+        "y": 798,
+        "width": 79,
+        "height": 50
+      },
+      {
+        "label": "My Posts tab",
+        "selected": "false",
+        "x": 157,
+        "y": 798,
+        "width": 79,
+        "height": 50
+      },
+      {
+        "label": "Review tab",
+        "selected": "false",
+        "x": 236,
+        "y": 798,
+        "width": 79,
+        "height": 50
+      },
+      {
+        "label": "More tab",
+        "selected": "false",
+        "x": 314,
+        "y": 798,
+        "width": 79,
+        "height": 50
+      }
+    ],
+    "home": {
+      "x": 323,
+      "y": 712,
+      "width": 52,
+      "height": 52,
+      "right": 18,
+      "bottom": 88
+    },
+    "overflowX": 0,
+    "materialSymbols": [],
+    "errors": [],
+    "failures": []
+  },
+  {
+    "name": "tabs-375x812.png",
+    "viewport": {
+      "width": 375,
+      "height": 812
+    },
+    "url": "/student/site",
+    "path": "/student/site",
+    "text": "Benchmark\npowered by the College of Sciences and Engineering\nShowcasing Southern University's excellence to the world.\n\nSign In\n\nAll\nCSE News\nSEAS\nResearch\nAlumni Spotlight\nIndustry Partnerships\nStudent Spotlight\nUpcoming Events\nSample content preview. Verify details through official university sources.\n\nInternship Board\n5 open opportunities for students\n\nSEAS\nJul 29, 2026\nSample SEAS Spotlight: Engineering Pathways for Jaguars\n\n4 min read\nA preview story showing how the student app can highlight alumni mentoring, scholarships, and industry pathways.\nBy Benchmark Editorial Preview\n\n\nRESEARCH\nJul 24, 2026\nResearch Preview: Student Work in AI, Energy, and Security\n\n3 min read\nSample coverage for a future research feed, including faculty labs, student posters, and project milestones.\nBy College Research Desk\n\n\nSTUDENT SPOTLIGHT\nJul 21, 2026\nCampus Life Preview: Welcome Week Story Package\n\n2 min read\nA sample editorial card for student activities, campus resources, and first-week orientation coverage.\nBy Student Affairs Preview\n\n\nCSE NEWS\nJul 18, 2026\nCBE News Preview: Program Update for Student Readers\n\n3 min read\nA concise sample announcement format for academic updates that students can scan quickly on mobile.\nBy CBE Communications Preview\n\n\nALUMNI SPOTLIGHT\nJul 16, 2026\nAlumni Preview: Mentors Supporting the Next Class\n\n3 min read\nSample story content showing how alumni features can connect students with career guidance and inspiration.\nBy Alumni Relations Preview\n\n\nINDUSTRY PARTNERSHIPS\nJul 14, 2026\nIndustry Preview: Partners Supporting Career Pathways\n\n3 min read\nA sample industry-partnership story showing how employer collaborations can be summarized for students.\nBy Partnerships Preview Desk\n\n\nUPCOMING EVENTS\nJul 12, 2026\nEvents Preview: How Upcoming Student Programs Will Appear\n\n2 min read\nA sample event-style story card. Dates and announcements here are placeholders until verified sources are connected.\nBy Events Preview Desk\n\n\n© Southern University and A&M College\nsubenchmark.blooksy.com\n\nSite\n\nInternships\n\nMy Posts\n\nReview\n\nMore\n",
+    "tabs": [
+      {
+        "label": "Site tab",
+        "selected": "true",
+        "x": 0,
+        "y": 758,
+        "width": 75,
+        "height": 50
+      },
+      {
+        "label": "Internships tab",
+        "selected": "false",
+        "x": 75,
+        "y": 758,
+        "width": 75,
+        "height": 50
+      },
+      {
+        "label": "My Posts tab",
+        "selected": "false",
+        "x": 150,
+        "y": 758,
+        "width": 75,
+        "height": 50
+      },
+      {
+        "label": "Review tab",
+        "selected": "false",
+        "x": 225,
+        "y": 758,
+        "width": 75,
+        "height": 50
+      },
+      {
+        "label": "More tab",
+        "selected": "false",
+        "x": 300,
+        "y": 758,
+        "width": 75,
+        "height": 50
+      }
+    ],
+    "home": {
+      "x": 305,
+      "y": 672,
+      "width": 52,
+      "height": 52,
+      "right": 18,
+      "bottom": 88
+    },
+    "overflowX": 0,
+    "materialSymbols": [],
+    "errors": [],
+    "failures": []
+  },
+  {
+    "name": "tabs-390x844.png",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "url": "/student/site",
+    "path": "/student/site",
+    "text": "Benchmark\npowered by the College of Sciences and Engineering\nShowcasing Southern University's excellence to the world.\nSign In\nAll\nCSE News\nSEAS\nResearch\nAlumni Spotlight\nIndustry Partnerships\nStudent Spotlight\nUpcoming Events\nSample content preview. Verify details through official university sources.\nInternship Board\n5 open opportunities for students\nSEAS\nJul 29, 2026\nSample SEAS Spotlight: Engineering Pathways for Jaguars\n4 min read\nA preview story showing how the student app can highlight alumni mentoring, scholarships, and industry pathways.\nBy Benchmark Editorial Preview\nRESEARCH\nJul 24, 2026\nResearch Preview: Student Work in AI, Energy, and Security\n3 min read\nSample coverage for a future research feed, including faculty labs, student posters, and project milestones.\nBy College Research Desk\nSTUDENT SPOTLIGHT\nJul 21, 2026\nCampus Life Preview: Welcome Week Story Package\n2 min read\nA sample editorial card for student activities, campus resources, and first-week orientation coverage.\nBy Student Affairs Preview\nCSE NEWS\nJul 18, 2026\nCBE News Preview: Program Update for Student Readers\n3 min read\nA concise sample announcement format for academic updates that students can scan quickly on mobile.\nBy CBE Communications Preview\nALUMNI SPOTLIGHT\nJul 16, 2026\nAlumni Preview: Mentors Supporting the Next Class\n3 min read\nSample story content showing how alumni features can connect students with career guidance and inspiration.\nBy Alumni Relations Preview\nINDUSTRY PARTNERSHIPS\nJul 14, 2026\nIndustry Preview: Partners Supporting Career Pathways\n3 min read\nA sample industry-partnership story showing how employer collaborations can be summarized for students.\nBy Partnerships Preview Desk\nUPCOMING EVENTS\nJul 12, 2026\nEvents Preview: How Upcoming Student Programs Will Appear\n2 min read\nA sample event-style story card. Dates and announcements here are placeholders until verified sources are connected.\nBy Events Preview Desk\n© Southern University and A&M College\nsubenchmark.blooksy.com\nSite\nInternships\nMy Posts\nReview\nMore",
+    "tabs": [
+      {
+        "label": "Site tab",
+        "selected": "true",
+        "x": 0,
+        "y": 790,
+        "width": 78,
+        "height": 50
+      },
+      {
+        "label": "Internships tab",
+        "selected": "false",
+        "x": 78,
+        "y": 790,
+        "width": 78,
+        "height": 50
+      },
+      {
+        "label": "My Posts tab",
+        "selected": "false",
+        "x": 156,
+        "y": 790,
+        "width": 78,
+        "height": 50
+      },
+      {
+        "label": "Review tab",
+        "selected": "false",
+        "x": 234,
+        "y": 790,
+        "width": 78,
+        "height": 50
+      },
+      {
+        "label": "More tab",
+        "selected": "false",
+        "x": 312,
+        "y": 790,
+        "width": 78,
+        "height": 50
+      }
+    ],
+    "home": {
+      "x": 320,
+      "y": 704,
+      "width": 52,
+      "height": 52,
+      "right": 18,
+      "bottom": 88
+    },
+    "overflowX": 0,
+    "materialSymbols": [],
+    "errors": [],
+    "failures": []
+  },
+  {
+    "name": "tabs-430x932.png",
+    "viewport": {
+      "width": 430,
+      "height": 932
+    },
+    "url": "/student/site",
+    "path": "/student/site",
+    "text": "Benchmark\npowered by the College of Sciences and Engineering\nShowcasing Southern University's excellence to the world.\n\nSign In\n\nAll\nCSE News\nSEAS\nResearch\nAlumni Spotlight\nIndustry Partnerships\nStudent Spotlight\nUpcoming Events\nSample content preview. Verify details through official university sources.\n\nInternship Board\n5 open opportunities for students\n\nSEAS\nJul 29, 2026\nSample SEAS Spotlight: Engineering Pathways for Jaguars\n\n4 min read\nA preview story showing how the student app can highlight alumni mentoring, scholarships, and industry pathways.\nBy Benchmark Editorial Preview\n\n\nRESEARCH\nJul 24, 2026\nResearch Preview: Student Work in AI, Energy, and Security\n\n3 min read\nSample coverage for a future research feed, including faculty labs, student posters, and project milestones.\nBy College Research Desk\n\n\nSTUDENT SPOTLIGHT\nJul 21, 2026\nCampus Life Preview: Welcome Week Story Package\n\n2 min read\nA sample editorial card for student activities, campus resources, and first-week orientation coverage.\nBy Student Affairs Preview\n\n\nCSE NEWS\nJul 18, 2026\nCBE News Preview: Program Update for Student Readers\n\n3 min read\nA concise sample announcement format for academic updates that students can scan quickly on mobile.\nBy CBE Communications Preview\n\n\nALUMNI SPOTLIGHT\nJul 16, 2026\nAlumni Preview: Mentors Supporting the Next Class\n\n3 min read\nSample story content showing how alumni features can connect students with career guidance and inspiration.\nBy Alumni Relations Preview\n\n\nINDUSTRY PARTNERSHIPS\nJul 14, 2026\nIndustry Preview: Partners Supporting Career Pathways\n\n3 min read\nA sample industry-partnership story showing how employer collaborations can be summarized for students.\nBy Partnerships Preview Desk\n\n\nUPCOMING EVENTS\nJul 12, 2026\nEvents Preview: How Upcoming Student Programs Will Appear\n\n2 min read\nA sample event-style story card. Dates and announcements here are placeholders until verified sources are connected.\nBy Events Preview Desk\n\n\n© Southern University and A&M College\nsubenchmark.blooksy.com\n\nSite\n\nInternships\n\nMy Posts\n\nReview\n\nMore\n",
+    "tabs": [
+      {
+        "label": "Site tab",
+        "selected": "true",
+        "x": 0,
+        "y": 878,
+        "width": 86,
+        "height": 50
+      },
+      {
+        "label": "Internships tab",
+        "selected": "false",
+        "x": 86,
+        "y": 878,
+        "width": 86,
+        "height": 50
+      },
+      {
+        "label": "My Posts tab",
+        "selected": "false",
+        "x": 172,
+        "y": 878,
+        "width": 86,
+        "height": 50
+      },
+      {
+        "label": "Review tab",
+        "selected": "false",
+        "x": 258,
+        "y": 878,
+        "width": 86,
+        "height": 50
+      },
+      {
+        "label": "More tab",
+        "selected": "false",
+        "x": 344,
+        "y": 878,
+        "width": 86,
+        "height": 50
+      }
+    ],
+    "home": {
+      "x": 360,
+      "y": 792,
+      "width": 52,
+      "height": 52,
+      "right": 18,
+      "bottom": 88
+    },
+    "overflowX": 0,
+    "materialSymbols": [],
+    "errors": [],
+    "failures": []
+  },
+  {
+    "name": "tabs-1366x900.png",
+    "viewport": {
+      "width": 1366,
+      "height": 900
+    },
+    "url": "/student/site",
+    "path": "/student/site",
+    "text": "Benchmark\npowered by the College of Sciences and Engineering\nShowcasing Southern University's excellence to the world.\n\nSign In\n\nAll\nCSE News\nSEAS\nResearch\nAlumni Spotlight\nIndustry Partnerships\nStudent Spotlight\nUpcoming Events\nSample content preview. Verify details through official university sources.\n\nInternship Board\n5 open opportunities for students\n\nSEAS\nJul 29, 2026\nSample SEAS Spotlight: Engineering Pathways for Jaguars\n\n4 min read\nA preview story showing how the student app can highlight alumni mentoring, scholarships, and industry pathways.\nBy Benchmark Editorial Preview\n\n\nRESEARCH\nJul 24, 2026\nResearch Preview: Student Work in AI, Energy, and Security\n\n3 min read\nSample coverage for a future research feed, including faculty labs, student posters, and project milestones.\nBy College Research Desk\n\n\nSTUDENT SPOTLIGHT\nJul 21, 2026\nCampus Life Preview: Welcome Week Story Package\n\n2 min read\nA sample editorial card for student activities, campus resources, and first-week orientation coverage.\nBy Student Affairs Preview\n\n\nCSE NEWS\nJul 18, 2026\nCBE News Preview: Program Update for Student Readers\n\n3 min read\nA concise sample announcement format for academic updates that students can scan quickly on mobile.\nBy CBE Communications Preview\n\n\nALUMNI SPOTLIGHT\nJul 16, 2026\nAlumni Preview: Mentors Supporting the Next Class\n\n3 min read\nSample story content showing how alumni features can connect students with career guidance and inspiration.\nBy Alumni Relations Preview\n\n\nINDUSTRY PARTNERSHIPS\nJul 14, 2026\nIndustry Preview: Partners Supporting Career Pathways\n\n3 min read\nA sample industry-partnership story showing how employer collaborations can be summarized for students.\nBy Partnerships Preview Desk\n\n\nUPCOMING EVENTS\nJul 12, 2026\nEvents Preview: How Upcoming Student Programs Will Appear\n\n2 min read\nA sample event-style story card. Dates and announcements here are placeholders until verified sources are connected.\nBy Events Preview Desk\n\n\n© Southern University and A&M College\nsubenchmark.blooksy.com\n\nSite\n\nInternships\n\nMy Posts\n\nReview\n\nMore\n",
+    "tabs": [
+      {
+        "label": "Site tab",
+        "selected": "true",
+        "x": 303,
+        "y": 846,
+        "width": 152,
+        "height": 50
+      },
+      {
+        "label": "Internships tab",
+        "selected": "false",
+        "x": 455,
+        "y": 846,
+        "width": 152,
+        "height": 50
+      },
+      {
+        "label": "My Posts tab",
+        "selected": "false",
+        "x": 607,
+        "y": 846,
+        "width": 152,
+        "height": 50
+      },
+      {
+        "label": "Review tab",
+        "selected": "false",
+        "x": 759,
+        "y": 846,
+        "width": 152,
+        "height": 50
+      },
+      {
+        "label": "More tab",
+        "selected": "false",
+        "x": 911,
+        "y": 846,
+        "width": 152,
+        "height": 50
+      }
+    ],
+    "home": {
+      "x": 993,
+      "y": 760,
+      "width": 52,
+      "height": 52,
+      "right": 321,
+      "bottom": 88
+    },
+    "overflowX": 0,
+    "materialSymbols": [],
+    "errors": [],
+    "failures": []
+  },
+  {
+    "name": "floating-home-site.png",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "url": "/student/site",
+    "path": "/student/site",
+    "text": "Benchmark\npowered by the College of Sciences and Engineering\nShowcasing Southern University's excellence to the world.\n\nSign In\n\nAll\nCSE News\nSEAS\nResearch\nAlumni Spotlight\nIndustry Partnerships\nStudent Spotlight\nUpcoming Events\nSample content preview. Verify details through official university sources.\n\nInternship Board\n5 open opportunities for students\n\nSEAS\nJul 29, 2026\nSample SEAS Spotlight: Engineering Pathways for Jaguars\n\n4 min read\nA preview story showing how the student app can highlight alumni mentoring, scholarships, and industry pathways.\nBy Benchmark Editorial Preview\n\n\nRESEARCH\nJul 24, 2026\nResearch Preview: Student Work in AI, Energy, and Security\n\n3 min read\nSample coverage for a future research feed, including faculty labs, student posters, and project milestones.\nBy College Research Desk\n\n\nSTUDENT SPOTLIGHT\nJul 21, 2026\nCampus Life Preview: Welcome Week Story Package\n\n2 min read\nA sample editorial card for student activities, campus resources, and first-week orientation coverage.\nBy Student Affairs Preview\n\n\nCSE NEWS\nJul 18, 2026\nCBE News Preview: Program Update for Student Readers\n\n3 min read\nA concise sample announcement format for academic updates that students can scan quickly on mobile.\nBy CBE Communications Preview\n\n\nALUMNI SPOTLIGHT\nJul 16, 2026\nAlumni Preview: Mentors Supporting the Next Class\n\n3 min read\nSample story content showing how alumni features can connect students with career guidance and inspiration.\nBy Alumni Relations Preview\n\n\nINDUSTRY PARTNERSHIPS\nJul 14, 2026\nIndustry Preview: Partners Supporting Career Pathways\n\n3 min read\nA sample industry-partnership story showing how employer collaborations can be summarized for students.\nBy Partnerships Preview Desk\n\n\nUPCOMING EVENTS\nJul 12, 2026\nEvents Preview: How Upcoming Student Programs Will Appear\n\n2 min read\nA sample event-style story card. Dates and announcements here are placeholders until verified sources are connected.\nBy Events Preview Desk\n\n\n© Southern University and A&M College\nsubenchmark.blooksy.com\n\nSite\n\nInternships\n\nMy Posts\n\nReview\n\nMore\n",
+    "tabs": [
+      {
+        "label": "Site tab",
+        "selected": "true",
+        "x": 0,
+        "y": 790,
+        "width": 78,
+        "height": 50
+      },
+      {
+        "label": "Internships tab",
+        "selected": "false",
+        "x": 78,
+        "y": 790,
+        "width": 78,
+        "height": 50
+      },
+      {
+        "label": "My Posts tab",
+        "selected": "false",
+        "x": 156,
+        "y": 790,
+        "width": 78,
+        "height": 50
+      },
+      {
+        "label": "Review tab",
+        "selected": "false",
+        "x": 234,
+        "y": 790,
+        "width": 78,
+        "height": 50
+      },
+      {
+        "label": "More tab",
+        "selected": "false",
+        "x": 312,
+        "y": 790,
+        "width": 78,
+        "height": 50
+      }
+    ],
+    "home": {
+      "x": 320,
+      "y": 704,
+      "width": 52,
+      "height": 52,
+      "right": 18,
+      "bottom": 88
+    },
+    "overflowX": 0,
+    "materialSymbols": [],
+    "errors": [],
+    "failures": []
+  },
+  {
+    "name": "floating-home-secondary.png",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "url": "/student/internships",
+    "path": "/student/internships",
+    "text": "Internships\nOpportunities for Southern University students\n\nAll\nSoftware Engineering\nData Science\nResearch\nElectrical Engineering\nCybersecurity\n5 open sample opportunities\nENGINEERING\nOPEN\nSample Engineering Systems Intern\n\nGulf Coast Infrastructure Studio\n\nBaton Rouge, LA\n\nHybrid\nA sample hybrid internship for students interested in civil systems, project documentation, and field reporting.\nPaid\n\nSample deadline to be verified\nRESEARCH\nOPEN\nSample Undergraduate Research Assistant\n\nCenter for Applied Learning Preview Program\n\nSouthern University campus\n\nOn-site\nA sample research-support role for students exploring data collection, lab operations, and faculty-led projects.\nUnpaid\nPUBLIC SERVICE\nOPEN\nSample Public Service Policy Intern\n\nCapital Region Civic Fellows Preview Office\n\nBaton Rouge, LA\n\nOn-site\nA sample public-service opportunity focused on policy briefs, community meetings, and program evaluation.\n\nSample rolling review\nBUSINESS\nOPEN\nSample Business Analytics Intern\n\nRiver Parish Market Insights and Operations Collaborative\n\nRemote\n\nRemote\nA sample remote role for dashboards, spreadsheet cleanup, stakeholder summaries, and weekly reporting.\nPaid\n\nSample date pending verification\nCOMMUNICATIONS\nOPEN\nSample Campus Communications Fellow\n\nBenchmark Student Media Preview Desk\n\nBaton Rouge, LA\n\nHybrid\nA sample communications role for writing short posts, preparing interview notes, and supporting editorial calendars.\n\nSite\n\nInternships\n\nMy Posts\n\nReview\n\nMore\n",
+    "tabs": [
+      {
+        "label": "Site tab",
+        "selected": "false",
+        "x": 0,
+        "y": 790,
+        "width": 78,
+        "height": 50
+      },
+      {
+        "label": "Internships tab",
+        "selected": "true",
+        "x": 78,
+        "y": 790,
+        "width": 78,
+        "height": 50
+      },
+      {
+        "label": "My Posts tab",
+        "selected": "false",
+        "x": 156,
+        "y": 790,
+        "width": 78,
+        "height": 50
+      },
+      {
+        "label": "Review tab",
+        "selected": "false",
+        "x": 234,
+        "y": 790,
+        "width": 78,
+        "height": 50
+      },
+      {
+        "label": "More tab",
+        "selected": "false",
+        "x": 312,
+        "y": 790,
+        "width": 78,
+        "height": 50
+      }
+    ],
+    "home": {
+      "x": 320,
+      "y": 704,
+      "width": 52,
+      "height": 52,
+      "right": 18,
+      "bottom": 88
+    },
+    "overflowX": 0,
+    "materialSymbols": [],
+    "errors": [],
+    "failures": []
+  },
+  {
+    "name": "more-overflow-mobile.png",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "url": "/student/more",
+    "path": "/student/more",
+    "text": "Benchmark\nMore\nOverflow destinations for the administrator parity preview\n\nNative overflow model\nDemo role: Administrator. More represents destinations beyond the five-slot iOS tab capacity.\n\nPublish\nRead-only parity destination\n\n\nManage\nRead-only parity destination\n\n\nAccount\nProfile context, Saved Stories, permissions, and About\n\n\nSite\n\nInternships\n\nMy Posts\n\nReview\n\nMore\n",
+    "tabs": [
+      {
+        "label": "Site tab",
+        "selected": "false",
+        "x": 0,
+        "y": 790,
+        "width": 78,
+        "height": 50
+      },
+      {
+        "label": "Internships tab",
+        "selected": "false",
+        "x": 78,
+        "y": 790,
+        "width": 78,
+        "height": 50
+      },
+      {
+        "label": "My Posts tab",
+        "selected": "false",
+        "x": 156,
+        "y": 790,
+        "width": 78,
+        "height": 50
+      },
+      {
+        "label": "Review tab",
+        "selected": "false",
+        "x": 234,
+        "y": 790,
+        "width": 78,
+        "height": 50
+      },
+      {
+        "label": "More tab",
+        "selected": "true",
+        "x": 312,
+        "y": 790,
+        "width": 78,
+        "height": 50
+      }
+    ],
+    "home": {
+      "x": 320,
+      "y": 704,
+      "width": 52,
+      "height": 52,
+      "right": 18,
+      "bottom": 88
+    },
+    "overflowX": 0,
+    "materialSymbols": [],
+    "errors": [],
+    "failures": []
+  },
+  {
+    "name": "publish-read-only-mobile.png",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "url": "/student/publish",
+    "path": "/student/publish",
+    "text": "\nBack\nBenchmark\nPublish\nApproved-content publishing queue, shown as a read-only demo\n\nPublishing controls are intentionally disabled. This Expo parity shell models the Rork destination without mutating content.\nReady\nScheduled\nLive\nArchived\n\nResearch Preview: Student Work in AI, Energy, and Security\nAPPROVED\nResearch\nReady sample item\nView-only publishing queue item\n\nAlumni Preview: Mentors Supporting the Next Class\nAPPROVED\nAlumni Spotlight\nReady sample item\nView-only publishing queue item\n\nSite\n\nInternships\n\nMy Posts\n\nReview\n\nMore\n",
+    "tabs": [
+      {
+        "label": "Site tab",
+        "selected": "false",
+        "x": 0,
+        "y": 790,
+        "width": 78,
+        "height": 50
+      },
+      {
+        "label": "Internships tab",
+        "selected": "false",
+        "x": 78,
+        "y": 790,
+        "width": 78,
+        "height": 50
+      },
+      {
+        "label": "My Posts tab",
+        "selected": "false",
+        "x": 156,
+        "y": 790,
+        "width": 78,
+        "height": 50
+      },
+      {
+        "label": "Review tab",
+        "selected": "false",
+        "x": 234,
+        "y": 790,
+        "width": 78,
+        "height": 50
+      },
+      {
+        "label": "More tab",
+        "selected": "true",
+        "x": 312,
+        "y": 790,
+        "width": 78,
+        "height": 50
+      }
+    ],
+    "home": {
+      "x": 320,
+      "y": 704,
+      "width": 52,
+      "height": 52,
+      "right": 18,
+      "bottom": 88
+    },
+    "overflowX": 0,
+    "materialSymbols": [],
+    "errors": [],
+    "failures": []
+  },
+  {
+    "name": "manage-read-only-mobile.png",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "url": "/student/manage",
+    "path": "/student/manage",
+    "text": "\nBack\nBenchmark\nManage\nAdministration shell shown as a read-only demo\n\nAdmin tools are represented for navigation parity only. User, category, content, and settings changes are not available in this Expo phase.\nAdministration\n\nUsers\nRoles and access\nDemo only\n\nCategories\nSite navigation labels\n8\n\nAll Content\nEvery sample workflow state\n12\n\nInternships\nOpportunity listings\n5\nAt a Glance\nLive on site\n0\nAwaiting review\n1\nApproved, awaiting publish\n2\nScheduled\n0\nDrafts\n1\n\nSite\n\nInternships\n\nMy Posts\n\nReview\n\nMore\n",
+    "tabs": [
+      {
+        "label": "Site tab",
+        "selected": "false",
+        "x": 0,
+        "y": 790,
+        "width": 78,
+        "height": 50
+      },
+      {
+        "label": "Internships tab",
+        "selected": "false",
+        "x": 78,
+        "y": 790,
+        "width": 78,
+        "height": 50
+      },
+      {
+        "label": "My Posts tab",
+        "selected": "false",
+        "x": 156,
+        "y": 790,
+        "width": 78,
+        "height": 50
+      },
+      {
+        "label": "Review tab",
+        "selected": "false",
+        "x": 234,
+        "y": 790,
+        "width": 78,
+        "height": 50
+      },
+      {
+        "label": "More tab",
+        "selected": "true",
+        "x": 312,
+        "y": 790,
+        "width": 78,
+        "height": 50
+      }
+    ],
+    "home": {
+      "x": 320,
+      "y": 704,
+      "width": 52,
+      "height": 52,
+      "right": 18,
+      "bottom": 88
+    },
+    "overflowX": 0,
+    "materialSymbols": [],
+    "errors": [],
+    "failures": []
+  },
+  {
+    "name": "account-mobile.png",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "url": "/student/account",
+    "path": "/student/account",
+    "text": "\nBack\nBenchmark\nAccount\nDemo account context for the native parity shell\n\nStudent access preview\nNo real user is signed in. The selected role is local fixture data only.\n\nADMINISTRATOR\nReading List\n\nSaved Stories\n0 saved this session. Reloading the app resets the list.\n\nPermissions\n\nCreate & submit drafts\n\nReview submitted content\n\nApprove or reject with feedback\n\nPublish, schedule & unpublish\n\nManage users, categories & settings\nAbout\nBenchmark\nShowcasing Southern University's excellence to the world.\nFuture releases can connect real account profile, sign-out, and persistent saved stories.\n\nSite\n\nInternships\n\nMy Posts\n\nReview\n\nMore\n",
+    "tabs": [
+      {
+        "label": "Site tab",
+        "selected": "false",
+        "x": 0,
+        "y": 790,
+        "width": 78,
+        "height": 50
+      },
+      {
+        "label": "Internships tab",
+        "selected": "false",
+        "x": 78,
+        "y": 790,
+        "width": 78,
+        "height": 50
+      },
+      {
+        "label": "My Posts tab",
+        "selected": "false",
+        "x": 156,
+        "y": 790,
+        "width": 78,
+        "height": 50
+      },
+      {
+        "label": "Review tab",
+        "selected": "false",
+        "x": 234,
+        "y": 790,
+        "width": 78,
+        "height": 50
+      },
+      {
+        "label": "More tab",
+        "selected": "true",
+        "x": 312,
+        "y": 790,
+        "width": 78,
+        "height": 50
+      }
+    ],
+    "home": {
+      "x": 320,
+      "y": 704,
+      "width": 52,
+      "height": 52,
+      "right": 18,
+      "bottom": 88
+    },
+    "overflowX": 0,
+    "materialSymbols": [],
+    "errors": [],
+    "failures": []
+  },
+  {
+    "name": "symbol-web-fallbacks.png",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "url": "/student/site",
+    "path": "/student/site",
+    "text": "Benchmark\npowered by the College of Sciences and Engineering\nShowcasing Southern University's excellence to the world.\n\nSign In\n\nAll\nCSE News\nSEAS\nResearch\nAlumni Spotlight\nIndustry Partnerships\nStudent Spotlight\nUpcoming Events\nSample content preview. Verify details through official university sources.\n\nInternship Board\n5 open opportunities for students\n\nSEAS\nJul 29, 2026\nSample SEAS Spotlight: Engineering Pathways for Jaguars\n\n4 min read\nA preview story showing how the student app can highlight alumni mentoring, scholarships, and industry pathways.\nBy Benchmark Editorial Preview\n\n\nRESEARCH\nJul 24, 2026\nResearch Preview: Student Work in AI, Energy, and Security\n\n3 min read\nSample coverage for a future research feed, including faculty labs, student posters, and project milestones.\nBy College Research Desk\n\n\nSTUDENT SPOTLIGHT\nJul 21, 2026\nCampus Life Preview: Welcome Week Story Package\n\n2 min read\nA sample editorial card for student activities, campus resources, and first-week orientation coverage.\nBy Student Affairs Preview\n\n\nCSE NEWS\nJul 18, 2026\nCBE News Preview: Program Update for Student Readers\n\n3 min read\nA concise sample announcement format for academic updates that students can scan quickly on mobile.\nBy CBE Communications Preview\n\n\nALUMNI SPOTLIGHT\nJul 16, 2026\nAlumni Preview: Mentors Supporting the Next Class\n\n3 min read\nSample story content showing how alumni features can connect students with career guidance and inspiration.\nBy Alumni Relations Preview\n\n\nINDUSTRY PARTNERSHIPS\nJul 14, 2026\nIndustry Preview: Partners Supporting Career Pathways\n\n3 min read\nA sample industry-partnership story showing how employer collaborations can be summarized for students.\nBy Partnerships Preview Desk\n\n\nUPCOMING EVENTS\nJul 12, 2026\nEvents Preview: How Upcoming Student Programs Will Appear\n\n2 min read\nA sample event-style story card. Dates and announcements here are placeholders until verified sources are connected.\nBy Events Preview Desk\n\n\n© Southern University and A&M College\nsubenchmark.blooksy.com\n\nSite\n\nInternships\n\nMy Posts\n\nReview\n\nMore\n",
+    "tabs": [
+      {
+        "label": "Site tab",
+        "selected": "true",
+        "x": 0,
+        "y": 790,
+        "width": 78,
+        "height": 50
+      },
+      {
+        "label": "Internships tab",
+        "selected": "false",
+        "x": 78,
+        "y": 790,
+        "width": 78,
+        "height": 50
+      },
+      {
+        "label": "My Posts tab",
+        "selected": "false",
+        "x": 156,
+        "y": 790,
+        "width": 78,
+        "height": 50
+      },
+      {
+        "label": "Review tab",
+        "selected": "false",
+        "x": 234,
+        "y": 790,
+        "width": 78,
+        "height": 50
+      },
+      {
+        "label": "More tab",
+        "selected": "false",
+        "x": 312,
+        "y": 790,
+        "width": 78,
+        "height": 50
+      }
+    ],
+    "home": {
+      "x": 320,
+      "y": 704,
+      "width": 52,
+      "height": 52,
+      "right": 18,
+      "bottom": 88
+    },
+    "overflowX": 0,
+    "materialSymbols": [],
+    "errors": [],
+    "failures": []
+  },
+  {
+    "name": "demo-role-selection-smoke.png",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "url": "/demo/role-select",
+    "path": "/demo/role-select",
+    "text": "B\nSouthern University Benchmark\nROLE PREVIEW\nDemo mode — mock data only\nChoose Demo Role\nPreview how contributors, approvers, and administrators enter the Benchmark content workspace.\nC\nContributor\nCreate, save, and submit university content.\nOpen dashboard\nA\nApprover\nReview submissions and manage publishing decisions.\nOpen dashboard\nA\nAdministrator\nManage users, categories, content, and settings.\nOpen dashboard",
+    "tabs": [],
+    "home": null,
+    "overflowX": 0,
+    "materialSymbols": [],
+    "errors": [],
+    "failures": []
+  },
+  {
+    "name": "saved-from-account-mobile.png",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "url": "saved-flow",
+    "path": "/student/saved",
+    "text": "Benchmark\npowered by the College of Sciences and Engineering\nShowcasing Southern University's excellence to the world.\n\nSign In\n\nAll\nCSE News\nSEAS\nResearch\nAlumni Spotlight\nIndustry Partnerships\nStudent Spotlight\nUpcoming Events\nSample content preview. Verify details through official university sources.\n\nInternship Board\n5 open opportunities for students\n\nSEAS\nJul 29, 2026\nSample SEAS Spotlight: Engineering Pathways for Jaguars\n\n4 min read\nA preview story showing how the student app can highlight alumni mentoring, scholarships, and industry pathways.\nBy Benchmark Editorial Preview\n\n\nRESEARCH\nJul 24, 2026\nResearch Preview: Student Work in AI, Energy, and Security\n\n3 min read\nSample coverage for a future research feed, including faculty labs, student posters, and project milestones.\nBy College Research Desk\n\n\nSTUDENT SPOTLIGHT\nJul 21, 2026\nCampus Life Preview: Welcome Week Story Package\n\n2 min read\nA sample editorial card for student activities, campus resources, and first-week orientation coverage.\nBy Student Affairs Preview\n\n\nCSE NEWS\nJul 18, 2026\nCBE News Preview: Program Update for Student Readers\n\n3 min read\nA concise sample announcement format for academic updates that students can scan quickly on mobile.\nBy CBE Communications Preview\n\n\nALUMNI SPOTLIGHT\nJul 16, 2026\nAlumni Preview: Mentors Supporting the Next Class\n\n3 min read\nSample story content showing how alumni features can connect students with career guidance and inspiration.\nBy Alumni Relations Preview\n\n\nINDUSTRY PARTNERSHIPS\nJul 14, 2026\nIndustry Preview: Partners Supporting Career Pathways\n\n3 min read\nA sample industry-partnership story showing how employer collaborations can be summarized for students.\nBy Partnerships Preview Desk\n\n\nUPCOMING EVENTS\nJul 12, 2026\nEvents Preview: How Upcoming Student Programs Will Appear\n\n2 min read\nA sample event-style story card. Dates and announcements here are placeholders until verified sources are connected.\nBy Events Preview Desk\n\n\n© Southern University and A&M College\nsubenchmark.blooksy.com\n\nBack\nBenchmark\nAccount\nDemo account context for the native parity shell\n\nStudent access preview\nNo real user is signed in. The selected role is local fixture data only.\n\nADMINISTRATOR\nReading List\n\nSaved Stories\n1 saved this session. Reloading the app resets the list.\n\nPermissions\n\nCreate & submit drafts\n\nReview submitted content\n\nApprove or reject with feedback\n\nPublish, schedule & unpublish\n\nManage users, categories & settings\nAbout\nBenchmark\nShowcasing Southern University's excellence to the world.\nFuture releases can connect real account profile, sign-out, and persistent saved stories.\n\nBack\nBenchmark\nSaved Stories\nSession-only reading list\nSaved Stories\n1\nSaved stories are temporary in this Expo parity demo and reset when the app session restarts.\n\nSEAS\nSample SEAS Spotlight: Engineering Pathways for Jaguars\nSaved this session\nClear saved stories\nBenchmark\nMore\nOverflow destinations for the administrator parity preview\n\nNative overflow model\nDemo role: Administrator. More represents destinations beyond the five-slot iOS tab capacity.\n\nPublish\nRead-only parity destination\n\n\nManage\nRead-only parity destination\n\n\nAccount\nProfile context, Saved Stories, permissions, and About\n\n\nSite\n\nInternships\n\nMy Posts\n\nReview\n\nMore\n",
+    "tabs": [
+      {
+        "label": "Site tab",
+        "selected": "false"
+      },
+      {
+        "label": "Internships tab",
+        "selected": "false"
+      },
+      {
+        "label": "My Posts tab",
+        "selected": "false"
+      },
+      {
+        "label": "Review tab",
+        "selected": "false"
+      },
+      {
+        "label": "More tab",
+        "selected": "true"
+      }
+    ],
+    "home": {
+      "width": 52,
+      "height": 52,
+      "right": 18,
+      "bottom": 88
+    },
+    "overflowX": 0,
+    "errors": [],
+    "failures": []
+  },
+  {
+    "name": "home-reset-functional",
+    "publishPath": "/student/publish",
+    "homePath": "/student/site",
+    "errors": [],
+    "failures": []
+  },
+  {
+    "name": "story-direct-route-smoke.png",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "url": "/student/posts/story-seas-engineers",
+    "path": "/student/posts/story-seas-engineers",
+    "text": "\nBack\nBenchmark\nStory details\nSEAS\nJul 29, 2026\n4 min read\nSample content\nSample SEAS Spotlight: Engineering Pathways for Jaguars\nA preview story showing how the student app can highlight alumni mentoring, scholarships, and industry pathways.\nBy Benchmark Editorial Preview\n\nSave story\nDEMO CONTENT\nDates, opportunities, and announcements are samples. Verify details through official university sources.\nThis sample story demonstrates how a student-facing article can connect academic programs with career pathways. In a production release, this space could highlight verified mentoring programs, scholarship deadlines, and partner events from official university sources.\nThe article format is intentionally concise for mobile readers. Students can scan the topic, understand why it matters, and decide whether to open a related source without leaving the news flow.\nAll names, opportunities, and dates in this fixture are placeholders. The Benchmark team should replace this sample body with verified editorial content before publication.\nSample format based on a future official-source workflow\nView official SEAS resources",
+    "tabs": [],
+    "home": null,
+    "overflowX": 0,
+    "materialSymbols": [],
+    "errors": [],
+    "failures": []
+  },
+  {
+    "name": "internship-direct-route-smoke.png",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "url": "/student/internships/internship-gulf-engineering",
+    "path": "/student/internships/internship-gulf-engineering",
+    "text": "\nBack\nBenchmark\nInternship details\nENGINEERING\nOPEN\nSample opportunity\nSample Engineering Systems Intern\nGulf Coast Infrastructure Studio\n\nBaton Rouge, LA\n\nHybrid\n\nPaid\n\nSample deadline to be verified\nA sample hybrid internship for students interested in civil systems, project documentation, and field reporting.\nDEMO CONTENT\nDates, opportunities, and announcements are samples. Verify details through official university sources.\nOpportunity details\nThis fixture models an engineering-focused listing with a clear organization, arrangement, and safe external action. A verified listing would include official eligibility, dates, required materials, and contact information from the employer or university.\nStudents should treat this as sample content only. The application link opens a general HTTPS page for validation and does not submit an application.\nThis is sample content. Verify dates, requirements, and opportunities through official university sources.\nOpen application link\nView source",
+    "tabs": [],
+    "home": null,
+    "overflowX": 0,
+    "materialSymbols": [],
+    "errors": [],
+    "failures": []
+  }
+]

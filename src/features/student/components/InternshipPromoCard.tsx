@@ -2,7 +2,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { colors, fontWeights, radii, shadows, spacing, typography } from '@/constants/theme';
 import type { InternshipPromo } from '../types';
-import { PrimitiveIcon } from './PrimitiveIcon';
+import { StudentSymbol } from './StudentSymbol';
 
 type InternshipPromoCardProps = {
   promo: InternshipPromo;
@@ -17,13 +17,13 @@ export function InternshipPromoCard({ promo, onPress }: InternshipPromoCardProps
       onPress={onPress}
       style={({ pressed }) => [styles.card, pressed && styles.pressed]}>
       <View style={styles.iconBox}>
-        <PrimitiveIcon color={colors.universityGold} name="briefcase" size={21} />
+        <StudentSymbol color={colors.universityGold} name="internships" size={21} />
       </View>
       <View style={styles.copy}>
         <Text style={styles.title}>{promo.title}</Text>
         <Text style={styles.description}>{promo.description}</Text>
       </View>
-      <PrimitiveIcon color={colors.universityGold} name="arrowRight" size={19} />
+      <StudentSymbol color={colors.universityGold} name="chevronRight" size={19} />
     </Pressable>
   );
 }
