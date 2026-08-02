@@ -45,7 +45,6 @@ export function ExternalActionButton({ label, url, variant = 'primary' }: Extern
 
 const styles = StyleSheet.create({
   button: {
-    width: '100%',
     minHeight: layout.touchTarget,
     alignItems: 'center',
     justifyContent: 'center',

@@ -3,6 +3,7 @@ import { Pressable, StyleSheet, Text } from 'react-native';
 
 import { colors, fontWeights, spacing, typography } from '@/constants/theme';
 import { useSavedStories } from '../saved/useSavedStories';
+import { PrimitiveIcon } from './PrimitiveIcon';
 
 type BookmarkButtonProps = {
   storyId: string;
@@ -31,7 +32,7 @@ export function BookmarkButton({ storyId, variant = 'compact' }: BookmarkButtonP
         saved && styles.savedButton,
         pressed && styles.pressed,
       ]}>
-      <Text style={[styles.symbol, saved && styles.savedText]}>{saved ? 'B' : 'b'}</Text>
+      <PrimitiveIcon color={colors.primaryNavy} name="bookmark" size={variant === 'full' ? 18 : 16} />
       {variant === 'full' ? (
         <Text style={[styles.fullText, saved && styles.savedText]}>
           {saved ? 'Remove from Saved' : 'Save story'}
@@ -57,6 +58,7 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     flexDirection: 'row',
     gap: spacing.sm,
+    maxWidth: '100%',
     paddingHorizontal: spacing.lg,
     backgroundColor: colors.tintBlue,
     borderColor: colors.benchmarkBlue,
@@ -65,13 +67,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.tintGoldStrong,
     borderColor: colors.universityGold,
   },
-  symbol: {
-    color: colors.primaryNavy,
-    fontSize: typography.small,
-    fontWeight: fontWeights.bold,
-    lineHeight: 20,
-  },
   fullText: {
+    flexShrink: 1,
     color: colors.primaryNavy,
     fontSize: typography.small,
     fontWeight: fontWeights.semibold,

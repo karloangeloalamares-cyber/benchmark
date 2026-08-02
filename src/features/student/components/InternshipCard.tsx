@@ -61,6 +61,7 @@ export function InternshipCard({ internship, onPress }: InternshipCardProps) {
 
 const styles = StyleSheet.create({
   card: {
+    minWidth: 0,
     overflow: 'hidden',
     backgroundColor: colors.surface,
     borderRadius: 18,
@@ -71,16 +72,20 @@ const styles = StyleSheet.create({
     height: 140,
   },
   body: {
+    minWidth: 0,
     gap: spacing.sm,
     padding: 16,
   },
   headerRow: {
+    minWidth: 0,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     gap: spacing.sm,
   },
   category: {
+    flex: 1,
+    minWidth: 0,
     color: colors.universityGold,
     fontSize: typography.meta,
     fontWeight: fontWeights.bold,
@@ -89,6 +94,7 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
   },
   title: {
+    flexShrink: 1,
     color: colors.primaryNavy,
     fontFamily: 'serif',
     fontSize: typography.subtitle,
@@ -96,34 +102,41 @@ const styles = StyleSheet.create({
     lineHeight: 25,
   },
   organization: {
+    flexShrink: 1,
     color: colors.primaryNavy,
     fontSize: typography.label,
     fontWeight: fontWeights.semibold,
     lineHeight: 16,
   },
   metaRow: {
+    minWidth: 0,
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: spacing.sm,
   },
   meta: {
+    flexShrink: 1,
     color: colors.textSecondary,
     fontSize: typography.label,
     lineHeight: 16,
   },
   deadline: {
+    flexShrink: 1,
     color: colors.textSecondary,
     fontSize: typography.meta,
     fontWeight: fontWeights.semibold,
     lineHeight: 15,
   },
   summary: {
+    flexShrink: 1,
     color: colors.textSecondary,
     fontSize: typography.small,
     lineHeight: 21,
   },
   footerRow: {
+    minWidth: 0,
     flexDirection: 'row',
+    flexWrap: 'wrap',
     alignItems: 'center',
     justifyContent: 'space-between',
     gap: spacing.sm,

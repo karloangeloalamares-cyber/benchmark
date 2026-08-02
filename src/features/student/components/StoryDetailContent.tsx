@@ -65,10 +65,12 @@ export function StoryDetailContent({ story }: StoryDetailContentProps) {
 
 const styles = StyleSheet.create({
   container: {
+    minWidth: 0,
     gap: spacing.lg,
     padding: spacing.lg,
   },
   heroCard: {
+    minWidth: 0,
     overflow: 'hidden',
     backgroundColor: colors.surface,
     borderColor: colors.border,
@@ -76,23 +78,27 @@ const styles = StyleSheet.create({
     borderRadius: radii.xl,
   },
   heroBody: {
+    minWidth: 0,
     gap: spacing.md,
     padding: spacing.lg,
   },
   badgeRow: {
+    minWidth: 0,
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
     gap: spacing.sm,
   },
   title: {
+    flexShrink: 1,
     color: colors.primaryNavy,
     fontSize: typography.screenTitle,
     fontWeight: fontWeights.bold,
     lineHeight: 34,
   },
   summary: {
+    flexShrink: 1,
     color: colors.secondaryNavy,
     fontSize: typography.body,
     lineHeight: 24,
@@ -106,15 +112,14 @@ const styles = StyleSheet.create({
     lineHeight: 20,
   },
   actionRow: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    minWidth: 0,
+    flexDirection: 'column',
+    alignItems: 'flex-start',
     gap: spacing.md,
   },
   article: {
-    width: '100%',
     maxWidth: layout.maxReadableWidth,
+    minWidth: 0,
     gap: spacing.md,
     alignSelf: 'center',
     padding: spacing.lg,
@@ -124,6 +129,7 @@ const styles = StyleSheet.create({
     borderRadius: radii.xl,
   },
   paragraph: {
+    flexShrink: 1,
     color: colors.textPrimary,
     fontSize: typography.body,
     lineHeight: 25,

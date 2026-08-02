@@ -3,6 +3,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { colors, fontWeights, radii, shadows, spacing, typography } from '@/constants/theme';
 import type { StudentStory } from '../types';
 import { BookmarkButton } from './BookmarkButton';
+import { PrimitiveIcon } from './PrimitiveIcon';
 import { SampleBadge } from './SampleBadge';
 import { StoryImage } from './StoryImage';
 
@@ -41,7 +42,7 @@ export function StoryCard({ story, featured = false, onPress }: StoryCardProps) 
             <Text style={[styles.title, featured && styles.featuredTitle]}>{story.title}</Text>
           </View>
           <View style={styles.readingRow}>
-            <Text style={styles.clock}>c</Text>
+            <PrimitiveIcon color={colors.textSecondary} name="clock" size={14} />
             <Text style={styles.readingText}>
               {story.readingMinutes ? `${story.readingMinutes} min read` : 'Story'}
             </Text>
@@ -50,7 +51,7 @@ export function StoryCard({ story, featured = false, onPress }: StoryCardProps) 
           <Text style={[styles.summary, featured && styles.featuredSummary]}>{story.summary}</Text>
           <View style={styles.authorRow}>
             <Text style={styles.author}>By {story.author}</Text>
-            <Text style={styles.arrow}>→</Text>
+            <PrimitiveIcon color={colors.benchmarkBlue} name="arrowRight" size={18} />
           </View>
         </View>
       </Pressable>
@@ -64,6 +65,7 @@ export function StoryCard({ story, featured = false, onPress }: StoryCardProps) 
 const styles = StyleSheet.create({
   card: {
     position: 'relative',
+    minWidth: 0,
     overflow: 'hidden',
     backgroundColor: colors.surface,
     borderColor: colors.border,
@@ -72,6 +74,7 @@ const styles = StyleSheet.create({
     ...shadows.card,
   },
   cardPressTarget: {
+    minWidth: 0,
     overflow: 'hidden',
     borderRadius: radii.xl,
   },
@@ -96,6 +99,7 @@ const styles = StyleSheet.create({
     paddingTop: 16,
   },
   metaRow: {
+    minWidth: 0,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -116,6 +120,7 @@ const styles = StyleSheet.create({
     lineHeight: 15,
   },
   title: {
+    flexShrink: 1,
     marginTop: spacing.md,
     color: colors.primaryNavy,
     fontFamily: 'serif',
@@ -137,6 +142,7 @@ const styles = StyleSheet.create({
     zIndex: 2,
   },
   summary: {
+    flexShrink: 1,
     marginTop: spacing.sm,
     color: colors.textSecondary,
     fontSize: typography.small,
@@ -159,26 +165,16 @@ const styles = StyleSheet.create({
     gap: spacing.sm,
     marginTop: spacing.md,
   },
-  arrow: {
-    color: colors.benchmarkBlue,
-    fontSize: typography.small,
-    fontWeight: fontWeights.bold,
-    lineHeight: 18,
-  },
   readingRow: {
+    minWidth: 0,
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignItems: 'center',
     gap: spacing.xs,
     marginTop: spacing.sm,
   },
-  clock: {
-    color: colors.textSecondary,
-    fontSize: typography.meta,
-    fontWeight: fontWeights.bold,
-    lineHeight: 15,
-  },
   readingText: {
+    flexShrink: 1,
     color: colors.textSecondary,
     fontSize: typography.meta,
     fontWeight: fontWeights.medium,

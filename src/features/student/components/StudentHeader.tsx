@@ -47,7 +47,6 @@ export function StudentHeader({ searchText, onSearchTextChange }: StudentHeaderP
 
 const styles = StyleSheet.create({
   header: {
-    width: '100%',
     gap: spacing.md,
     paddingHorizontal: 20,
     paddingTop: spacing.lg,
@@ -81,7 +80,6 @@ const styles = StyleSheet.create({
     lineHeight: 34,
   },
   subtitle: {
-    width: '100%',
     maxWidth: 520,
     flexShrink: 1,
     color: 'rgba(255,255,255,0.72)',

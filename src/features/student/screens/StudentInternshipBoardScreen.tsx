@@ -7,6 +7,7 @@ import { colors, fontWeights, radii, spacing, typography } from '@/constants/the
 import { CategoryChipRow } from '../components/CategoryChipRow';
 import { EmptyState } from '../components/EmptyState';
 import { InternshipCard } from '../components/InternshipCard';
+import { PrimitiveIcon } from '../components/PrimitiveIcon';
 import { SearchField } from '../components/SearchField';
 import { StudentScreenContainer } from '../components/StudentScreenContainer';
 import {
@@ -65,7 +66,9 @@ export function StudentInternshipBoardScreen() {
             <Text style={styles.headerTitle}>Internships</Text>
             <Text style={styles.headerSubtitle}>Opportunities for Southern University students</Text>
           </View>
-          <Text style={styles.headerPlus}>+</Text>
+          <View accessible={false} style={styles.headerPlus}>
+            <PrimitiveIcon color={colors.universityGold} name="plus" size={20} />
+          </View>
         </View>
         <SearchField
           accessibilityLabel="Search internships"
@@ -108,10 +111,12 @@ export function StudentInternshipBoardScreen() {
 
 const styles = StyleSheet.create({
   content: {
+    minWidth: 0,
     gap: 14,
     padding: spacing.lg,
   },
   header: {
+    minWidth: 0,
     gap: spacing.md,
     paddingHorizontal: 20,
     paddingTop: spacing.lg,
@@ -137,6 +142,7 @@ const styles = StyleSheet.create({
     lineHeight: 30,
   },
   headerSubtitle: {
+    flexShrink: 1,
     color: 'rgba(255,255,255,0.72)',
     fontSize: typography.label,
     lineHeight: 16,
@@ -144,11 +150,8 @@ const styles = StyleSheet.create({
   headerPlus: {
     width: 34,
     height: 34,
-    color: colors.universityGold,
-    fontSize: typography.title,
-    fontWeight: fontWeights.bold,
-    lineHeight: 30,
-    textAlign: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
     borderColor: colors.universityGold,
     borderWidth: 1,
     borderRadius: radii.pill,

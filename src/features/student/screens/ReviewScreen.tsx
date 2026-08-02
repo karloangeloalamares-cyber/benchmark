@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native';
 
 import { colors, fontWeights, radii, shadows, spacing, typography } from '@/constants/theme';
+import { PrimitiveIcon } from '../components/PrimitiveIcon';
 import { StudentPageHeader } from '../components/StudentPageHeader';
 import { StudentScreenContainer } from '../components/StudentScreenContainer';
 
@@ -29,9 +30,9 @@ export function ReviewScreen() {
       <StudentPageHeader title="Review" />
       <View style={styles.content}>
         <View style={styles.banner}>
-          <Text style={styles.bannerIcon}>R</Text>
+          <PrimitiveIcon color={colors.universityGold} name="review" size={20} />
           <Text style={styles.bannerText}>1 submission awaiting review</Text>
-          <Text style={styles.bannerArrow}>›</Text>
+          <PrimitiveIcon color="rgba(255,255,255,0.65)" name="chevronRight" size={18} />
         </View>
 
         <View style={styles.segmentRow}>
@@ -48,10 +49,10 @@ export function ReviewScreen() {
           {reviewPosts.map((post) => (
             <View key={post.id} style={styles.reviewRow}>
               <View style={styles.thumbnail}>
-                <Text style={styles.thumbnailText}>D</Text>
+                <PrimitiveIcon color={colors.textSecondary} name="document" size={22} />
               </View>
               <View style={styles.reviewCopy}>
-                <Text style={styles.reviewTitle}>{post.title}</Text>
+                <Text numberOfLines={2} style={styles.reviewTitle}>{post.title}</Text>
                 <View style={styles.metaRow}>
                   <View style={styles.statusBadge}>
                     <Text style={styles.statusText}>{post.status}</Text>
@@ -70,10 +71,12 @@ export function ReviewScreen() {
 
 const styles = StyleSheet.create({
   content: {
+    minWidth: 0,
     gap: 14,
     padding: spacing.lg,
   },
   banner: {
+    minWidth: 0,
     flexDirection: 'row',
     alignItems: 'center',
     gap: spacing.sm,
@@ -81,26 +84,16 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primaryNavy,
     borderRadius: 14,
   },
-  bannerIcon: {
-    color: colors.universityGold,
-    fontSize: typography.subtitle,
-    fontWeight: fontWeights.bold,
-    lineHeight: 24,
-  },
   bannerText: {
     flex: 1,
+    minWidth: 0,
     color: colors.surface,
     fontSize: typography.small,
     fontWeight: fontWeights.semibold,
     lineHeight: 20,
   },
-  bannerArrow: {
-    color: 'rgba(255,255,255,0.65)',
-    fontSize: typography.subtitle,
-    fontWeight: fontWeights.bold,
-    lineHeight: 24,
-  },
   segmentRow: {
+    minWidth: 0,
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: spacing.xs,
@@ -126,9 +119,12 @@ const styles = StyleSheet.create({
     color: colors.primaryNavy,
   },
   list: {
+    minWidth: 0,
     gap: 14,
   },
   reviewRow: {
+    minWidth: 0,
+    overflow: 'hidden',
     flexDirection: 'row',
     gap: spacing.md,
     padding: 12,
@@ -144,18 +140,15 @@ const styles = StyleSheet.create({
     backgroundColor: colors.tintNavy,
     borderRadius: 10,
   },
-  thumbnailText: {
-    color: colors.textSecondary,
-    fontSize: typography.subtitle,
-    fontWeight: fontWeights.bold,
-    lineHeight: 24,
-  },
   reviewCopy: {
     flex: 1,
     minWidth: 0,
+    overflow: 'hidden',
     gap: spacing.xs,
   },
   reviewTitle: {
+    maxWidth: 230,
+    flexShrink: 1,
     color: colors.primaryNavy,
     fontSize: typography.small,
     fontWeight: fontWeights.semibold,

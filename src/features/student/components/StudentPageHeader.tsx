@@ -38,6 +38,7 @@ export function StudentPageHeader({ title, fallbackHref = '/' }: StudentPageHead
 
 const styles = StyleSheet.create({
   header: {
+    minWidth: 0,
     minHeight: 68,
     flexDirection: 'row',
     alignItems: 'center',
@@ -50,7 +51,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   backButton: {
-    minWidth: 66,
+    minWidth: 58,
     minHeight: 36,
     alignItems: 'center',
     justifyContent: 'center',
@@ -68,6 +69,7 @@ const styles = StyleSheet.create({
   },
   brand: {
     flex: 1,
+    minWidth: 0,
     color: colors.primaryNavy,
     fontFamily: 'serif',
     fontSize: typography.subtitle,
@@ -77,6 +79,7 @@ const styles = StyleSheet.create({
   },
   title: {
     flex: 1,
+    minWidth: 0,
     color: colors.primaryNavy,
     fontSize: typography.small,
     fontWeight: fontWeights.bold,

@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native';
 
 import { colors, fontWeights, radii, shadows, spacing, typography } from '@/constants/theme';
+import { PrimitiveIcon } from '../components/PrimitiveIcon';
 import { StudentPageHeader } from '../components/StudentPageHeader';
 import { StudentScreenContainer } from '../components/StudentScreenContainer';
 
@@ -60,7 +61,7 @@ export function MyPostsScreen() {
           {demoPosts.map((post) => (
             <View key={post.id} style={styles.postRow}>
               <View style={styles.postCopy}>
-                <Text style={styles.postTitle}>{post.title}</Text>
+                <Text numberOfLines={2} style={styles.postTitle}>{post.title}</Text>
                 <View style={styles.metaRow}>
                   <View style={[styles.statusBadge, { borderColor: post.tone }]}>
                     <Text style={[styles.statusText, { color: post.tone }]}>{post.status}</Text>
@@ -69,7 +70,7 @@ export function MyPostsScreen() {
                 </View>
                 <Text style={styles.updated}>{post.updated}</Text>
               </View>
-              <Text style={styles.chevron}>›</Text>
+              <PrimitiveIcon color={colors.textSecondary} name="chevronRight" size={18} />
             </View>
           ))}
         </View>
@@ -89,16 +90,20 @@ function StatChip({ count, label }: { count: number; label: string }) {
 
 const styles = StyleSheet.create({
   content: {
+    minWidth: 0,
     gap: 14,
     padding: spacing.lg,
   },
   statsRow: {
+    minWidth: 0,
     flexDirection: 'row',
+    flexWrap: 'wrap',
     gap: spacing.sm,
     paddingTop: spacing.xs,
   },
   statChip: {
-    flex: 1,
+    width: 104,
+    minWidth: 0,
     alignItems: 'center',
     paddingVertical: spacing.md,
     backgroundColor: colors.surface,
@@ -143,9 +148,12 @@ const styles = StyleSheet.create({
     color: colors.surface,
   },
   list: {
+    minWidth: 0,
     gap: 14,
   },
   postRow: {
+    minWidth: 0,
+    overflow: 'hidden',
     flexDirection: 'row',
     gap: spacing.md,
     padding: 14,
@@ -156,9 +164,12 @@ const styles = StyleSheet.create({
   postCopy: {
     flex: 1,
     minWidth: 0,
+    overflow: 'hidden',
     gap: spacing.sm,
   },
   postTitle: {
+    maxWidth: 292,
+    flexShrink: 1,
     color: colors.primaryNavy,
     fontSize: typography.small,
     fontWeight: fontWeights.semibold,
@@ -190,11 +201,5 @@ const styles = StyleSheet.create({
     color: colors.textSecondary,
     fontSize: typography.meta,
     lineHeight: 15,
-  },
-  chevron: {
-    color: colors.textSecondary,
-    fontSize: typography.subtitle,
-    fontWeight: fontWeights.bold,
-    lineHeight: 24,
   },
 });

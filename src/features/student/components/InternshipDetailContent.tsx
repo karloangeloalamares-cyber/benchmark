@@ -98,10 +98,12 @@ export function InternshipDetailContent({ internship }: InternshipDetailContentP
 
 const styles = StyleSheet.create({
   container: {
+    minWidth: 0,
     gap: spacing.lg,
     padding: spacing.lg,
   },
   heroCard: {
+    minWidth: 0,
     overflow: 'hidden',
     backgroundColor: colors.surface,
     borderColor: colors.border,
@@ -128,14 +130,16 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
   },
   heroBody: {
+    minWidth: 0,
     gap: spacing.md,
     padding: spacing.lg,
   },
   badgeRow: {
+    minWidth: 0,
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
     gap: spacing.sm,
   },
   category: {
@@ -147,35 +151,41 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
   },
   title: {
+    flexShrink: 1,
     color: colors.primaryNavy,
     fontSize: typography.screenTitle,
     fontWeight: fontWeights.bold,
     lineHeight: 34,
   },
   organization: {
+    flexShrink: 1,
     color: colors.secondaryNavy,
     fontSize: typography.body,
     fontWeight: fontWeights.semibold,
     lineHeight: 24,
   },
   metaGrid: {
+    minWidth: 0,
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: spacing.sm,
   },
   meta: {
+    maxWidth: '100%',
+    flexShrink: 1,
     color: colors.textSecondary,
     fontSize: typography.small,
     lineHeight: 20,
   },
   summary: {
+    flexShrink: 1,
     color: colors.secondaryNavy,
     fontSize: typography.body,
     lineHeight: 24,
   },
   detailCard: {
-    width: '100%',
     maxWidth: layout.maxReadableWidth,
+    minWidth: 0,
     gap: spacing.md,
     alignSelf: 'center',
     padding: spacing.lg,
@@ -191,6 +201,7 @@ const styles = StyleSheet.create({
     lineHeight: 25,
   },
   paragraph: {
+    flexShrink: 1,
     color: colors.textPrimary,
     fontSize: typography.body,
     lineHeight: 25,
@@ -203,6 +214,7 @@ const styles = StyleSheet.create({
     borderRadius: radii.lg,
   },
   warningText: {
+    flexShrink: 1,
     color: colors.secondaryNavy,
     fontSize: typography.small,
     lineHeight: 20,

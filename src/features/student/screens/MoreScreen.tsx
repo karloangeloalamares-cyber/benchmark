@@ -6,6 +6,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { colors, fontWeights, radii, shadows, spacing, typography } from '@/constants/theme';
 import { studentStories } from '../data/sampleContent';
 import { useSavedStories } from '../saved/useSavedStories';
+import { PrimitiveIcon } from '../components/PrimitiveIcon';
 import { StudentPageHeader } from '../components/StudentPageHeader';
 import { StudentScreenContainer } from '../components/StudentScreenContainer';
 
@@ -58,7 +59,7 @@ export function MoreScreen() {
                   onPress={() => router.push(storyHref(story.id))}
                   style={({ pressed }) => [styles.savedRow, pressed && styles.pressed]}>
                   <View style={styles.savedThumb}>
-                    <Text style={styles.savedThumbText}>N</Text>
+                    <PrimitiveIcon color={colors.textSecondary} name="document" size={22} />
                   </View>
                   <View style={styles.savedCopy}>
                     <Text style={styles.savedCategory}>{story.categoryLabel}</Text>
@@ -87,7 +88,12 @@ export function MoreScreen() {
             'Publish, schedule & unpublish',
             'Manage users, categories & settings',
           ].map((permission) => (
-            <Text key={permission} style={styles.permission}>✓ {permission}</Text>
+            <View key={permission} style={styles.permissionRow}>
+              <View style={styles.permissionIcon}>
+                <PrimitiveIcon color={colors.primaryNavy} name="check" size={14} />
+              </View>
+              <Text style={styles.permission}>{permission}</Text>
+            </View>
           ))}
         </View>
 
@@ -105,10 +111,13 @@ export function MoreScreen() {
 
 const styles = StyleSheet.create({
   content: {
+    minWidth: 0,
     gap: 14,
     padding: spacing.lg,
   },
   profileCard: {
+    minWidth: 0,
+    overflow: 'hidden',
     flexDirection: 'row',
     gap: 14,
     padding: spacing.lg,
@@ -136,12 +145,14 @@ const styles = StyleSheet.create({
     gap: spacing.xs,
   },
   profileName: {
+    flexShrink: 1,
     color: colors.primaryNavy,
     fontSize: typography.subtitle,
     fontWeight: fontWeights.bold,
     lineHeight: 25,
   },
   profileTitle: {
+    flexShrink: 1,
     color: colors.textSecondary,
     fontSize: typography.small,
     lineHeight: 20,
@@ -153,6 +164,8 @@ const styles = StyleSheet.create({
     lineHeight: 15,
   },
   section: {
+    minWidth: 0,
+    overflow: 'hidden',
     gap: spacing.md,
     padding: spacing.lg,
     backgroundColor: colors.surface,
@@ -166,16 +179,21 @@ const styles = StyleSheet.create({
     lineHeight: 25,
   },
   notice: {
+    maxWidth: 310,
+    flexShrink: 1,
     color: colors.textSecondary,
     fontSize: typography.small,
     lineHeight: 20,
   },
   emptyText: {
+    maxWidth: 310,
+    flexShrink: 1,
     color: colors.textSecondary,
     fontSize: typography.small,
     lineHeight: 20,
   },
   savedRow: {
+    minWidth: 0,
     flexDirection: 'row',
     gap: spacing.md,
     paddingVertical: spacing.sm,
@@ -187,12 +205,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: colors.tintNavy,
     borderRadius: 10,
-  },
-  savedThumbText: {
-    color: colors.textSecondary,
-    fontSize: typography.subtitle,
-    fontWeight: fontWeights.bold,
-    lineHeight: 24,
   },
   savedCopy: {
     flex: 1,
@@ -208,6 +220,7 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
   },
   savedTitle: {
+    flexShrink: 1,
     color: colors.primaryNavy,
     fontFamily: 'serif',
     fontSize: typography.small,
@@ -233,7 +246,21 @@ const styles = StyleSheet.create({
     fontWeight: fontWeights.semibold,
     lineHeight: 20,
   },
+  permissionRow: {
+    minWidth: 0,
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    gap: spacing.sm,
+  },
+  permissionIcon: {
+    width: 18,
+    minHeight: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   permission: {
+    flex: 1,
+    minWidth: 0,
     color: colors.primaryNavy,
     fontSize: typography.small,
     lineHeight: 20,
@@ -247,6 +274,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   aboutText: {
+    maxWidth: 310,
     color: colors.textSecondary,
     fontSize: typography.small,
     lineHeight: 20,

@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
   },
   text: {
+    maxWidth: 310,
     marginTop: spacing.xs,
     color: colors.secondaryNavy,
     fontSize: typography.small,

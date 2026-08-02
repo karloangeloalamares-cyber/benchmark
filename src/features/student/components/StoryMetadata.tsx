@@ -19,11 +19,11 @@ export function StoryMetadata({ story }: StoryMetadataProps) {
   return (
     <View style={styles.container}>
       <Text style={styles.category}>{story.categoryLabel}</Text>
-      <Text style={styles.dot}>•</Text>
+      <View style={styles.dot} />
       <Text style={styles.meta}>{formatDate(story.publishedAt)}</Text>
       {story.readingMinutes ? (
         <>
-          <Text style={styles.dot}>•</Text>
+          <View style={styles.dot} />
           <Text style={styles.meta}>{story.readingMinutes} min read</Text>
         </>
       ) : null}
@@ -33,12 +33,14 @@ export function StoryMetadata({ story }: StoryMetadataProps) {
 
 const styles = StyleSheet.create({
   container: {
+    minWidth: 0,
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignItems: 'center',
     gap: spacing.xs,
   },
   category: {
+    flexShrink: 1,
     color: colors.warning,
     fontSize: typography.meta,
     fontWeight: fontWeights.bold,
@@ -47,11 +49,13 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
   },
   dot: {
-    color: colors.textSecondary,
-    fontSize: typography.small,
-    lineHeight: 18,
+    width: 3,
+    height: 3,
+    backgroundColor: colors.textSecondary,
+    borderRadius: 2,
   },
   meta: {
+    flexShrink: 1,
     color: colors.textSecondary,
     fontSize: typography.small,
     lineHeight: 20,

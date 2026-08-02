@@ -9,7 +9,10 @@ type StudentScreenContainerProps = {
 
 export function StudentScreenContainer({ children }: StudentScreenContainerProps) {
   const { width } = useWindowDimensions();
-  const contentWidth = Math.min(width, layout.studentMaxContentWidth);
+  const isCompact = width <= 430;
+  const contentWidth = isCompact
+    ? layout.studentCompactNavWidth
+    : Math.min(width, layout.studentMaxContentWidth);
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -17,7 +20,13 @@ export function StudentScreenContainer({ children }: StudentScreenContainerProps
         contentContainerStyle={styles.scrollContent}
         keyboardShouldPersistTaps="handled"
         showsVerticalScrollIndicator={false}>
-        <View style={[styles.content, { width: contentWidth }]}>{children}</View>
+        <View
+          style={[
+            styles.content,
+            { alignSelf: isCompact ? 'flex-start' : 'center', width: contentWidth },
+          ]}>
+          {children}
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -38,5 +47,6 @@ const styles = StyleSheet.create({
   },
   content: {
     maxWidth: layout.studentMaxContentWidth,
+    minWidth: 0,
   },
 });
