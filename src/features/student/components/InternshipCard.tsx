@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { colors, fontWeights, radii, shadows, spacing, typography } from '@/constants/theme';
 import type { StudentInternship } from '../types';
@@ -26,69 +26,80 @@ export function InternshipCard({ internship, onPress }: InternshipCardProps) {
       accessibilityRole="button"
       onPress={onPress}
       style={({ pressed }) => [styles.card, pressed && styles.pressed]}>
-      <View style={styles.headerRow}>
-        <View style={styles.titleGroup}>
+      {internship.imageUrl ? (
+        <Image
+          accessibilityLabel={internship.imageAlt ?? `Image for ${internship.title}`}
+          resizeMode="cover"
+          source={{ uri: internship.imageUrl }}
+          style={styles.image}
+        />
+      ) : null}
+
+      <View style={styles.body}>
+        <View style={styles.headerRow}>
           <Text style={styles.category}>{internship.category}</Text>
-          <Text style={styles.title}>{internship.title}</Text>
-          <Text style={styles.organization}>{internship.organization}</Text>
+          {internship.isSample ? <SampleBadge label="Open" /> : null}
         </View>
-        {internship.isSample ? <SampleBadge /> : null}
-      </View>
 
-      <View style={styles.metaRow}>
-        <Text style={styles.meta}>{internship.location}</Text>
-        {internship.arrangement ? <Text style={styles.meta}>{internship.arrangement}</Text> : null}
-        {compensation ? <Text style={styles.meta}>{compensation}</Text> : null}
-      </View>
+        <Text style={styles.title}>{internship.title}</Text>
 
-      {internship.deadline ? <Text style={styles.deadline}>{internship.deadline}</Text> : null}
-      <Text style={styles.summary}>{internship.summary}</Text>
-      <Text style={styles.action}>View details</Text>
+        <View style={styles.metaRow}>
+          <Text style={styles.organization}>{internship.organization}</Text>
+          {internship.location ? <Text style={styles.meta}>- {internship.location}</Text> : null}
+        </View>
+
+        <Text style={styles.summary}>{internship.summary}</Text>
+
+        <View style={styles.footerRow}>
+          {compensation ? <Text style={styles.compensation}>{compensation}</Text> : null}
+          {internship.deadline ? <Text style={styles.deadline}>{internship.deadline}</Text> : null}
+        </View>
+      </View>
     </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
   card: {
-    gap: spacing.md,
-    padding: spacing.lg,
+    overflow: 'hidden',
     backgroundColor: colors.surface,
-    borderColor: colors.border,
-    borderWidth: 1,
-    borderRadius: radii.xl,
+    borderRadius: 18,
     ...shadows.card,
+  },
+  image: {
+    width: '100%',
+    height: 140,
+  },
+  body: {
+    gap: spacing.sm,
+    padding: 16,
   },
   headerRow: {
     flexDirection: 'row',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     justifyContent: 'space-between',
-    gap: spacing.md,
-  },
-  titleGroup: {
-    flex: 1,
-    minWidth: 0,
+    gap: spacing.sm,
   },
   category: {
-    color: colors.warning,
-    fontSize: typography.label,
+    color: colors.universityGold,
+    fontSize: typography.meta,
     fontWeight: fontWeights.bold,
-    letterSpacing: 0.7,
-    lineHeight: 16,
+    letterSpacing: 0.8,
+    lineHeight: 15,
     textTransform: 'uppercase',
   },
   title: {
-    marginTop: spacing.xs,
     color: colors.primaryNavy,
+    fontFamily: 'serif',
     fontSize: typography.subtitle,
     fontWeight: fontWeights.bold,
     lineHeight: 25,
   },
   organization: {
-    marginTop: spacing.xs,
-    color: colors.secondaryNavy,
-    fontSize: typography.small,
+    color: colors.primaryNavy,
+    fontSize: typography.label,
     fontWeight: fontWeights.semibold,
-    lineHeight: 20,
+    lineHeight: 16,
   },
   metaRow: {
     flexDirection: 'row',
@@ -97,25 +108,32 @@ const styles = StyleSheet.create({
   },
   meta: {
     color: colors.textSecondary,
-    fontSize: typography.small,
-    lineHeight: 20,
+    fontSize: typography.label,
+    lineHeight: 16,
   },
   deadline: {
-    color: colors.primaryNavy,
-    fontSize: typography.small,
+    color: colors.textSecondary,
+    fontSize: typography.meta,
     fontWeight: fontWeights.semibold,
-    lineHeight: 20,
+    lineHeight: 15,
   },
   summary: {
     color: colors.textSecondary,
     fontSize: typography.small,
     lineHeight: 21,
   },
-  action: {
-    color: colors.benchmarkBlue,
-    fontSize: typography.small,
-    fontWeight: fontWeights.semibold,
-    lineHeight: 20,
+  footerRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: spacing.sm,
+    paddingTop: spacing.xs,
+  },
+  compensation: {
+    color: colors.success,
+    fontSize: typography.meta,
+    fontWeight: fontWeights.bold,
+    lineHeight: 15,
   },
   pressed: {
     opacity: 0.92,

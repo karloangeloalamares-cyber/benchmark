@@ -1,23 +1,46 @@
-import { StyleSheet, Text, View } from 'react-native';
+import type { Href } from 'expo-router';
+import { useRouter } from 'expo-router';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { colors, fontWeights, radii, spacing, typography } from '@/constants/theme';
+import { SearchField } from './SearchField';
 
-export function StudentHeader() {
+type StudentHeaderProps = {
+  searchText: string;
+  onSearchTextChange: (value: string) => void;
+};
+
+export function StudentHeader({ searchText, onSearchTextChange }: StudentHeaderProps) {
+  const router = useRouter();
+
   return (
     <View style={styles.header}>
-      <View style={styles.brandRow}>
-        <View style={styles.mark}>
-          <Text style={styles.markText}>B</Text>
-        </View>
-        <View style={styles.brandText}>
-          <Text style={styles.context}>Southern University</Text>
-          <Text style={styles.brand}>The Benchmark</Text>
-        </View>
+      <View style={styles.utilityRow}>
+        <Pressable
+          accessibilityLabel="Sign In"
+          accessibilityRole="button"
+          onPress={() => router.push('/demo/role-select' as Href)}
+          style={({ pressed }) => [styles.signInButton, pressed && styles.pressed]}>
+          <Text style={styles.signInText}>Sign In</Text>
+        </Pressable>
       </View>
-      <Text style={styles.title}>
-        Student News and{'\n'}Opportunities
+
+      <View style={styles.brandText}>
+        <Text style={styles.brand}>Benchmark</Text>
+        <Text style={styles.context}>powered by the College of Sciences and Engineering</Text>
+      </View>
+
+      <Text style={styles.subtitle}>
+        Showcasing Southern University's excellence to the world.
       </Text>
-      <Text style={styles.subtitle}>News, opportunities, events, and student stories.</Text>
+
+      <SearchField
+        accessibilityLabel="Search stories"
+        onChangeText={onSearchTextChange}
+        placeholder="Search stories..."
+        value={searchText}
+        variant="masthead"
+      />
     </View>
   );
 }
@@ -25,70 +48,61 @@ export function StudentHeader() {
 const styles = StyleSheet.create({
   header: {
     width: '100%',
-    paddingHorizontal: spacing.xl,
-    paddingTop: spacing.xxl,
-    paddingBottom: spacing.xl,
+    gap: spacing.md,
+    paddingHorizontal: 20,
+    paddingTop: spacing.lg,
+    paddingBottom: 20,
     backgroundColor: colors.primaryNavy,
-    borderBottomLeftRadius: radii.xl,
-    borderBottomRightRadius: radii.xl,
+    borderBottomLeftRadius: 24,
+    borderBottomRightRadius: 24,
   },
-  brandRow: {
+  utilityRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: spacing.md,
-  },
-  mark: {
-    width: 44,
-    height: 44,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: colors.navyDeep,
-    borderColor: colors.universityGold,
-    borderWidth: 2,
-    borderRadius: radii.pill,
-  },
-  markText: {
-    color: colors.universityGold,
-    fontSize: 22,
-    fontWeight: fontWeights.heavy,
-    lineHeight: 26,
+    justifyContent: 'flex-start',
   },
   brandText: {
-    flex: 1,
     minWidth: 0,
   },
   context: {
+    marginTop: spacing.xs,
     color: colors.universityGold,
     fontSize: typography.label,
-    fontWeight: fontWeights.semibold,
-    letterSpacing: 0.9,
+    fontStyle: 'italic',
+    fontWeight: fontWeights.regular,
+    letterSpacing: 0,
     lineHeight: 16,
-    textTransform: 'uppercase',
   },
   brand: {
-    marginTop: spacing.xs,
     color: colors.surface,
-    fontSize: typography.title,
-    fontWeight: fontWeights.bold,
-    lineHeight: 28,
-  },
-  title: {
-    marginTop: spacing.xl,
-    width: '100%',
-    maxWidth: '100%',
-    flexShrink: 1,
-    color: colors.surface,
+    fontFamily: 'serif',
     fontSize: typography.screenTitle,
     fontWeight: fontWeights.bold,
     lineHeight: 34,
   },
   subtitle: {
-    marginTop: spacing.sm,
     width: '100%',
-    maxWidth: 330,
+    maxWidth: 520,
     flexShrink: 1,
-    color: colors.tintBlue,
-    fontSize: typography.body,
-    lineHeight: 24,
+    color: 'rgba(255,255,255,0.72)',
+    fontSize: typography.small,
+    lineHeight: 20,
+  },
+  signInButton: {
+    minHeight: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: spacing.md,
+    backgroundColor: colors.universityGold,
+    borderRadius: radii.pill,
+  },
+  signInText: {
+    color: colors.navyDeep,
+    fontSize: typography.label,
+    fontWeight: fontWeights.bold,
+    lineHeight: 16,
+  },
+  pressed: {
+    opacity: 0.82,
   },
 });

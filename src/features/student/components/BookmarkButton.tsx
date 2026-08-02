@@ -1,7 +1,7 @@
 import type { GestureResponderEvent } from 'react-native';
 import { Pressable, StyleSheet, Text } from 'react-native';
 
-import { colors, fontWeights, layout, radii, spacing, typography } from '@/constants/theme';
+import { colors, fontWeights, spacing, typography } from '@/constants/theme';
 import { useSavedStories } from '../saved/useSavedStories';
 
 type BookmarkButtonProps = {
@@ -12,7 +12,7 @@ type BookmarkButtonProps = {
 export function BookmarkButton({ storyId, variant = 'compact' }: BookmarkButtonProps) {
   const { isSaved, toggleStory } = useSavedStories();
   const saved = isSaved(storyId);
-  const label = saved ? 'Remove from saved' : 'Save story';
+  const label = saved ? 'Remove from Saved' : 'Save story';
 
   function handlePress(event: GestureResponderEvent) {
     event.stopPropagation();
@@ -31,10 +31,10 @@ export function BookmarkButton({ storyId, variant = 'compact' }: BookmarkButtonP
         saved && styles.savedButton,
         pressed && styles.pressed,
       ]}>
-      <Text style={[styles.symbol, saved && styles.savedText]}>{saved ? 'Saved' : 'Save'}</Text>
+      <Text style={[styles.symbol, saved && styles.savedText]}>{saved ? 'B' : 'b'}</Text>
       {variant === 'full' ? (
         <Text style={[styles.fullText, saved && styles.savedText]}>
-          {saved ? 'Remove from saved' : 'Save story'}
+          {saved ? 'Remove from Saved' : 'Save story'}
         </Text>
       ) : null}
     </Pressable>
@@ -43,15 +43,15 @@ export function BookmarkButton({ storyId, variant = 'compact' }: BookmarkButtonP
 
 const styles = StyleSheet.create({
   button: {
-    minHeight: layout.touchTarget,
-    minWidth: layout.touchTarget,
+    minHeight: 34,
+    minWidth: 34,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: spacing.md,
-    backgroundColor: colors.surface,
-    borderColor: colors.borderStrong,
+    paddingHorizontal: 0,
+    backgroundColor: 'rgba(255,255,255,0.88)',
+    borderColor: 'rgba(255,255,255,0.9)',
     borderWidth: 1,
-    borderRadius: radii.pill,
+    borderRadius: 17,
   },
   fullButton: {
     alignSelf: 'flex-start',

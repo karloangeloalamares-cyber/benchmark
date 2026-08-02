@@ -5,7 +5,6 @@ import type { StudentStory } from '../types';
 import { BookmarkButton } from './BookmarkButton';
 import { SampleBadge } from './SampleBadge';
 import { StoryImage } from './StoryImage';
-import { StoryMetadata } from './StoryMetadata';
 
 type StoryCardProps = {
   story: StudentStory;
@@ -14,6 +13,12 @@ type StoryCardProps = {
 };
 
 export function StoryCard({ story, featured = false, onPress }: StoryCardProps) {
+  const publishDate = new Date(`${story.publishedAt}T00:00:00`).toLocaleDateString(undefined, {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  });
+
   return (
     <View style={styles.card}>
       <Pressable
@@ -28,16 +33,25 @@ export function StoryCard({ story, featured = false, onPress }: StoryCardProps) 
         ) : null}
         <StoryImage imageUrl={story.imageUrl} title={story.title} featured={featured} />
         <View style={[styles.body, featured && styles.featuredBody]}>
-          <View style={styles.badgeRow}>
-            <StoryMetadata story={story} />
-            {story.isSample ? <SampleBadge /> : null}
+          <View style={styles.metaRow}>
+            <Text style={styles.category}>{story.categoryLabel}</Text>
+            <Text style={styles.date}>{publishDate}</Text>
           </View>
           <View style={styles.titleArea}>
             <Text style={[styles.title, featured && styles.featuredTitle]}>{story.title}</Text>
           </View>
+          <View style={styles.readingRow}>
+            <Text style={styles.clock}>c</Text>
+            <Text style={styles.readingText}>
+              {story.readingMinutes ? `${story.readingMinutes} min read` : 'Story'}
+            </Text>
+            {story.isSample ? <SampleBadge label="Sample" /> : null}
+          </View>
           <Text style={[styles.summary, featured && styles.featuredSummary]}>{story.summary}</Text>
-          <Text style={styles.author}>By {story.author}</Text>
-          <Text style={styles.nextLabel}>Read story</Text>
+          <View style={styles.authorRow}>
+            <Text style={styles.author}>By {story.author}</Text>
+            <Text style={styles.arrow}>→</Text>
+          </View>
         </View>
       </Pressable>
       <View style={styles.bookmarkSlot}>
@@ -76,37 +90,50 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
   },
   body: {
-    padding: spacing.lg,
+    padding: 16,
   },
   featuredBody: {
-    paddingTop: spacing.xl,
+    paddingTop: 16,
   },
-  badgeRow: {
+  metaRow: {
     flexDirection: 'row',
-    flexWrap: 'wrap',
     alignItems: 'center',
     justifyContent: 'space-between',
     gap: spacing.sm,
   },
+  category: {
+    flex: 1,
+    color: colors.universityGold,
+    fontSize: typography.meta,
+    fontWeight: fontWeights.bold,
+    letterSpacing: 0.8,
+    lineHeight: 15,
+    textTransform: 'uppercase',
+  },
+  date: {
+    color: colors.textSecondary,
+    fontSize: typography.meta,
+    lineHeight: 15,
+  },
   title: {
     marginTop: spacing.md,
-    paddingRight: 72,
     color: colors.primaryNavy,
+    fontFamily: 'serif',
     fontSize: typography.subtitle,
     fontWeight: fontWeights.bold,
     lineHeight: 25,
   },
   featuredTitle: {
     fontSize: typography.title,
-    lineHeight: 30,
+    lineHeight: 29,
   },
   titleArea: {
     minWidth: 0,
   },
   bookmarkSlot: {
     position: 'absolute',
-    right: spacing.lg,
-    top: spacing.lg,
+    right: 10,
+    top: 10,
     zIndex: 2,
   },
   summary: {
@@ -120,18 +147,42 @@ const styles = StyleSheet.create({
     lineHeight: 24,
   },
   author: {
-    marginTop: spacing.md,
+    flex: 1,
+    minWidth: 0,
     color: colors.secondaryNavy,
-    fontSize: typography.small,
-    fontWeight: fontWeights.semibold,
-    lineHeight: 20,
+    fontSize: typography.meta,
+    lineHeight: 15,
   },
-  nextLabel: {
+  authorRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.sm,
     marginTop: spacing.md,
+  },
+  arrow: {
     color: colors.benchmarkBlue,
     fontSize: typography.small,
-    fontWeight: fontWeights.semibold,
-    lineHeight: 20,
+    fontWeight: fontWeights.bold,
+    lineHeight: 18,
+  },
+  readingRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    gap: spacing.xs,
+    marginTop: spacing.sm,
+  },
+  clock: {
+    color: colors.textSecondary,
+    fontSize: typography.meta,
+    fontWeight: fontWeights.bold,
+    lineHeight: 15,
+  },
+  readingText: {
+    color: colors.textSecondary,
+    fontSize: typography.meta,
+    fontWeight: fontWeights.medium,
+    lineHeight: 15,
   },
   pressed: {
     opacity: 0.94,

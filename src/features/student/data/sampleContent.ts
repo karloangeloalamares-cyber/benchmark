@@ -7,9 +7,9 @@ import type {
 
 export const studentCategories: StudentCategory[] = [
   { id: 'all', label: 'All', slug: 'all' },
-  { id: 'cbe-news', label: 'CBE News', slug: 'cbe-news' },
+  { id: 'cbe-news', label: 'CSE News', slug: 'cbe-news' },
   { id: 'seas', label: 'SEAS', slug: 'seas' },
-  { id: 'campus-life', label: 'Campus Life', slug: 'campus-life' },
+  { id: 'campus-life', label: 'Student Spotlight', slug: 'campus-life' },
   { id: 'research', label: 'Research', slug: 'research' },
   { id: 'alumni', label: 'Alumni', slug: 'alumni' },
   { id: 'upcoming-events', label: 'Upcoming Events', slug: 'upcoming-events' },
@@ -17,11 +17,11 @@ export const studentCategories: StudentCategory[] = [
 
 export const internshipCategories: StudentCategory[] = [
   { id: 'all', label: 'All', slug: 'all' },
-  { id: 'engineering', label: 'Engineering', slug: 'Engineering' },
-  { id: 'business', label: 'Business', slug: 'Business' },
+  { id: 'engineering', label: 'Software Engineering', slug: 'Engineering' },
+  { id: 'business', label: 'Data Science', slug: 'Business' },
   { id: 'research', label: 'Research', slug: 'Research' },
-  { id: 'public-service', label: 'Public Service', slug: 'Public Service' },
-  { id: 'communications', label: 'Communications', slug: 'Communications' },
+  { id: 'public-service', label: 'Electrical Engineering', slug: 'Public Service' },
+  { id: 'communications', label: 'Cybersecurity', slug: 'Communications' },
 ];
 
 export const studentStories: StudentStory[] = [
@@ -77,7 +77,7 @@ export const studentStories: StudentStory[] = [
     body:
       'Campus-life coverage needs to be readable during short breaks between classes. This sample detail page shows how announcements can carry more context than a feed card without adding social features or account requirements.\n\nA production story might include verified location details, student-organization contacts, and official event links. This fixture keeps the language generic so it cannot be mistaken for a current event notice.\n\nThe sample also verifies that longer paragraphs wrap cleanly on mobile.',
     categorySlug: 'campus-life',
-    categoryLabel: 'Campus Life',
+    categoryLabel: 'Student Spotlight',
     author: 'Student Affairs Preview',
     publishedAt: '2026-07-21',
     imageUrl:
@@ -95,7 +95,7 @@ export const studentStories: StudentStory[] = [
     body:
       'Academic updates often need a clear headline, a short summary, and enough detail for students to understand what changed. This sample uses the same pattern while remaining fixture-only.\n\nA verified release could connect this screen to official departmental announcements, curriculum notices, advising windows, or scholarship updates. Until then, the sample badge and demo notice stay visible.\n\nNo advising instruction in this fixture should be treated as current guidance.',
     categorySlug: 'cbe-news',
-    categoryLabel: 'CBE News',
+    categoryLabel: 'CSE News',
     author: 'CBE Communications Preview',
     publishedAt: '2026-07-18',
     imageUrl:

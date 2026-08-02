@@ -23,7 +23,7 @@ export default function StudentStoryDetailScreen() {
         <View style={styles.content}>
           <ContentNotFound
             actionLabel="Return to student home"
-            onAction={() => router.replace('/student/home' as Href)}
+            onAction={() => router.replace('/student/site' as Href)}
           />
         </View>
       )}

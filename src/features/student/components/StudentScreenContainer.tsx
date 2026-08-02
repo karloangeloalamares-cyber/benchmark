@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     paddingBottom: spacing.xxl + layout.studentTabBarHeight,
-    backgroundColor: colors.backgroundSoft,
+    backgroundColor: colors.background,
   },
   content: {
     maxWidth: layout.studentMaxContentWidth,

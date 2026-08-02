@@ -5,10 +5,8 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { colors, fontWeights, spacing, typography } from '@/constants/theme';
 import { CategoryChipRow } from '../components/CategoryChipRow';
-import { DemoContentNotice } from '../components/DemoContentNotice';
 import { EmptyState } from '../components/EmptyState';
 import { InternshipPromoCard } from '../components/InternshipPromoCard';
-import { SearchField } from '../components/SearchField';
 import { StoryCard } from '../components/StoryCard';
 import { StudentHeader } from '../components/StudentHeader';
 import { StudentScreenContainer } from '../components/StudentScreenContainer';
@@ -63,15 +61,17 @@ export function StudentHomeScreen() {
 
   return (
     <StudentScreenContainer>
-      <StudentHeader />
+      <StudentHeader searchText={searchText} onSearchTextChange={setSearchText} />
       <View style={styles.content}>
-        <SearchField value={searchText} onChangeText={setSearchText} />
         <CategoryChipRow
           categories={studentCategories}
           selectedSlug={selectedCategorySlug}
           onSelect={setSelectedCategorySlug}
         />
-        <DemoContentNotice />
+        <InternshipPromoCard
+          onPress={() => router.push('/student/internships' as Href)}
+          promo={internshipPromo}
+        />
         {featuredStory ? (
           <StoryCard
             featured
@@ -79,17 +79,6 @@ export function StudentHomeScreen() {
             story={featuredStory}
           />
         ) : null}
-        <InternshipPromoCard
-          onPress={() => router.push('/student/internships' as Href)}
-          promo={internshipPromo}
-        />
-        <View style={styles.feedHeader}>
-          <View style={styles.feedTitleGroup}>
-            <Text style={styles.feedLabel}>Student Feed</Text>
-            <Text style={styles.feedTitle}>Latest sample stories</Text>
-          </View>
-          <Text style={styles.feedCount}>{filteredStories.length} shown</Text>
-        </View>
         {hasMatches ? (
           <View style={styles.storyList}>
             {feedStories.map((story) => (
@@ -101,8 +90,16 @@ export function StudentHomeScreen() {
             ))}
           </View>
         ) : (
-          <EmptyState onReset={resetFilters} />
+          <EmptyState
+            detail="Try a different search term or category."
+            onReset={resetFilters}
+            title={searchText.trim() ? `No matches for "${searchText.trim()}"` : 'No published stories yet'}
+          />
         )}
+        <View style={styles.footer}>
+          <View style={styles.footerRule} />
+          <Text style={styles.footerText}>subenchmark.blooksy.com</Text>
+        </View>
       </View>
     </StudentScreenContainer>
   );
@@ -110,42 +107,28 @@ export function StudentHomeScreen() {
 
 const styles = StyleSheet.create({
   content: {
-    gap: spacing.lg,
+    gap: 16,
     paddingHorizontal: spacing.lg,
-    paddingTop: spacing.lg,
-  },
-  feedHeader: {
-    flexDirection: 'row',
-    alignItems: 'flex-end',
-    justifyContent: 'space-between',
-    gap: spacing.md,
-    marginTop: spacing.sm,
-  },
-  feedTitleGroup: {
-    flex: 1,
-    minWidth: 0,
-  },
-  feedLabel: {
-    color: colors.warning,
-    fontSize: typography.label,
-    fontWeight: fontWeights.bold,
-    letterSpacing: 0.8,
-    lineHeight: 16,
-    textTransform: 'uppercase',
-  },
-  feedTitle: {
-    marginTop: spacing.xs,
-    color: colors.primaryNavy,
-    fontSize: typography.title,
-    fontWeight: fontWeights.bold,
-    lineHeight: 30,
-  },
-  feedCount: {
-    color: colors.textSecondary,
-    fontSize: typography.small,
-    lineHeight: 20,
+    paddingTop: 14,
   },
   storyList: {
-    gap: spacing.lg,
+    gap: 14,
+  },
+  footer: {
+    alignItems: 'center',
+    gap: spacing.sm,
+    paddingTop: 20,
+    paddingBottom: spacing.xl,
+  },
+  footerRule: {
+    width: '78%',
+    height: 1,
+    backgroundColor: 'rgba(5,24,56,0.1)',
+  },
+  footerText: {
+    color: colors.benchmarkBlue,
+    fontSize: typography.meta,
+    fontWeight: fontWeights.semibold,
+    lineHeight: 15,
   },
 });

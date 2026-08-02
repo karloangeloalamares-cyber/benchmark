@@ -2,7 +2,7 @@ import type { Href } from 'expo-router';
 import { useRouter } from 'expo-router';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
-import { colors, fontWeights, layout, radii, spacing, typography } from '@/constants/theme';
+import { colors, fontWeights, radii, spacing, typography } from '@/constants/theme';
 
 type StudentPageHeaderProps = {
   title?: string;
@@ -23,19 +23,14 @@ export function StudentPageHeader({ title, fallbackHref = '/' }: StudentPageHead
 
   return (
     <View style={styles.header}>
-      <View style={styles.brandRow}>
-        <Pressable
-          accessibilityLabel="Go back"
-          accessibilityRole="button"
-          onPress={handleBack}
-          style={({ pressed }) => [styles.backButton, pressed && styles.pressed]}>
-          <Text style={styles.backText}>Back</Text>
-        </Pressable>
-        <View style={styles.brandText}>
-          <Text style={styles.context}>Southern University</Text>
-          <Text style={styles.brand}>The Benchmark</Text>
-        </View>
-      </View>
+      <Pressable
+        accessibilityLabel="Go back"
+        accessibilityRole="button"
+        onPress={handleBack}
+        style={({ pressed }) => [styles.backButton, pressed && styles.pressed]}>
+        <Text style={styles.backText}>Back</Text>
+      </Pressable>
+      <Text style={styles.brand}>Benchmark</Text>
       {title ? <Text style={styles.title}>{title}</Text> : null}
     </View>
   );
@@ -43,60 +38,50 @@ export function StudentPageHeader({ title, fallbackHref = '/' }: StudentPageHead
 
 const styles = StyleSheet.create({
   header: {
-    paddingHorizontal: spacing.lg,
-    paddingTop: spacing.xl,
-    paddingBottom: spacing.lg,
-    backgroundColor: colors.primaryNavy,
-    borderBottomLeftRadius: radii.xl,
-    borderBottomRightRadius: radii.xl,
-  },
-  brandRow: {
+    minHeight: 68,
     flexDirection: 'row',
     alignItems: 'center',
-    gap: spacing.md,
+    gap: spacing.sm,
+    paddingHorizontal: spacing.lg,
+    paddingTop: spacing.md,
+    paddingBottom: spacing.md,
+    backgroundColor: colors.surface,
+    borderBottomColor: colors.border,
+    borderBottomWidth: 1,
   },
   backButton: {
-    minWidth: 72,
-    minHeight: layout.touchTarget,
+    minWidth: 66,
+    minHeight: 36,
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: spacing.md,
-    backgroundColor: colors.navyDeep,
-    borderColor: colors.universityGold,
+    backgroundColor: colors.surface,
+    borderColor: colors.borderStrong,
     borderWidth: 1,
     borderRadius: radii.pill,
   },
   backText: {
-    color: colors.universityGold,
+    color: colors.primaryNavy,
     fontSize: typography.small,
     fontWeight: fontWeights.bold,
     lineHeight: 20,
   },
-  brandText: {
-    flex: 1,
-    minWidth: 0,
-  },
-  context: {
-    color: colors.universityGold,
-    fontSize: typography.label,
-    fontWeight: fontWeights.semibold,
-    letterSpacing: 0.9,
-    lineHeight: 16,
-    textTransform: 'uppercase',
-  },
   brand: {
-    marginTop: spacing.xs,
-    color: colors.surface,
+    flex: 1,
+    color: colors.primaryNavy,
+    fontFamily: 'serif',
     fontSize: typography.subtitle,
     fontWeight: fontWeights.bold,
-    lineHeight: 24,
+    lineHeight: 25,
+    textAlign: 'center',
   },
   title: {
-    marginTop: spacing.lg,
-    color: colors.surface,
-    fontSize: typography.title,
+    flex: 1,
+    color: colors.primaryNavy,
+    fontSize: typography.small,
     fontWeight: fontWeights.bold,
-    lineHeight: 30,
+    lineHeight: 20,
+    textAlign: 'right',
   },
   pressed: {
     opacity: 0.84,

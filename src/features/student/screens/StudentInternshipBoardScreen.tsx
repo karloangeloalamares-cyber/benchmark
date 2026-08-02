@@ -3,12 +3,11 @@ import type { Href } from 'expo-router';
 import { useRouter } from 'expo-router';
 import { StyleSheet, Text, View } from 'react-native';
 
-import { colors, fontWeights, spacing, typography } from '@/constants/theme';
-import { DemoContentNotice } from '../components/DemoContentNotice';
+import { colors, fontWeights, radii, spacing, typography } from '@/constants/theme';
+import { CategoryChipRow } from '../components/CategoryChipRow';
 import { EmptyState } from '../components/EmptyState';
 import { InternshipCard } from '../components/InternshipCard';
-import { InternshipFilters } from '../components/InternshipFilters';
-import { StudentPageHeader } from '../components/StudentPageHeader';
+import { SearchField } from '../components/SearchField';
 import { StudentScreenContainer } from '../components/StudentScreenContainer';
 import {
   internshipCategories,
@@ -60,31 +59,29 @@ export function StudentInternshipBoardScreen() {
 
   return (
     <StudentScreenContainer>
-      <StudentPageHeader fallbackHref={'/student/home' as Href} title="Internship Board" />
-      <View style={styles.content}>
-        <View style={styles.intro}>
-          <Text style={styles.eyebrow}>Student opportunities</Text>
-          <Text style={styles.title}>Browse sample internships</Text>
-          <Text style={styles.subtitle}>
-            Search and filter local fixture listings. Every item remains sample-only until a
-            verified source is connected.
-          </Text>
+      <View style={styles.header}>
+        <View style={styles.headerTitleRow}>
+          <View style={styles.headerCopy}>
+            <Text style={styles.headerTitle}>Internships</Text>
+            <Text style={styles.headerSubtitle}>Opportunities for Southern University students</Text>
+          </View>
+          <Text style={styles.headerPlus}>+</Text>
         </View>
-
-        <DemoContentNotice />
-
-        <InternshipFilters
-          categories={internshipCategories}
-          onCategoryChange={setSelectedCategory}
-          onSearchTextChange={setSearchText}
-          searchText={searchText}
-          selectedCategory={selectedCategory}
+        <SearchField
+          accessibilityLabel="Search internships"
+          onChangeText={setSearchText}
+          placeholder="Search internships..."
+          value={searchText}
+          variant="masthead"
         />
-
-        <View style={styles.resultHeader}>
-          <Text style={styles.resultTitle}>Results</Text>
-          <Text style={styles.resultCount}>{filteredInternships.length} shown</Text>
-        </View>
+      </View>
+      <View style={styles.content}>
+        <CategoryChipRow
+          accessibilityLabelPrefix="Filter internships by"
+          categories={internshipCategories}
+          onSelect={setSelectedCategory}
+          selectedSlug={selectedCategory}
+        />
 
         {filteredInternships.length > 0 ? (
           <View style={styles.list}>
@@ -111,50 +108,52 @@ export function StudentInternshipBoardScreen() {
 
 const styles = StyleSheet.create({
   content: {
-    gap: spacing.lg,
+    gap: 14,
     padding: spacing.lg,
   },
-  intro: {
-    gap: spacing.sm,
+  header: {
+    gap: spacing.md,
+    paddingHorizontal: 20,
+    paddingTop: spacing.lg,
+    paddingBottom: spacing.lg,
+    backgroundColor: colors.primaryNavy,
+    borderBottomLeftRadius: 24,
+    borderBottomRightRadius: 24,
   },
-  eyebrow: {
-    color: colors.warning,
-    fontSize: typography.label,
-    fontWeight: fontWeights.bold,
-    letterSpacing: 0.8,
-    lineHeight: 16,
-    textTransform: 'uppercase',
-  },
-  title: {
-    color: colors.primaryNavy,
-    fontSize: typography.screenTitle,
-    fontWeight: fontWeights.bold,
-    lineHeight: 34,
-  },
-  subtitle: {
-    maxWidth: 560,
-    color: colors.textSecondary,
-    fontSize: typography.body,
-    lineHeight: 24,
-  },
-  resultHeader: {
+  headerTitleRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
     gap: spacing.md,
   },
-  resultTitle: {
-    color: colors.primaryNavy,
-    fontSize: typography.subtitle,
-    fontWeight: fontWeights.bold,
-    lineHeight: 25,
+  headerCopy: {
+    flex: 1,
+    minWidth: 0,
   },
-  resultCount: {
-    color: colors.textSecondary,
-    fontSize: typography.small,
-    lineHeight: 20,
+  headerTitle: {
+    color: colors.surface,
+    fontFamily: 'serif',
+    fontSize: typography.title,
+    fontWeight: fontWeights.bold,
+    lineHeight: 30,
+  },
+  headerSubtitle: {
+    color: 'rgba(255,255,255,0.72)',
+    fontSize: typography.label,
+    lineHeight: 16,
+  },
+  headerPlus: {
+    width: 34,
+    height: 34,
+    color: colors.universityGold,
+    fontSize: typography.title,
+    fontWeight: fontWeights.bold,
+    lineHeight: 30,
+    textAlign: 'center',
+    borderColor: colors.universityGold,
+    borderWidth: 1,
+    borderRadius: radii.pill,
   },
   list: {
-    gap: spacing.lg,
+    gap: 14,
   },
 });
