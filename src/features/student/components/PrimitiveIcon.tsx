@@ -7,6 +7,7 @@ export type PrimitiveIconName =
   | 'bookmark'
   | 'briefcase'
   | 'check'
+  | 'chevronLeft'
   | 'chevronRight'
   | 'clock'
   | 'close'
@@ -139,13 +140,25 @@ export function PrimitiveIcon({
         </>
       ) : null}
 
-      {name === 'arrowRight' || name === 'chevronRight' ? (
+      {name === 'arrowRight' || name === 'chevronRight' || name === 'chevronLeft' ? (
         <>
           {name === 'arrowRight' ? (
             <View style={[styles.arrowBody, { backgroundColor: color, height: stroke }]} />
           ) : null}
-          <View style={[styles.chevronTop, { backgroundColor: color, height: stroke }]} />
-          <View style={[styles.chevronBottom, { backgroundColor: color, height: stroke }]} />
+          <View
+            style={[
+              styles.chevronTop,
+              name === 'chevronLeft' && styles.chevronLeftTop,
+              { backgroundColor: color, height: stroke },
+            ]}
+          />
+          <View
+            style={[
+              styles.chevronBottom,
+              name === 'chevronLeft' && styles.chevronLeftBottom,
+              { backgroundColor: color, height: stroke },
+            ]}
+          />
         </>
       ) : null}
 
@@ -358,6 +371,16 @@ const styles = StyleSheet.create({
     top: '59%',
     transform: [{ rotate: '-45deg' }],
     width: '38%',
+  },
+  chevronLeftTop: {
+    left: '17%',
+    right: undefined,
+    transform: [{ rotate: '-45deg' }],
+  },
+  chevronLeftBottom: {
+    left: '17%',
+    right: undefined,
+    transform: [{ rotate: '45deg' }],
   },
   plusHorizontal: {
     borderRadius: 999,

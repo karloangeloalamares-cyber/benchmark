@@ -3,11 +3,10 @@ import type { Href } from 'expo-router';
 import { useRouter } from 'expo-router';
 import { StyleSheet, Text, View } from 'react-native';
 
-import { colors, fontWeights, radii, spacing, typography } from '@/constants/theme';
+import { colors, fontWeights, spacing, typography } from '@/constants/theme';
 import { CategoryChipRow } from '../components/CategoryChipRow';
 import { EmptyState } from '../components/EmptyState';
 import { InternshipCard } from '../components/InternshipCard';
-import { PrimitiveIcon } from '../components/PrimitiveIcon';
 import { SearchField } from '../components/SearchField';
 import { StudentScreenContainer } from '../components/StudentScreenContainer';
 import {
@@ -61,13 +60,12 @@ export function StudentInternshipBoardScreen() {
   return (
     <StudentScreenContainer>
       <View style={styles.header}>
+        <View pointerEvents="none" style={styles.headerWash} />
+        <View pointerEvents="none" style={styles.decorativeCircle} />
         <View style={styles.headerTitleRow}>
           <View style={styles.headerCopy}>
             <Text style={styles.headerTitle}>Internships</Text>
             <Text style={styles.headerSubtitle}>Opportunities for Southern University students</Text>
-          </View>
-          <View accessible={false} style={styles.headerPlus}>
-            <PrimitiveIcon color={colors.universityGold} name="plus" size={20} />
           </View>
         </View>
         <SearchField
@@ -85,6 +83,9 @@ export function StudentInternshipBoardScreen() {
           onSelect={setSelectedCategory}
           selectedSlug={selectedCategory}
         />
+        <Text style={styles.resultCount}>
+          {filteredInternships.length} open sample {filteredInternships.length === 1 ? 'opportunity' : 'opportunities'}
+        </Text>
 
         {filteredInternships.length > 0 ? (
           <View style={styles.list}>
@@ -116,7 +117,9 @@ const styles = StyleSheet.create({
     padding: spacing.lg,
   },
   header: {
+    position: 'relative',
     minWidth: 0,
+    overflow: 'hidden',
     gap: spacing.md,
     paddingHorizontal: 20,
     paddingTop: spacing.lg,
@@ -124,6 +127,25 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primaryNavy,
     borderBottomLeftRadius: 24,
     borderBottomRightRadius: 24,
+  },
+  headerWash: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    backgroundColor: colors.navyDeep,
+    opacity: 0.24,
+  },
+  decorativeCircle: {
+    position: 'absolute',
+    top: -100,
+    right: -90,
+    width: 220,
+    height: 220,
+    backgroundColor: colors.benchmarkLightBlue,
+    borderRadius: 110,
+    opacity: 0.16,
   },
   headerTitleRow: {
     flexDirection: 'row',
@@ -147,16 +169,12 @@ const styles = StyleSheet.create({
     fontSize: typography.label,
     lineHeight: 16,
   },
-  headerPlus: {
-    width: 34,
-    height: 34,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderColor: colors.universityGold,
-    borderWidth: 1,
-    borderRadius: radii.pill,
-  },
   list: {
     gap: 14,
+  },
+  resultCount: {
+    color: colors.textSecondary,
+    fontSize: typography.label,
+    lineHeight: 16,
   },
 });

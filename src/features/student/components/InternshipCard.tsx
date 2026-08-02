@@ -1,8 +1,8 @@
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 
-import { colors, fontWeights, radii, shadows, spacing, typography } from '@/constants/theme';
+import { colors, fontWeights, shadows, spacing, typography } from '@/constants/theme';
 import type { StudentInternship } from '../types';
-import { SampleBadge } from './SampleBadge';
+import { WorkflowStatusPill } from './WorkflowStatusPill';
 
 type InternshipCardProps = {
   internship: StudentInternship;
@@ -38,14 +38,15 @@ export function InternshipCard({ internship, onPress }: InternshipCardProps) {
       <View style={styles.body}>
         <View style={styles.headerRow}>
           <Text style={styles.category}>{internship.category}</Text>
-          {internship.isSample ? <SampleBadge label="Open" /> : null}
+          <WorkflowStatusPill label="Open" tone="success" />
         </View>
 
         <Text style={styles.title}>{internship.title}</Text>
 
         <View style={styles.metaRow}>
           <Text style={styles.organization}>{internship.organization}</Text>
-          {internship.location ? <Text style={styles.meta}>- {internship.location}</Text> : null}
+          {internship.location ? <Text style={styles.meta}>· {internship.location}</Text> : null}
+          {internship.arrangement ? <Text style={styles.meta}>· {internship.arrangement}</Text> : null}
         </View>
 
         <Text style={styles.summary}>{internship.summary}</Text>

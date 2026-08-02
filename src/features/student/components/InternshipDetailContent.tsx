@@ -7,6 +7,7 @@ import { getSafeExternalLink } from '../utils/externalLinks';
 import { DemoContentNotice } from './DemoContentNotice';
 import { ExternalActionButton } from './ExternalActionButton';
 import { SampleBadge, SAMPLE_CONTENT_DISCLOSURE } from './SampleBadge';
+import { WorkflowStatusPill } from './WorkflowStatusPill';
 
 type InternshipDetailContentProps = {
   internship: StudentInternship;
@@ -51,6 +52,7 @@ export function InternshipDetailContent({ internship }: InternshipDetailContentP
         <View style={styles.heroBody}>
           <View style={styles.badgeRow}>
             <Text style={styles.category}>{internship.category}</Text>
+            <WorkflowStatusPill label="Open" tone="success" />
             {internship.isSample ? <SampleBadge label="Sample opportunity" /> : null}
           </View>
           <Text style={styles.title}>{internship.title}</Text>
@@ -106,8 +108,6 @@ const styles = StyleSheet.create({
     minWidth: 0,
     overflow: 'hidden',
     backgroundColor: colors.surface,
-    borderColor: colors.border,
-    borderWidth: 1,
     borderRadius: radii.xl,
   },
   image: {
@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
     gap: spacing.sm,
   },
   category: {
-    color: colors.warning,
+    color: colors.universityGold,
     fontSize: typography.label,
     fontWeight: fontWeights.bold,
     letterSpacing: 0.7,
@@ -153,6 +153,7 @@ const styles = StyleSheet.create({
   title: {
     flexShrink: 1,
     color: colors.primaryNavy,
+    fontFamily: 'serif',
     fontSize: typography.screenTitle,
     fontWeight: fontWeights.bold,
     lineHeight: 34,
@@ -190,8 +191,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     padding: spacing.lg,
     backgroundColor: colors.surface,
-    borderColor: colors.border,
-    borderWidth: 1,
     borderRadius: radii.xl,
   },
   sectionTitle: {

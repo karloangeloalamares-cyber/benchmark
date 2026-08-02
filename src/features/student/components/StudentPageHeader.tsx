@@ -3,13 +3,21 @@ import { useRouter } from 'expo-router';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { colors, fontWeights, radii, spacing, typography } from '@/constants/theme';
+import { PrimitiveIcon } from './PrimitiveIcon';
 
 type StudentPageHeaderProps = {
   title?: string;
+  subtitle?: string;
   fallbackHref?: Href;
+  showBack?: boolean;
 };
 
-export function StudentPageHeader({ title, fallbackHref = '/' }: StudentPageHeaderProps) {
+export function StudentPageHeader({
+  title,
+  subtitle,
+  fallbackHref = '/student/site' as Href,
+  showBack = true,
+}: StudentPageHeaderProps) {
   const router = useRouter();
 
   function handleBack() {
@@ -23,15 +31,22 @@ export function StudentPageHeader({ title, fallbackHref = '/' }: StudentPageHead
 
   return (
     <View style={styles.header}>
-      <Pressable
-        accessibilityLabel="Go back"
-        accessibilityRole="button"
-        onPress={handleBack}
-        style={({ pressed }) => [styles.backButton, pressed && styles.pressed]}>
-        <Text style={styles.backText}>Back</Text>
-      </Pressable>
-      <Text style={styles.brand}>Benchmark</Text>
-      {title ? <Text style={styles.title}>{title}</Text> : null}
+      {showBack ? (
+        <Pressable
+          accessibilityLabel="Go back"
+          accessibilityRole="button"
+          hitSlop={8}
+          onPress={handleBack}
+          style={({ pressed }) => [styles.backButton, pressed && styles.pressed]}>
+          <PrimitiveIcon color={colors.primaryNavy} name="chevronLeft" size={16} />
+          <Text style={styles.backText}>Back</Text>
+        </Pressable>
+      ) : null}
+      <View style={[styles.copy, !showBack && styles.copyNoBack]}>
+        <Text style={styles.brand}>Benchmark</Text>
+        {title ? <Text style={styles.title}>{title}</Text> : null}
+        {subtitle ? <Text style={styles.subtitle}>{subtitle}</Text> : null}
+      </View>
     </View>
   );
 }
@@ -51,10 +66,12 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   backButton: {
-    minWidth: 58,
+    minWidth: 72,
     minHeight: 36,
+    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    gap: spacing.xs,
     paddingHorizontal: spacing.md,
     backgroundColor: colors.surface,
     borderColor: colors.borderStrong,
@@ -68,23 +85,33 @@ const styles = StyleSheet.create({
     lineHeight: 20,
   },
   brand: {
-    flex: 1,
+    minWidth: 0,
+    color: colors.benchmarkBlue,
+    fontFamily: 'serif',
+    fontSize: typography.small,
+    fontWeight: fontWeights.bold,
+    lineHeight: 18,
+  },
+  title: {
     minWidth: 0,
     color: colors.primaryNavy,
     fontFamily: 'serif',
     fontSize: typography.subtitle,
     fontWeight: fontWeights.bold,
     lineHeight: 25,
-    textAlign: 'center',
   },
-  title: {
+  subtitle: {
+    color: colors.textSecondary,
+    fontSize: typography.label,
+    lineHeight: 16,
+  },
+  copy: {
     flex: 1,
     minWidth: 0,
-    color: colors.primaryNavy,
-    fontSize: typography.small,
-    fontWeight: fontWeights.bold,
-    lineHeight: 20,
-    textAlign: 'right',
+    alignItems: 'center',
+  },
+  copyNoBack: {
+    alignItems: 'flex-start',
   },
   pressed: {
     opacity: 0.84,

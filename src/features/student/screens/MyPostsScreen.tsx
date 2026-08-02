@@ -1,9 +1,10 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { useMemo, useState } from 'react';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
-import { colors, fontWeights, radii, shadows, spacing, typography } from '@/constants/theme';
-import { PrimitiveIcon } from '../components/PrimitiveIcon';
+import { colors, fontWeights, shadows, spacing, typography } from '@/constants/theme';
 import { StudentPageHeader } from '../components/StudentPageHeader';
 import { StudentScreenContainer } from '../components/StudentScreenContainer';
+import { WorkflowStatusPill, type WorkflowStatusTone } from '../components/WorkflowStatusPill';
 
 const demoPosts = [
   {
@@ -12,7 +13,8 @@ const demoPosts = [
     status: 'Draft',
     category: 'Student Spotlight',
     updated: 'Updated recently',
-    tone: colors.textSecondary,
+    tone: 'neutral',
+    filter: 'In Progress',
   },
   {
     id: 'submitted',
@@ -20,7 +22,8 @@ const demoPosts = [
     status: 'Submitted',
     category: 'CSE News',
     updated: 'Updated today',
-    tone: colors.benchmarkBlue,
+    tone: 'info',
+    filter: 'Awaiting Review',
   },
   {
     id: 'changes',
@@ -28,19 +31,40 @@ const demoPosts = [
     status: 'Changes Requested',
     category: 'Upcoming Events',
     updated: 'Updated yesterday',
-    tone: colors.warning,
+    tone: 'warning',
+    filter: 'Needs Attention',
   },
-];
+] as const;
+
+const filters = ['All', 'In Progress', 'Awaiting Review', 'Needs Attention', 'Published'] as const;
 
 export function MyPostsScreen() {
+  const [selectedFilter, setSelectedFilter] = useState<(typeof filters)[number]>('All');
   const draftCount = demoPosts.filter((post) => post.status === 'Draft').length;
   const reviewCount = demoPosts.filter((post) => post.status === 'Submitted').length;
   const liveCount = 0;
+  const visiblePosts = useMemo(
+    () =>
+      selectedFilter === 'All'
+        ? demoPosts
+        : demoPosts.filter((post) => post.filter === selectedFilter),
+    [selectedFilter],
+  );
 
   return (
     <StudentScreenContainer>
-      <StudentPageHeader title="My Posts" />
+      <StudentPageHeader
+        showBack={false}
+        subtitle="Sample records cannot be edited in this version"
+        title="My Posts"
+      />
       <View style={styles.content}>
+        <View style={styles.notice}>
+          <Text style={styles.noticeText}>
+            Demo workflow: these local records are read-only and do not sync to a CMS.
+          </Text>
+        </View>
+
         <View style={styles.statsRow}>
           <StatChip count={draftCount} label="Drafts" />
           <StatChip count={reviewCount} label="In Review" />
@@ -48,31 +72,47 @@ export function MyPostsScreen() {
         </View>
 
         <View style={styles.filterRow}>
-          {['All', 'In Progress', 'Awaiting Review'].map((filter, index) => (
-            <View key={filter} style={[styles.filterChip, index === 0 && styles.filterChipActive]}>
-              <Text style={[styles.filterText, index === 0 && styles.filterTextActive]}>
+          {filters.map((filter) => {
+            const active = selectedFilter === filter;
+
+            return (
+            <Pressable
+              accessibilityLabel={`Filter My Posts by ${filter}`}
+              accessibilityRole="button"
+              accessibilityState={{ selected: active }}
+              hitSlop={{ bottom: 6, top: 6 }}
+              key={filter}
+              onPress={() => setSelectedFilter(filter)}
+              style={({ pressed }) => [
+                styles.filterChip,
+                active && styles.filterChipActive,
+                pressed && styles.pressed,
+              ]}>
+              <Text style={[styles.filterText, active && styles.filterTextActive]}>
                 {filter}
               </Text>
-            </View>
-          ))}
+            </Pressable>
+            );
+          })}
         </View>
 
         <View style={styles.list}>
-          {demoPosts.map((post) => (
+          {visiblePosts.map((post) => (
             <View key={post.id} style={styles.postRow}>
               <View style={styles.postCopy}>
                 <Text numberOfLines={2} style={styles.postTitle}>{post.title}</Text>
                 <View style={styles.metaRow}>
-                  <View style={[styles.statusBadge, { borderColor: post.tone }]}>
-                    <Text style={[styles.statusText, { color: post.tone }]}>{post.status}</Text>
-                  </View>
+                  <WorkflowStatusPill label={post.status} tone={post.tone as WorkflowStatusTone} />
                   <Text style={styles.metaText}>{post.category}</Text>
                 </View>
                 <Text style={styles.updated}>{post.updated}</Text>
+                <Text style={styles.readOnlyText}>View-only sample record</Text>
               </View>
-              <PrimitiveIcon color={colors.textSecondary} name="chevronRight" size={18} />
             </View>
           ))}
+          {visiblePosts.length === 0 ? (
+            <Text style={styles.emptyFilter}>Nothing here yet.</Text>
+          ) : null}
         </View>
       </View>
     </StudentScreenContainer>
@@ -100,6 +140,18 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     gap: spacing.sm,
     paddingTop: spacing.xs,
+  },
+  notice: {
+    padding: spacing.md,
+    backgroundColor: colors.tintGold,
+    borderColor: colors.tintGoldBorder,
+    borderWidth: 1,
+    borderRadius: 14,
+  },
+  noticeText: {
+    color: colors.textSecondary,
+    fontSize: typography.small,
+    lineHeight: 20,
   },
   statChip: {
     width: 104,
@@ -133,7 +185,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 8,
     backgroundColor: colors.tintNavy,
-    borderRadius: radii.pill,
+    borderRadius: 999,
   },
   filterChipActive: {
     backgroundColor: colors.primaryNavy,
@@ -181,17 +233,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: spacing.sm,
   },
-  statusBadge: {
-    paddingHorizontal: spacing.sm,
-    paddingVertical: spacing.xs,
-    borderWidth: 1,
-    borderRadius: radii.pill,
-  },
-  statusText: {
-    fontSize: typography.meta,
-    fontWeight: fontWeights.bold,
-    lineHeight: 15,
-  },
   metaText: {
     color: colors.textSecondary,
     fontSize: typography.meta,
@@ -201,5 +242,21 @@ const styles = StyleSheet.create({
     color: colors.textSecondary,
     fontSize: typography.meta,
     lineHeight: 15,
+  },
+  readOnlyText: {
+    color: colors.textSecondary,
+    fontSize: typography.meta,
+    fontWeight: fontWeights.medium,
+    lineHeight: 15,
+  },
+  emptyFilter: {
+    color: colors.textSecondary,
+    fontSize: typography.small,
+    lineHeight: 20,
+    paddingVertical: spacing.xl,
+    textAlign: 'center',
+  },
+  pressed: {
+    opacity: 0.82,
   },
 });

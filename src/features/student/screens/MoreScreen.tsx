@@ -9,6 +9,15 @@ import { useSavedStories } from '../saved/useSavedStories';
 import { PrimitiveIcon } from '../components/PrimitiveIcon';
 import { StudentPageHeader } from '../components/StudentPageHeader';
 import { StudentScreenContainer } from '../components/StudentScreenContainer';
+import { WorkflowStatusPill } from '../components/WorkflowStatusPill';
+
+const permissions: ReadonlyArray<readonly [string, boolean]> = [
+  ['Create & submit drafts', true],
+  ['Review submitted content', true],
+  ['Approve or reject with feedback', false],
+  ['Publish, schedule & unpublish', false],
+  ['Manage users, categories & settings', false],
+];
 
 function storyHref(storyId: string): Href {
   return `/student/posts/${storyId}` as Href;
@@ -27,21 +36,30 @@ export function MoreScreen() {
 
   return (
     <StudentScreenContainer>
-      <StudentPageHeader title="More" />
+      <StudentPageHeader
+        showBack={false}
+        subtitle="Saved stories, access context, and app information"
+        title="More"
+      />
       <View style={styles.content}>
         <View style={styles.profileCard}>
           <View style={styles.avatar}>
-            <Text style={styles.avatarText}>AJ</Text>
+            <Text style={styles.avatarText}>B</Text>
           </View>
           <View style={styles.profileCopy}>
-            <Text style={styles.profileName}>Anthony Joiner</Text>
-            <Text style={styles.profileTitle}>Digital Platforms Administrator</Text>
-            <Text style={styles.role}>Administrator</Text>
+            <Text style={styles.profileName}>Student access preview</Text>
+            <Text style={styles.profileTitle}>
+              No real account is signed in. Demo data stays on this device session.
+            </Text>
+            <WorkflowStatusPill label="Demo mode" tone="neutral" />
           </View>
         </View>
 
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Reading List</Text>
+          <View style={styles.sectionHeader}>
+            <Text style={styles.sectionTitle}>Saved Stories</Text>
+            <Text style={styles.countText}>{savedStories.length}</Text>
+          </View>
           <Text style={styles.notice}>
             Saved stories are temporary in this Expo parity demo and reset when the app session restarts.
           </Text>
@@ -80,19 +98,20 @@ export function MoreScreen() {
         </View>
 
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Permissions</Text>
-          {[
-            'Create & submit drafts',
-            'Review submitted content',
-            'Approve or reject with feedback',
-            'Publish, schedule & unpublish',
-            'Manage users, categories & settings',
-          ].map((permission) => (
+          <Text style={styles.sectionTitle}>Account and Permissions</Text>
+          <Text style={styles.notice}>
+            Rork uses signed-in roles. This Expo student shell shows the role surface only.
+          </Text>
+          {permissions.map(([permission, granted]) => (
             <View key={permission} style={styles.permissionRow}>
               <View style={styles.permissionIcon}>
-                <PrimitiveIcon color={colors.primaryNavy} name="check" size={14} />
+                <PrimitiveIcon
+                  color={granted ? colors.primaryNavy : colors.textSecondary}
+                  name={granted ? 'check' : 'close'}
+                  size={14}
+                />
               </View>
-              <Text style={styles.permission}>{permission}</Text>
+              <Text style={[styles.permission, !granted && styles.permissionMuted]}>{permission}</Text>
             </View>
           ))}
         </View>
@@ -102,6 +121,9 @@ export function MoreScreen() {
           <Text style={styles.aboutBrand}>Benchmark</Text>
           <Text style={styles.aboutText}>
             Showcasing Southern University's excellence to the world.
+          </Text>
+          <Text style={styles.aboutFootnote}>
+            Future releases can connect real account profile, sign-out, and persistent saved stories.
           </Text>
         </View>
       </View>
@@ -157,12 +179,6 @@ const styles = StyleSheet.create({
     fontSize: typography.small,
     lineHeight: 20,
   },
-  role: {
-    color: colors.primaryNavy,
-    fontSize: typography.meta,
-    fontWeight: fontWeights.bold,
-    lineHeight: 15,
-  },
   section: {
     minWidth: 0,
     overflow: 'hidden',
@@ -177,6 +193,21 @@ const styles = StyleSheet.create({
     fontSize: typography.subtitle,
     fontWeight: fontWeights.bold,
     lineHeight: 25,
+  },
+  sectionHeader: {
+    minWidth: 0,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: spacing.md,
+  },
+  countText: {
+    minWidth: 28,
+    color: colors.primaryNavy,
+    fontSize: typography.small,
+    fontWeight: fontWeights.bold,
+    lineHeight: 20,
+    textAlign: 'right',
   },
   notice: {
     maxWidth: 310,
@@ -265,6 +296,9 @@ const styles = StyleSheet.create({
     fontSize: typography.small,
     lineHeight: 20,
   },
+  permissionMuted: {
+    color: colors.textSecondary,
+  },
   aboutBrand: {
     color: colors.primaryNavy,
     fontFamily: 'serif',
@@ -278,6 +312,12 @@ const styles = StyleSheet.create({
     color: colors.textSecondary,
     fontSize: typography.small,
     lineHeight: 20,
+    textAlign: 'center',
+  },
+  aboutFootnote: {
+    color: colors.textSecondary,
+    fontSize: typography.label,
+    lineHeight: 16,
     textAlign: 'center',
   },
   pressed: {

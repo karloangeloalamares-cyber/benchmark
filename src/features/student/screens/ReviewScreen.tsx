@@ -1,9 +1,11 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { useMemo, useState } from 'react';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { colors, fontWeights, radii, shadows, spacing, typography } from '@/constants/theme';
 import { PrimitiveIcon } from '../components/PrimitiveIcon';
 import { StudentPageHeader } from '../components/StudentPageHeader';
 import { StudentScreenContainer } from '../components/StudentScreenContainer';
+import { WorkflowStatusPill, type WorkflowStatusTone } from '../components/WorkflowStatusPill';
 
 const reviewPosts = [
   {
@@ -12,7 +14,9 @@ const reviewPosts = [
     author: 'Dr. Lealon Martin',
     category: 'CSE News',
     status: 'Submitted',
+    tone: 'info',
     detail: 'submitted today',
+    segment: 'Queue',
   },
   {
     id: 'nsbe',
@@ -20,33 +24,66 @@ const reviewPosts = [
     author: 'Dr. Lealon Martin',
     category: 'Student Spotlight',
     status: 'Approved',
+    tone: 'success',
     detail: 'ready for publishing',
+    segment: 'Approved',
   },
-];
+] as const;
+
+const segments = ['Queue', 'Approved', 'Scheduled', 'Live', 'Resolved'] as const;
 
 export function ReviewScreen() {
+  const [selectedSegment, setSelectedSegment] = useState<(typeof segments)[number]>('Queue');
+  const visiblePosts = useMemo(
+    () => reviewPosts.filter((post) => post.segment === selectedSegment),
+    [selectedSegment],
+  );
+
   return (
     <StudentScreenContainer>
-      <StudentPageHeader title="Review" />
+      <StudentPageHeader
+        showBack={false}
+        subtitle="Read-only queue preview"
+        title="Review"
+      />
       <View style={styles.content}>
+        <View style={styles.notice}>
+          <Text style={styles.noticeText}>
+            Demo workflow: review actions are not available here, so no approval state is saved.
+          </Text>
+        </View>
+
         <View style={styles.banner}>
           <PrimitiveIcon color={colors.universityGold} name="review" size={20} />
           <Text style={styles.bannerText}>1 submission awaiting review</Text>
-          <PrimitiveIcon color="rgba(255,255,255,0.65)" name="chevronRight" size={18} />
         </View>
 
         <View style={styles.segmentRow}>
-          {['Queue', 'Approved', 'Scheduled', 'Live', 'Resolved'].map((segment, index) => (
-            <View key={segment} style={[styles.segment, index === 0 && styles.segmentActive]}>
-              <Text style={[styles.segmentText, index === 0 && styles.segmentTextActive]}>
+          {segments.map((segment) => {
+            const active = selectedSegment === segment;
+
+            return (
+            <Pressable
+              accessibilityLabel={`Show ${segment} review items`}
+              accessibilityRole="button"
+              accessibilityState={{ selected: active }}
+              key={segment}
+              onPress={() => setSelectedSegment(segment)}
+              style={({ pressed }) => [
+                styles.segment,
+                active && styles.segmentActive,
+                pressed && styles.pressed,
+              ]}>
+              <Text style={[styles.segmentText, active && styles.segmentTextActive]}>
                 {segment}
               </Text>
-            </View>
-          ))}
+            </Pressable>
+            );
+          })}
         </View>
 
         <View style={styles.list}>
-          {reviewPosts.map((post) => (
+          {visiblePosts.map((post) => (
             <View key={post.id} style={styles.reviewRow}>
               <View style={styles.thumbnail}>
                 <PrimitiveIcon color={colors.textSecondary} name="document" size={22} />
@@ -54,15 +91,23 @@ export function ReviewScreen() {
               <View style={styles.reviewCopy}>
                 <Text numberOfLines={2} style={styles.reviewTitle}>{post.title}</Text>
                 <View style={styles.metaRow}>
-                  <View style={styles.statusBadge}>
-                    <Text style={styles.statusText}>{post.status}</Text>
-                  </View>
+                  <WorkflowStatusPill label={post.status} tone={post.tone as WorkflowStatusTone} />
                   <Text style={styles.metaText}>{post.category}</Text>
                 </View>
                 <Text style={styles.detailText}>By {post.author} - {post.detail}</Text>
+                <Text style={styles.readOnlyText}>View-only queue item</Text>
               </View>
             </View>
           ))}
+          {visiblePosts.length === 0 ? (
+            <View style={styles.emptyState}>
+              <PrimitiveIcon color="rgba(74,95,120,0.55)" name="review" size={34} />
+              <Text style={styles.emptyTitle}>
+                {selectedSegment === 'Queue' ? 'Queue is clear' : 'Nothing here'}
+              </Text>
+              <Text style={styles.emptyDetail}>Content in this state will appear here.</Text>
+            </View>
+          ) : null}
         </View>
       </View>
     </StudentScreenContainer>
@@ -74,6 +119,18 @@ const styles = StyleSheet.create({
     minWidth: 0,
     gap: 14,
     padding: spacing.lg,
+  },
+  notice: {
+    padding: spacing.md,
+    backgroundColor: colors.tintGold,
+    borderColor: colors.tintGoldBorder,
+    borderWidth: 1,
+    borderRadius: 14,
+  },
+  noticeText: {
+    color: colors.textSecondary,
+    fontSize: typography.small,
+    lineHeight: 20,
   },
   banner: {
     minWidth: 0,
@@ -160,18 +217,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: spacing.sm,
   },
-  statusBadge: {
-    paddingHorizontal: spacing.sm,
-    paddingVertical: spacing.xs,
-    backgroundColor: colors.tintGoldStrong,
-    borderRadius: radii.pill,
-  },
-  statusText: {
-    color: colors.primaryNavy,
-    fontSize: typography.meta,
-    fontWeight: fontWeights.bold,
-    lineHeight: 15,
-  },
   metaText: {
     color: colors.textSecondary,
     fontSize: typography.meta,
@@ -181,5 +226,31 @@ const styles = StyleSheet.create({
     color: colors.textSecondary,
     fontSize: typography.meta,
     lineHeight: 15,
+  },
+  readOnlyText: {
+    color: colors.textSecondary,
+    fontSize: typography.meta,
+    fontWeight: fontWeights.medium,
+    lineHeight: 15,
+  },
+  emptyState: {
+    alignItems: 'center',
+    gap: spacing.sm,
+    paddingVertical: 54,
+  },
+  emptyTitle: {
+    color: colors.primaryNavy,
+    fontSize: typography.subtitle,
+    fontWeight: fontWeights.bold,
+    lineHeight: 25,
+  },
+  emptyDetail: {
+    color: colors.textSecondary,
+    fontSize: typography.small,
+    lineHeight: 20,
+    textAlign: 'center',
+  },
+  pressed: {
+    opacity: 0.82,
   },
 });
