@@ -1,6 +1,6 @@
 import type { Href } from 'expo-router';
 import { Redirect } from 'expo-router';
 
-export default function IndexRoute() {
+export default function StudentIndexRoute() {
   return <Redirect href={'/student/home' as Href} />;
 }

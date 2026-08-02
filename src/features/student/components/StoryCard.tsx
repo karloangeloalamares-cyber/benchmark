@@ -2,6 +2,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { colors, fontWeights, radii, shadows, spacing, typography } from '@/constants/theme';
 import type { StudentStory } from '../types';
+import { BookmarkButton } from './BookmarkButton';
 import { SampleBadge } from './SampleBadge';
 import { StoryImage } from './StoryImage';
 import { StoryMetadata } from './StoryMetadata';
@@ -14,39 +15,51 @@ type StoryCardProps = {
 
 export function StoryCard({ story, featured = false, onPress }: StoryCardProps) {
   return (
-    <Pressable
-      accessibilityLabel={`${story.title}. View story details.`}
-      accessibilityRole="button"
-      onPress={onPress}
-      style={({ pressed }) => [styles.card, pressed && styles.pressed]}>
-      {featured ? (
-        <View style={styles.featuredLabel}>
-          <Text style={styles.featuredLabelText}>Featured story</Text>
+    <View style={styles.card}>
+      <Pressable
+        accessibilityLabel={`${story.title}. View story details.`}
+        accessibilityRole="button"
+        onPress={onPress}
+        style={({ pressed }) => [styles.cardPressTarget, pressed && styles.pressed]}>
+        {featured ? (
+          <View style={styles.featuredLabel}>
+            <Text style={styles.featuredLabelText}>Featured story</Text>
+          </View>
+        ) : null}
+        <StoryImage imageUrl={story.imageUrl} title={story.title} featured={featured} />
+        <View style={[styles.body, featured && styles.featuredBody]}>
+          <View style={styles.badgeRow}>
+            <StoryMetadata story={story} />
+            {story.isSample ? <SampleBadge /> : null}
+          </View>
+          <View style={styles.titleArea}>
+            <Text style={[styles.title, featured && styles.featuredTitle]}>{story.title}</Text>
+          </View>
+          <Text style={[styles.summary, featured && styles.featuredSummary]}>{story.summary}</Text>
+          <Text style={styles.author}>By {story.author}</Text>
+          <Text style={styles.nextLabel}>Read story</Text>
         </View>
-      ) : null}
-      <StoryImage imageUrl={story.imageUrl} title={story.title} featured={featured} />
-      <View style={[styles.body, featured && styles.featuredBody]}>
-        <View style={styles.badgeRow}>
-          <StoryMetadata story={story} />
-          {story.isSample ? <SampleBadge /> : null}
-        </View>
-        <Text style={[styles.title, featured && styles.featuredTitle]}>{story.title}</Text>
-        <Text style={[styles.summary, featured && styles.featuredSummary]}>{story.summary}</Text>
-        <Text style={styles.author}>By {story.author}</Text>
-        <Text style={styles.nextLabel}>Read story</Text>
+      </Pressable>
+      <View style={styles.bookmarkSlot}>
+        <BookmarkButton storyId={story.id} />
       </View>
-    </Pressable>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   card: {
+    position: 'relative',
     overflow: 'hidden',
     backgroundColor: colors.surface,
     borderColor: colors.border,
     borderWidth: 1,
     borderRadius: radii.xl,
     ...shadows.card,
+  },
+  cardPressTarget: {
+    overflow: 'hidden',
+    borderRadius: radii.xl,
   },
   featuredLabel: {
     paddingHorizontal: spacing.lg,
@@ -77,6 +90,7 @@ const styles = StyleSheet.create({
   },
   title: {
     marginTop: spacing.md,
+    paddingRight: 72,
     color: colors.primaryNavy,
     fontSize: typography.subtitle,
     fontWeight: fontWeights.bold,
@@ -85,6 +99,15 @@ const styles = StyleSheet.create({
   featuredTitle: {
     fontSize: typography.title,
     lineHeight: 30,
+  },
+  titleArea: {
+    minWidth: 0,
+  },
+  bookmarkSlot: {
+    position: 'absolute',
+    right: spacing.lg,
+    top: spacing.lg,
+    zIndex: 2,
   },
   summary: {
     marginTop: spacing.sm,

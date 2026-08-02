@@ -14,14 +14,17 @@ export function StudentHeader() {
           <Text style={styles.brand}>The Benchmark</Text>
         </View>
       </View>
-      <Text style={styles.title}>Student News and Opportunities</Text>
-      <Text style={styles.subtitle}>News, opportunities, events, and stories for students.</Text>
+      <Text style={styles.title}>
+        Student News and{'\n'}Opportunities
+      </Text>
+      <Text style={styles.subtitle}>News, opportunities, events, and student stories.</Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   header: {
+    width: '100%',
     paddingHorizontal: spacing.xl,
     paddingTop: spacing.xxl,
     paddingBottom: spacing.xl,
@@ -71,6 +74,9 @@ const styles = StyleSheet.create({
   },
   title: {
     marginTop: spacing.xl,
+    width: '100%',
+    maxWidth: '100%',
+    flexShrink: 1,
     color: colors.surface,
     fontSize: typography.screenTitle,
     fontWeight: fontWeights.bold,
@@ -78,7 +84,9 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     marginTop: spacing.sm,
-    maxWidth: 520,
+    width: '100%',
+    maxWidth: 330,
+    flexShrink: 1,
     color: colors.tintBlue,
     fontSize: typography.body,
     lineHeight: 24,

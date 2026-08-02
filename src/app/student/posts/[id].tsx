@@ -1,3 +1,4 @@
+import type { Href } from 'expo-router';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { StyleSheet, View } from 'react-native';
 
@@ -22,7 +23,7 @@ export default function StudentStoryDetailScreen() {
         <View style={styles.content}>
           <ContentNotFound
             actionLabel="Return to student home"
-            onAction={() => router.replace('/')}
+            onAction={() => router.replace('/student/home' as Href)}
           />
         </View>
       )}

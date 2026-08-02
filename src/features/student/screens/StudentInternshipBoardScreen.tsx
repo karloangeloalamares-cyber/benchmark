@@ -3,17 +3,17 @@ import type { Href } from 'expo-router';
 import { useRouter } from 'expo-router';
 import { StyleSheet, Text, View } from 'react-native';
 
-import { DemoContentNotice } from '@/features/student/components/DemoContentNotice';
-import { EmptyState } from '@/features/student/components/EmptyState';
-import { InternshipCard } from '@/features/student/components/InternshipCard';
-import { InternshipFilters } from '@/features/student/components/InternshipFilters';
-import { StudentPageHeader } from '@/features/student/components/StudentPageHeader';
-import { StudentScreenContainer } from '@/features/student/components/StudentScreenContainer';
+import { colors, fontWeights, spacing, typography } from '@/constants/theme';
+import { DemoContentNotice } from '../components/DemoContentNotice';
+import { EmptyState } from '../components/EmptyState';
+import { InternshipCard } from '../components/InternshipCard';
+import { InternshipFilters } from '../components/InternshipFilters';
+import { StudentPageHeader } from '../components/StudentPageHeader';
+import { StudentScreenContainer } from '../components/StudentScreenContainer';
 import {
   internshipCategories,
   studentInternships,
-} from '@/features/student/data/sampleContent';
-import { colors, fontWeights, spacing, typography } from '@/constants/theme';
+} from '../data/sampleContent';
 
 const ALL_CATEGORY_SLUG = 'all';
 
@@ -21,7 +21,7 @@ function internshipHref(internshipId: string): Href {
   return `/student/internships/${internshipId}` as Href;
 }
 
-export default function StudentInternshipBoardScreen() {
+export function StudentInternshipBoardScreen() {
   const router = useRouter();
   const [searchText, setSearchText] = useState('');
   const [selectedCategory, setSelectedCategory] = useState(ALL_CATEGORY_SLUG);
@@ -60,7 +60,7 @@ export default function StudentInternshipBoardScreen() {
 
   return (
     <StudentScreenContainer>
-      <StudentPageHeader title="Internship Board" />
+      <StudentPageHeader fallbackHref={'/student/home' as Href} title="Internship Board" />
       <View style={styles.content}>
         <View style={styles.intro}>
           <Text style={styles.eyebrow}>Student opportunities</Text>

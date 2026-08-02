@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { colors, fontWeights, layout, radii, spacing, typography } from '@/constants/theme';
 import type { StudentStory } from '../types';
 import { getSafeExternalLink } from '../utils/externalLinks';
+import { BookmarkButton } from './BookmarkButton';
 import { DemoContentNotice } from './DemoContentNotice';
 import { ExternalActionButton } from './ExternalActionButton';
 import { SampleBadge } from './SampleBadge';
@@ -36,7 +37,10 @@ export function StoryDetailContent({ story }: StoryDetailContentProps) {
           </View>
           <Text style={styles.title}>{story.title}</Text>
           <Text style={styles.summary}>{story.summary}</Text>
-          <Text style={styles.author}>By {story.author}</Text>
+          <View style={styles.actionRow}>
+            <Text style={styles.author}>By {story.author}</Text>
+            <BookmarkButton storyId={story.id} variant="full" />
+          </View>
         </View>
       </View>
 
@@ -94,10 +98,19 @@ const styles = StyleSheet.create({
     lineHeight: 24,
   },
   author: {
+    flex: 1,
+    minWidth: 0,
     color: colors.textSecondary,
     fontSize: typography.small,
     fontWeight: fontWeights.semibold,
     lineHeight: 20,
+  },
+  actionRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: spacing.md,
   },
   article: {
     width: '100%',

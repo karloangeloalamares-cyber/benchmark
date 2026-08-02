@@ -65,6 +65,8 @@ export const layout = {
   maxContentWidth: 680,
   maxReadableWidth: 560,
   studentMaxContentWidth: 760,
+  studentCompactNavWidth: 390,
+  studentTabBarHeight: 72,
   touchTarget: 48,
 };
 
