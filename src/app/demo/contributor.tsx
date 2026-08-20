@@ -16,10 +16,25 @@ export default function ContributorDashboardScreen() {
   return (
     <ScreenContainer>
       <AppHeader
-        title="Contributor Workspace"
+        actions={[
+          {
+            label: 'Back to Benchmark',
+            onPress: () => router.replace('/student/site'),
+            tone: 'primary',
+            icon: 'back',
+          },
+          {
+            label: 'Switch Role',
+            onPress: () => router.push('/demo/role-select'),
+            tone: 'secondary',
+          },
+        ]}
+        context="Benchmark Demo Workspace"
+        detail="Create, save, and submit university content in a read-only role preview."
         greeting="Welcome, Jordan"
-        context="Contributor Workspace"
-        onBack={() => router.push('/demo/role-select')}
+        label="Demo mode — mock data only"
+        roleLabel="Contributor"
+        title="Contributor Workspace"
       />
       <PrimaryButton accessibilityLabel="Create Content is unavailable in this demo phase" variant="gold">
         Create Content
@@ -47,7 +62,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: spacing.md,
-    marginTop: spacing.xl,
+    marginTop: spacing.lg,
   },
   list: {
     gap: spacing.md,

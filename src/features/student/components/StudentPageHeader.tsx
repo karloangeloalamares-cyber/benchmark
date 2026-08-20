@@ -42,7 +42,7 @@ export function StudentPageHeader({
           <Text style={styles.backText}>Back</Text>
         </Pressable>
       ) : null}
-      <View style={[styles.copy, !showBack && styles.copyNoBack]}>
+      <View style={styles.copy}>
         <Text style={styles.brand}>Benchmark</Text>
         {title ? <Text style={styles.title}>{title}</Text> : null}
         {subtitle ? <Text style={styles.subtitle}>{subtitle}</Text> : null}
@@ -54,10 +54,10 @@ export function StudentPageHeader({
 const styles = StyleSheet.create({
   header: {
     minWidth: 0,
-    minHeight: 68,
+    minHeight: 76,
     flexDirection: 'row',
-    alignItems: 'center',
-    gap: spacing.sm,
+    alignItems: 'flex-start',
+    gap: spacing.md,
     paddingHorizontal: spacing.lg,
     paddingTop: spacing.md,
     paddingBottom: spacing.md,
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   },
   backButton: {
     minWidth: 72,
-    minHeight: 36,
+    minHeight: 44,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
@@ -108,9 +108,6 @@ const styles = StyleSheet.create({
   copy: {
     flex: 1,
     minWidth: 0,
-    alignItems: 'center',
-  },
-  copyNoBack: {
     alignItems: 'flex-start',
   },
   pressed: {

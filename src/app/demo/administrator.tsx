@@ -21,9 +21,25 @@ export default function AdministratorDashboardScreen() {
   return (
     <ScreenContainer>
       <AppHeader
-        title="Administration"
+        actions={[
+          {
+            label: 'Back to Benchmark',
+            onPress: () => router.replace('/student/site'),
+            tone: 'primary',
+            icon: 'back',
+          },
+          {
+            label: 'Switch Role',
+            onPress: () => router.push('/demo/role-select'),
+            tone: 'secondary',
+          },
+        ]}
+        context="Benchmark Demo Workspace"
+        detail="Manage users, categories, content, and settings in a read-only administrative preview."
         greeting="Welcome, Morgan"
-        onBack={() => router.push('/demo/role-select')}
+        label="Demo mode — mock data only"
+        roleLabel="Administrator"
+        title="Administration"
       />
       <View style={styles.statsGrid}>
         {administratorStats.map((stat) => (

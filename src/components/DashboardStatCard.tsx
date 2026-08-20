@@ -22,9 +22,9 @@ export function DashboardStatCard({ stat }: DashboardStatCardProps) {
 const styles = StyleSheet.create({
   card: {
     flexGrow: 1,
-    flexBasis: 240,
+    flexBasis: 156,
     minWidth: 0,
-    minHeight: 104,
+    minHeight: 108,
     padding: spacing.lg,
     backgroundColor: colors.surface,
     borderColor: colors.border,
@@ -39,9 +39,9 @@ const styles = StyleSheet.create({
     borderRadius: radii.pill,
   },
   value: {
-    fontSize: 28,
+    fontSize: 30,
     fontWeight: fontWeights.bold,
-    lineHeight: 34,
+    lineHeight: 36,
   },
   label: {
     marginTop: spacing.sm,

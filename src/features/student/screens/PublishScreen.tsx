@@ -133,6 +133,9 @@ const styles = StyleSheet.create({
     borderRadius: radii.lg,
   },
   segment: {
+    minHeight: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
     paddingHorizontal: spacing.sm,
     paddingVertical: spacing.sm,
     borderRadius: radii.md,

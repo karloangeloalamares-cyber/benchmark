@@ -22,9 +22,25 @@ export default function ApproverDashboardScreen() {
   return (
     <ScreenContainer>
       <AppHeader
-        title="Approval Queue"
+        actions={[
+          {
+            label: 'Back to Benchmark',
+            onPress: () => router.replace('/student/site'),
+            tone: 'primary',
+            icon: 'back',
+          },
+          {
+            label: 'Switch Role',
+            onPress: () => router.push('/demo/role-select'),
+            tone: 'secondary',
+          },
+        ]}
+        context="Benchmark Demo Workspace"
+        detail="Review workload and publishing decisions in a read-only approval preview."
         greeting="Welcome, Taylor"
-        onBack={() => router.push('/demo/role-select')}
+        label="Demo mode — mock data only"
+        roleLabel="Approver"
+        title="Approval Queue"
       />
       <View style={styles.statsGrid}>
         {approverStats.map((stat) => (

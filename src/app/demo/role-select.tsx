@@ -1,10 +1,10 @@
 import { useRouter } from 'expo-router';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { AppHeader } from '@/components/AppHeader';
 import { RoleCard } from '@/components/RoleCard';
 import { ScreenContainer } from '@/components/ScreenContainer';
-import { colors, fontWeights, layout, spacing, typography } from '@/constants/theme';
+import { spacing } from '@/constants/theme';
 import { roleDefinitions } from '@/data/mockDashboard';
 
 export default function RoleSelectScreen() {
@@ -12,11 +12,20 @@ export default function RoleSelectScreen() {
 
   return (
     <ScreenContainer>
-      <AppHeader title="Choose Demo Role" label="Demo mode — mock data only" context="Role Preview" />
-      <Text style={styles.intro}>
-        Preview how contributors, approvers, and administrators enter the Benchmark content
-        workspace.
-      </Text>
+      <AppHeader
+        actions={[
+          {
+            label: 'Back to Benchmark',
+            onPress: () => router.replace('/student/site'),
+            tone: 'primary',
+            icon: 'back',
+          },
+        ]}
+        context="Role Preview"
+        detail="Preview how contributors, approvers, and administrators enter the Benchmark workspace. This demo area is read-only and separate from the public site."
+        label="Demo mode — mock data only"
+        title="Choose Demo Role"
+      />
       <View style={styles.list}>
         {roleDefinitions.map((role) => (
           <RoleCard key={role.role} role={role} onPress={() => router.push(role.route)} />
@@ -27,14 +36,6 @@ export default function RoleSelectScreen() {
 }
 
 const styles = StyleSheet.create({
-  intro: {
-    marginTop: -spacing.sm,
-    marginBottom: spacing.xl,
-    color: colors.textSecondary,
-    fontSize: typography.body,
-    lineHeight: 24,
-    maxWidth: layout.maxReadableWidth,
-  },
   list: {
     gap: spacing.lg,
   },

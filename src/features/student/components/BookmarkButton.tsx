@@ -44,8 +44,8 @@ export function BookmarkButton({ storyId, variant = 'compact' }: BookmarkButtonP
 
 const styles = StyleSheet.create({
   button: {
-    minHeight: 34,
-    minWidth: 34,
+    minHeight: 40,
+    minWidth: 40,
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 0,
@@ -56,6 +56,7 @@ const styles = StyleSheet.create({
   },
   fullButton: {
     alignSelf: 'flex-start',
+    minHeight: 44,
     flexDirection: 'row',
     gap: spacing.sm,
     maxWidth: '100%',

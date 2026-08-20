@@ -27,7 +27,10 @@ export function RoleCard({ role, onPress }: RoleCardProps) {
             <Text style={styles.description}>{role.description}</Text>
           </View>
         </View>
-        <Text style={styles.action}>Open dashboard</Text>
+        <View style={styles.actionRow}>
+          <Text style={styles.actionLabel}>Open workspace</Text>
+          <Text aria-hidden style={styles.actionArrow}>→</Text>
+        </View>
       </View>
     </Pressable>
   );
@@ -35,7 +38,7 @@ export function RoleCard({ role, onPress }: RoleCardProps) {
 
 const styles = StyleSheet.create({
   card: {
-    minHeight: 142,
+    minHeight: 156,
     backgroundColor: colors.surface,
     borderColor: colors.border,
     borderWidth: 1,
@@ -81,12 +84,26 @@ const styles = StyleSheet.create({
     fontSize: typography.body,
     lineHeight: 23,
   },
-  action: {
+  actionRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     marginTop: spacing.lg,
+    paddingTop: spacing.md,
+    borderTopColor: colors.border,
+    borderTopWidth: 1,
+  },
+  actionLabel: {
     color: colors.primaryNavy,
     fontSize: typography.small,
     fontWeight: fontWeights.semibold,
     lineHeight: 20,
+  },
+  actionArrow: {
+    color: colors.secondaryNavy,
+    fontSize: typography.body,
+    fontWeight: fontWeights.bold,
+    lineHeight: 22,
   },
   pressed: {
     opacity: 0.86,

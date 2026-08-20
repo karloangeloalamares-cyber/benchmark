@@ -141,12 +141,14 @@ function StudentTabBar({ state, navigation }: TabBarProps) {
 }
 
 export default function StudentTabsLayout() {
+  const pathname = usePathname();
   const router = useRouter();
   const { width } = useWindowDimensions();
   const insets = useSafeAreaInsets();
   const tabBarLeft = width > layout.studentMaxContentWidth
     ? (width - layout.studentMaxContentWidth) / 2
     : 0;
+  const showFloatingHome = pathname !== '/student/site';
 
   return (
     <View style={styles.shell}>
@@ -167,23 +169,25 @@ export default function StudentTabsLayout() {
         <Tabs.Screen name="saved" />
         <Tabs.Screen name="more" />
       </Tabs>
-      <Pressable
-        accessibilityHint="Return to the Benchmark home page"
-        accessibilityLabel="Home"
-        accessibilityRole="button"
-        onPress={() => router.replace('/student/site' as Href)}
-        style={({ pressed }) => [
-          styles.floatingHome,
-          {
-            bottom: Math.max(88, insets.bottom + 88),
-            right: Math.max(18, tabBarLeft + 18),
-          },
-          pressed && styles.floatingHomePressed,
-        ]}>
-        <View pointerEvents="none" style={styles.homeGradientBase} />
-        <View pointerEvents="none" style={styles.homeGradientShade} />
-        <StudentSymbol color={colors.universityGold} name="home" size={21} weight="semibold" />
-      </Pressable>
+      {showFloatingHome ? (
+        <Pressable
+          accessibilityHint="Return to the Benchmark home page"
+          accessibilityLabel="Home"
+          accessibilityRole="button"
+          onPress={() => router.replace('/student/site' as Href)}
+          style={({ pressed }) => [
+            styles.floatingHome,
+            {
+              bottom: Math.max(84, insets.bottom + 84),
+              right: Math.max(16, tabBarLeft + 16),
+            },
+            pressed && styles.floatingHomePressed,
+          ]}>
+          <View pointerEvents="none" style={styles.homeGradientBase} />
+          <View pointerEvents="none" style={styles.homeGradientShade} />
+          <StudentSymbol color={colors.universityGold} name="home" size={21} weight="semibold" />
+        </Pressable>
+      ) : null}
     </View>
   );
 }
@@ -212,7 +216,7 @@ const styles = StyleSheet.create({
   tabItem: {
     flex: 1,
     minWidth: 0,
-    minHeight: 50,
+    minHeight: 52,
     alignItems: 'center',
     justifyContent: 'center',
     gap: 2,
@@ -224,9 +228,9 @@ const styles = StyleSheet.create({
   tabLabel: {
     maxWidth: '100%',
     color: colors.textSecondary,
-    fontSize: 10,
+    fontSize: 11,
     fontWeight: fontWeights.medium,
-    lineHeight: 12,
+    lineHeight: 13,
     textAlign: 'center',
   },
   tabLabelActive: {
