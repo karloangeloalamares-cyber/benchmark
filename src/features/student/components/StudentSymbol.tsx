@@ -1,5 +1,6 @@
-import { SymbolView, type AndroidSymbol, type SFSymbol, type SymbolScale, type SymbolWeight } from 'expo-symbols';
-import type { ReactNode } from 'react';
+import { MaterialIcons } from '@expo/vector-icons';
+import { SymbolView, type SFSymbol, type SymbolScale, type SymbolWeight } from 'expo-symbols';
+import type { ComponentProps, ReactNode } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { colors } from '@/constants/theme';
@@ -28,43 +29,42 @@ export type StudentSymbolName =
   | 'chevronRight'
   | 'check';
 
+type MaterialIconName = ComponentProps<typeof MaterialIcons>['name'];
+
 type SymbolMap = Record<StudentSymbolName, {
   ios: SFSymbol;
-  android: AndroidSymbol;
-  web: AndroidSymbol;
+  fallback: MaterialIconName;
 }>;
 
 export const studentSymbolMap: SymbolMap = {
-  site: { ios: 'globe.americas.fill', android: 'public', web: 'public' },
-  internships: { ios: 'briefcase.fill', android: 'business_center', web: 'business_center' },
-  myPosts: { ios: 'square.and.pencil', android: 'edit_square', web: 'edit_square' },
-  review: { ios: 'checkmark.seal', android: 'approval', web: 'approval' },
+  site: { ios: 'globe.americas.fill', fallback: 'public' },
+  internships: { ios: 'briefcase.fill', fallback: 'business-center' },
+  myPosts: { ios: 'square.and.pencil', fallback: 'edit-square' },
+  review: { ios: 'checkmark.seal', fallback: 'fact-check' },
   publish: {
     ios: 'dot.radiowaves.left.and.right',
-    android: 'campaign',
-    web: 'campaign',
+    fallback: 'campaign',
   },
   manage: {
     ios: 'slider.horizontal.3',
-    android: 'tune',
-    web: 'tune',
+    fallback: 'tune',
   },
-  account: { ios: 'person.crop.circle', android: 'account_circle', web: 'account_circle' },
-  saved: { ios: 'bookmark.fill', android: 'bookmark', web: 'bookmark' },
-  home: { ios: 'house.fill', android: 'home', web: 'home' },
-  more: { ios: 'ellipsis', android: 'more_horiz', web: 'more_horiz' },
-  search: { ios: 'magnifyingglass', android: 'search', web: 'search' },
-  back: { ios: 'chevron.left', android: 'arrow_back_ios_new', web: 'arrow_back_ios_new' },
-  calendar: { ios: 'calendar', android: 'calendar_month', web: 'calendar_month' },
-  clock: { ios: 'clock.fill', android: 'schedule', web: 'schedule' },
-  location: { ios: 'mappin.and.ellipse', android: 'location_on', web: 'location_on' },
-  building: { ios: 'building.2.fill', android: 'apartment', web: 'apartment' },
-  share: { ios: 'square.and.arrow.up', android: 'share', web: 'share' },
-  status: { ios: 'checkmark.circle.fill', android: 'check_circle', web: 'check_circle' },
-  document: { ios: 'doc.text.fill', android: 'description', web: 'description' },
-  close: { ios: 'xmark', android: 'close', web: 'close' },
-  chevronRight: { ios: 'chevron.right', android: 'chevron_right', web: 'chevron_right' },
-  check: { ios: 'checkmark.circle.fill', android: 'check_circle', web: 'check_circle' },
+  account: { ios: 'person.crop.circle', fallback: 'account-circle' },
+  saved: { ios: 'bookmark.fill', fallback: 'bookmark' },
+  home: { ios: 'house.fill', fallback: 'home' },
+  more: { ios: 'ellipsis', fallback: 'more-horiz' },
+  search: { ios: 'magnifyingglass', fallback: 'search' },
+  back: { ios: 'chevron.left', fallback: 'arrow-back-ios-new' },
+  calendar: { ios: 'calendar', fallback: 'calendar-month' },
+  clock: { ios: 'clock.fill', fallback: 'schedule' },
+  location: { ios: 'mappin.and.ellipse', fallback: 'location-on' },
+  building: { ios: 'building.2.fill', fallback: 'apartment' },
+  share: { ios: 'square.and.arrow.up', fallback: 'share' },
+  status: { ios: 'checkmark.circle.fill', fallback: 'check-circle' },
+  document: { ios: 'doc.text.fill', fallback: 'description' },
+  close: { ios: 'xmark', fallback: 'close' },
+  chevronRight: { ios: 'chevron.right', fallback: 'chevron-right' },
+  check: { ios: 'checkmark.circle.fill', fallback: 'check-circle' },
 };
 
 type StudentSymbolProps = {
@@ -84,6 +84,8 @@ export function StudentSymbol({
   scale = 'medium',
   fallback,
 }: StudentSymbolProps) {
+  const symbol = studentSymbolMap[name];
+
   return (
     <View
       accessibilityElementsHidden
@@ -93,8 +95,12 @@ export function StudentSymbol({
       pointerEvents="none"
       style={[styles.frame, { height: size, width: size }]}>
       <SymbolView
-        fallback={fallback ?? <Text style={[styles.fallback, { color, fontSize: size, lineHeight: size }]}>?</Text>}
-        name={studentSymbolMap[name]}
+        fallback={
+          fallback ?? (
+            <MaterialIcons color={color} name={symbol.fallback} size={size} style={styles.materialFallback} />
+          )
+        }
+        name={symbol.ios}
         scale={scale}
         size={size}
         tintColor={color}
@@ -113,6 +119,9 @@ const styles = StyleSheet.create({
   },
   fallback: {
     fontWeight: '700',
+    textAlign: 'center',
+  },
+  materialFallback: {
     textAlign: 'center',
   },
 });

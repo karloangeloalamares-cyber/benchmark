@@ -254,7 +254,7 @@ const styles = StyleSheet.create({
     transform: [{ scale: 0.88 }],
   },
   homeGradientBase: {
-    ...StyleSheet.absoluteFill,
+    ...StyleSheet.absoluteFillObject,
     backgroundColor: colors.primaryNavy,
   },
   homeGradientShade: {
